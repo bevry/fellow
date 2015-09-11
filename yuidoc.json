@@ -1,0 +1,16 @@
+{
+    "name": "Fellow API",
+    "description": "Fellow API documentation for Bevry's Fellow Package",
+    "version": "5.0.0",
+    "url": "https://github.com/bevry/fellow",
+    "options": {
+        "linkNatives": true,
+        "attributesEmit": true,
+        "selleck": false,
+        "ignorePaths": [ "test" ],
+        "paths": "./esnext",
+        "outdir": "./docs",
+        "tabtospace": 4,
+        "markdown": "default"
+    }
+}

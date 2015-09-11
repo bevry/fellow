@@ -1,0 +1,432 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <title>esnext/lib/fellow.js - Fellow API</title>
+    <link rel="stylesheet" href="http://yui.yahooapis.com/3.9.1/build/cssgrids/cssgrids-min.css">
+    <link rel="stylesheet" href="../assets/vendor/prettify/prettify-min.css">
+    <link rel="stylesheet" href="../assets/css/main.css" id="site_styles">
+    <link rel="icon" href="../assets/favicon.ico">
+    <script src="http://yui.yahooapis.com/combo?3.9.1/build/yui/yui-min.js"></script>
+</head>
+<body class="yui3-skin-sam">
+
+<div id="doc">
+    <div id="hd" class="yui3-g header">
+        <div class="yui3-u-3-4">
+                <h1><img src="../assets/css/logo.png" title="Fellow API" width="117" height="52"></h1>
+        </div>
+        <div class="yui3-u-1-4 version">
+            <em>API Docs for: 5.0.0</em>
+        </div>
+    </div>
+    <div id="bd" class="yui3-g">
+
+        <div class="yui3-u-1-4">
+            <div id="docs-sidebar" class="sidebar apidocs">
+                <div id="api-list">
+                    <h2 class="off-left">APIs</h2>
+                    <div id="api-tabview" class="tabview">
+                        <ul class="tabs">
+                            <li><a href="#api-classes">Classes</a></li>
+                            <li><a href="#api-modules">Modules</a></li>
+                        </ul>
+                
+                        <div id="api-tabview-filter">
+                            <input type="search" id="api-filter" placeholder="Type to filter APIs">
+                        </div>
+                
+                        <div id="api-tabview-panel">
+                            <ul id="api-classes" class="apis classes">
+                                <li><a href="../classes/Fellow.html">Fellow</a></li>
+                            </ul>
+                
+                
+                            <ul id="api-modules" class="apis modules">
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="yui3-u-3-4">
+                <div id="api-options">
+                    Show:
+                    <label for="api-show-inherited">
+                        <input type="checkbox" id="api-show-inherited" checked>
+                        Inherited
+                    </label>
+            
+                    <label for="api-show-protected">
+                        <input type="checkbox" id="api-show-protected">
+                        Protected
+                    </label>
+            
+                    <label for="api-show-private">
+                        <input type="checkbox" id="api-show-private">
+                        Private
+                    </label>
+                    <label for="api-show-deprecated">
+                        <input type="checkbox" id="api-show-deprecated">
+                        Deprecated
+                    </label>
+            
+                </div>
+            
+            <div class="apidocs">
+                <div id="docs-main">
+                    <div class="content">
+<h1 class="file-heading">File: esnext/lib/fellow.js</h1>
+
+<div class="file">
+    <pre class="code prettyprint linenums">
+/**
+A fellow with similarties to other people
+
+@class Fellow
+@constructor
+*/
+export default class Fellow {
+
+    // -----------------------------------
+    // Static Helpers
+
+    /**
+    Create a new Fellow instance with the value, however if the value is already a fellow instance, then just return it
+    @static
+    @method create
+    @param {Mixed} value
+    @return {Fellow} The new fellow instance
+    */
+    static create (value) {
+        return value instanceof this ? value : new this(value)
+    }
+
+    /**
+    A singleton array attached to the class object that stores it&#x27;s people objects
+    @static
+    @property list
+    */
+    static get list () {
+        if ( this._list == null )  this._list = []
+        return this._list
+    }
+
+    /**
+    An array of fields that will denote if the user is the same user or not when using ensure
+    @protected
+    @static
+    @property ensureFields
+    @type Array
+    */
+    static get ensureFields () {
+        if ( this._ensureFields == null )  this._ensureFields = [&#x27;email&#x27;, &#x27;homepage&#x27;, &#x27;githubUsername&#x27;]
+        return this._ensureFields
+    }
+
+    /**
+    With the value, see if an existing fellow exists in our singleton list property with the value, otherwise create a new fellow instance with the value and add them to our singleton list
+    @static
+    @method ensure
+    @param {Mixed} value  The value to create a new fellow instance or find the existing fellow instance with
+    @return {Fellow} The new or existing fellow instance
+    */
+    static ensure (value, add = true) {
+        const newFellow = this.create(value)
+        const fields = this.ensureFields
+        const people = this.list
+        for ( const existingFellow of people ) {
+            for ( const field of fields ) {
+                if ( newFellow[field] &amp;&amp; newFellow[field] === existingFellow[field] ) {
+                    return existingFellow.setValue(value)
+                }
+            }
+        }
+        if ( add ) {
+            people.push(newFellow)
+            return newFellow
+        }
+        else {
+            return null
+        }
+    }
+
+    /**
+    Get a fellow from the singleton list
+    @static
+    @method get
+    @param {Mixed} value The value to fetch the value with
+    @return {Fellow|Null} The fetched fellow, if they exist with that value
+    */
+    static get (value) {
+        return this.ensure(value, false)
+    }
+
+    /**
+    Add a fellow or a series of people, denoted by the value, to the singleton list
+    @static
+    @method add
+    @param {Mixed} value The fellow or people to add
+    @return {Array} An array of the fellow objects for the passed people
+    */
+    static add (value) {
+        if ( value instanceof this ) {
+            return [this.ensure(value)]
+        }
+        else if ( typeof value === &#x27;string&#x27; ) {
+            return value.split(/, +/).map((fellow) =&gt; {
+                return this.ensure(fellow)
+            })
+        }
+        else if ( Array.isArray(value) ) {
+            return value.map((value) =&gt; {
+                return this.ensure(value)
+            })
+        }
+        else if ( value ) {
+            return [this.ensure(value)]
+        }
+        else {
+            return []
+        }
+    }
+
+    // -----------------------------------
+    // Properties
+
+    /**
+    @property name
+    @type String
+    */
+    set name (value) {
+        const match = (/^((?:[0-9]+[\-\+]?)+)?(.+)$/).exec(value)
+        if ( match ) {
+            this.years = String(match[1] || &#x27;&#x27;).trim()
+            this._name = (match[2] || &#x27;&#x27;).trim()
+        }
+    }
+
+    get name () {
+        return this._name
+    }
+
+    /**
+    If the name is prefixed with a series of numbers, that is considered the year
+    E.g. In &#x60;2015+ Bevry Pty Ltd&#x60; then &#x60;2015+&#x60; is the years
+    E.g. In &#x60;2013-2015 Bevry Pty Ltd&#x60; then &#x60;2013-2015&#x60; is the years
+    @property years
+    @type String
+    */
+
+    /**
+    @property email
+    @type String
+    */
+
+    /**
+    If this is a github URL, then &#x60;githubUrl&#x60; and &#x60;githubUsername&#x60; are extracted and this is not yet
+    If this is not a github URL, then it is set to &#x60;homepage&#x60;
+    When fetched, it will return &#x60;homepage || githubUrl || null&#x60;
+    @property url
+    @type String
+    */
+    set url (value) {
+        const githubMatch = (/^.+github.com\/([^\/]+)\/?$/).exec(value)
+        if ( githubMatch ) {
+            this.githubUsername = githubMatch[1]
+            this.githubUrl = &#x27;https://github.com/&#x27; + this.githubUsername
+        }
+        else {
+            this.homepage = value
+        }
+    }
+    get url () {
+        return this.homepage || this.githubUrl
+    }
+
+    /**
+    @property homepage
+    @type String
+    */
+
+    /**
+    @property githubUrl
+    @type String
+    */
+
+    /**
+    @property githubUsername
+    @type String
+    */
+
+    // -----------------------------------
+    // Methods
+
+    /**
+    Construct our fellow instance with the value
+    @method constructor
+    @property {Mixed} value The value used to set the properties of the fellow, forwarded to setValue
+    */
+    constructor (value) {
+        this.setValue(value)
+    }
+
+    /**
+    Update our fellow with the passed value
+    @property {String|Object} fellow A string in the format of &quot;Benjamin Lupton &lt;b@lupton.cc&gt; (https://balupton.com)&quot; or an object with properties
+    @chainable
+    */
+    setValue (fellow) {
+        // String format
+        // Benjamin Lupton &lt;b@lupton.cc&gt; (https://balupton.com)
+        if ( typeof fellow === &#x27;string&#x27; ) {
+            const match = (/^([^&lt;(]+)\s*(?:&lt;(.+?)&gt;)?\s*(?:\((.+?)\))?$/).exec(fellow)
+            if ( !match ) {
+                throw new Error(&#x27;Invalid fellow string&#x27;)
+            }
+            this.name = (match[1] || &#x27;&#x27;).trim() || null
+            this.email = (match[2] || &#x27;&#x27;).trim() || null
+            this.url = (match[3] || &#x27;&#x27;).trim() || null
+        }
+
+        // Object Format
+        else if ( typeof fellow === &#x27;object&#x27; ) {
+            const urlFields = [&#x27;url&#x27;, &#x27;homepage&#x27;, &#x27;web&#x27;, &#x27;githubUrl&#x27;]
+            Object.keys(fellow).forEach((key) =&gt; {
+                if ( key[0] === &#x27;_&#x27; )  return  // skip if private
+                const value = fellow[key] || null
+                if ( urlFields.indexOf(key) === -1 ) {
+                    this[key] = value
+                }
+                else {
+                    this.url = value
+                }
+            })
+            this.name = fellow.name || null
+            this.email = fellow.email || null
+        }
+
+        else {
+            throw new Error(&#x27;Invalid fellow input&#x27;)
+        }
+
+        return this
+    }
+
+
+    // -----------------------------------
+    // Repos
+
+    /**
+    Ensures that the github repository exists on the class
+    @private
+    @method ensureGithubRepository
+    @param {String} slug Github repository slug (e.g. &quot;bevry/projectz&quot;)
+    @return {Object} The repository object
+    */
+    ensureGithubRepository (slug) {
+        if ( this._githubRepositories == null )  this._githubRepositories = {}
+        if ( this._githubRepositories[slug] == null )  this._githubRepositories[slug] = {contributes: false, maintains: false, authors: false}
+        return this._githubRepositories[slug]
+    }
+
+    /**
+    Get all added github repository slugs that this fellow contributes to
+    @property contributedGithubRepositories
+    @type Array
+    */
+    get contributedGithubRepositories () {
+        const result = []
+        Object.keys(this._githubRepositories || {}).filter((slug) =&gt; {
+            const repo = this._githubRepositories[slug]
+            if ( repo &amp;&amp; repo.contributes ) {
+                result.push(slug)
+            }
+        })
+        return result
+    }
+
+    /**
+    Make note that this fellow contributes to this repository slug
+    @method contributesToGithubRepository
+    @param {String} slug The github repository slug that this user contributes to
+    @chainable
+    */
+    contributesToGithubRepository (slug) {
+        this.ensureGithubRepository(slug).contributes = true
+        return this
+    }
+
+    /**
+    Get all added github repository slugs that this fellow maintains
+    @property maintainedGithubRepositories
+    @type Array
+    */
+    get maintainedGithubRepositories () {
+        const result = []
+        Object.keys(this._githubRepositories || {}).filter((slug) =&gt; {
+            const repo = this._githubRepositories[slug]
+            if ( repo &amp;&amp; repo.maintains ) {
+                result.push(slug)
+            }
+        })
+        return result
+    }
+
+    /**
+    Make note that this fellow maintains this repository slug
+    @method maintainsGithubRepository
+    @param {String} slug The github repository slug that this user maintains
+    @chainable
+    */
+    maintainsGithubRepository (slug) {
+        this.ensureGithubRepository(slug).maintains = true
+        return this
+    }
+
+    /**
+    Get all added github repository slugs that this fellow authors
+    @property authoredGithubRepositories
+    @type Array
+    */
+    get authoredGithubRepositories () {
+        const result = []
+        Object.keys(this._githubRepositories || {}).filter((slug) =&gt; {
+            const repo = this._githubRepositories[slug]
+            if ( repo &amp;&amp; repo.authors ) {
+                result.push(slug)
+            }
+        })
+        return result
+    }
+
+    /**
+    Make note that this fellow authors this repository slug
+    @method authorsGithubRepository
+    @param {String} slug The github repository slug that this user authors
+    @chainable
+    */
+    authorsGithubRepository (slug) {
+        this.ensureGithubRepository(slug).authors = true
+        return this
+    }
+}
+
+    </pre>
+</div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<script src="../assets/vendor/prettify/prettify-min.js"></script>
+<script>prettyPrint();</script>
+<script src="../assets/js/yui-prettify.js"></script>
+<script src="../assets/../api.js"></script>
+<script src="../assets/js/api-filter.js"></script>
+<script src="../assets/js/api-list.js"></script>
+<script src="../assets/js/api-search.js"></script>
+<script src="../assets/js/apidocs.js"></script>
+</body>
+</html>
