@@ -109,6 +109,46 @@ export default class Fellow {
 		}
 	}
 
+	/**
+	Get all fellows who contribute to a particular repository
+	@static
+	@method contributesRepository
+	@param {String} repoSlug The repository slug
+	@return {Array} An array of the fellow objects that contribute to the repository
+	*/
+	static contributesRepository (repoSlug) {
+		return this.list.filter(function (fellow) {
+			return fellow.ensureRepository(repoSlug).contributes
+		})
+	}
+
+	/**
+	Get all fellows who maintain a particular repository
+	@static
+	@method maintainsRepository
+	@param {String} repoSlug The repository slug
+	@return {Array} An array of the fellow objects that maintain to the repository
+	*/
+	static maintainsRepository (repoSlug) {
+		return this.list.filter(function (fellow) {
+			return fellow.ensureRepository(repoSlug).maintains
+		})
+	}
+
+	/**
+	Get all fellows who author a particular repository
+	@static
+	@method authorsRepository
+	@param {String} repoSlug The repository slug
+	@return {Array} An array of the fellow objects that author to the repository
+	*/
+	static authorsRepository (repoSlug) {
+		return this.list.filter(function (fellow) {
+			return fellow.ensureRepository(repoSlug).authors
+		})
+	}
+
+
 	// -----------------------------------
 	// Properties
 
@@ -142,9 +182,10 @@ export default class Fellow {
 	*/
 
 	/**
-	If this is a github URL, then `githubUrl` and `githubUsername` are extracted and this is not yet
-	If this is not a github URL, then it is set to `homepage`
-	When fetched, it will return `homepage || githubUrl || null`
+	When set, will determine if it is a github, facebook, or twitter url
+	If it is, then it will extract the username and url from it
+	If this is not one of those urls, then it will set the homepage variable
+	When fetching, it will fetch `homepage || githubUrl || facebookUrl || twitterUrl || null`
 	@property url
 	@type String
 	*/
@@ -155,11 +196,25 @@ export default class Fellow {
 			this.githubUrl = 'https://github.com/' + this.githubUsername
 		}
 		else {
-			this.homepage = value
+			const facebookMatch = (/^.+facebook.com\/([^\/]+)\/?$/).exec(value)
+			if ( facebookMatch ) {
+				this.facebookUsername = facebookMatch[1]
+				this.facebookUrl = 'https://facebook.com/' + this.facebookUsername
+			}
+			else {
+				const twitterMatch = (/^.+twitter.com\/([^\/]+)\/?$/).exec(value)
+				if ( twitterMatch ) {
+					this.twitterUsername = twitterMatch[1]
+					this.twtterUrl = 'https://twitter.com/' + this.twitterUsername
+				}
+				else {
+					this.homepage = value
+				}
+			}
 		}
 	}
 	get url () {
-		return this.homepage || this.githubUrl
+		return this.homepage || this.githubUrl || this.facebookUrl || this.twitterUrl || null
 	}
 
 	/**
@@ -202,26 +257,29 @@ export default class Fellow {
 			if ( !match ) {
 				throw new Error('Invalid fellow string')
 			}
-			this.name = (match[1] || '').trim() || null
-			this.email = (match[2] || '').trim() || null
-			this.url = (match[3] || '').trim() || null
+			const name = (match[1] || '').trim() || null
+			const email = (match[2] || '').trim() || null
+			const url = (match[3] || '').trim() || null
+			if ( name )   this.name = name
+			if ( email )  this.email = email
+			if ( url )    this.url = url
 		}
 
 		// Object Format
 		else if ( typeof fellow === 'object' ) {
-			const urlFields = ['url', 'homepage', 'web', 'githubUrl']
+			const urlFields = ['url', 'homepage', 'web', 'githubUrl', 'twitterUrl', 'facebookUrl']
 			Object.keys(fellow).forEach((key) => {
 				if ( key[0] === '_' )  return  // skip if private
 				const value = fellow[key] || null
-				if ( urlFields.indexOf(key) === -1 ) {
-					this[key] = value
-				}
-				else {
-					this.url = value
+				if ( value ) {
+					if ( urlFields.indexOf(key) === -1 ) {
+						this[key] = value
+					}
+					else {
+						this.url = value
+					}
 				}
 			})
-			this.name = fellow.name || null
-			this.email = fellow.email || null
 		}
 
 		else {
@@ -238,25 +296,25 @@ export default class Fellow {
 	/**
 	Ensures that the github repository exists on the class
 	@private
-	@method ensureGithubRepository
+	@method ensureRepository
 	@param {String} slug Github repository slug (e.g. "bevry/projectz")
 	@return {Object} The repository object
 	*/
-	ensureGithubRepository (slug) {
-		if ( this._githubRepositories == null )  this._githubRepositories = {}
-		if ( this._githubRepositories[slug] == null )  this._githubRepositories[slug] = {contributes: false, maintains: false, authors: false}
-		return this._githubRepositories[slug]
+	ensureRepository (slug) {
+		if ( this._Repositories == null )  this._Repositories = {}
+		if ( this._Repositories[slug] == null )  this._Repositories[slug] = {contributes: false, maintains: false, authors: false}
+		return this._Repositories[slug]
 	}
 
 	/**
 	Get all added github repository slugs that this fellow contributes to
-	@property contributedGithubRepositories
+	@property contributedRepositories
 	@type Array
 	*/
-	get contributedGithubRepositories () {
+	get contributedRepositories () {
 		const result = []
-		Object.keys(this._githubRepositories || {}).filter((slug) => {
-			const repo = this._githubRepositories[slug]
+		Object.keys(this._Repositories || {}).filter((slug) => {
+			const repo = this._Repositories[slug]
 			if ( repo && repo.contributes ) {
 				result.push(slug)
 			}
@@ -266,24 +324,24 @@ export default class Fellow {
 
 	/**
 	Make note that this fellow contributes to this repository slug
-	@method contributesToGithubRepository
+	@method contributesRepository
 	@param {String} slug The github repository slug that this user contributes to
 	@chainable
 	*/
-	contributesToGithubRepository (slug) {
-		this.ensureGithubRepository(slug).contributes = true
+	contributesRepository (slug) {
+		this.ensureRepository(slug).contributes = true
 		return this
 	}
 
 	/**
 	Get all added github repository slugs that this fellow maintains
-	@property maintainedGithubRepositories
+	@property maintainedRepositories
 	@type Array
 	*/
-	get maintainedGithubRepositories () {
+	get maintainedRepositories () {
 		const result = []
-		Object.keys(this._githubRepositories || {}).filter((slug) => {
-			const repo = this._githubRepositories[slug]
+		Object.keys(this._Repositories || {}).filter((slug) => {
+			const repo = this._Repositories[slug]
 			if ( repo && repo.maintains ) {
 				result.push(slug)
 			}
@@ -293,24 +351,24 @@ export default class Fellow {
 
 	/**
 	Make note that this fellow maintains this repository slug
-	@method maintainsGithubRepository
+	@method maintainsRepository
 	@param {String} slug The github repository slug that this user maintains
 	@chainable
 	*/
-	maintainsGithubRepository (slug) {
-		this.ensureGithubRepository(slug).maintains = true
+	maintainsRepository (slug) {
+		this.ensureRepository(slug).maintains = true
 		return this
 	}
 
 	/**
 	Get all added github repository slugs that this fellow authors
-	@property authoredGithubRepositories
+	@property authoredRepositories
 	@type Array
 	*/
-	get authoredGithubRepositories () {
+	get authoredRepositories () {
 		const result = []
-		Object.keys(this._githubRepositories || {}).filter((slug) => {
-			const repo = this._githubRepositories[slug]
+		Object.keys(this._Repositories || {}).filter((slug) => {
+			const repo = this._Repositories[slug]
 			if ( repo && repo.authors ) {
 				result.push(slug)
 			}
@@ -320,12 +378,12 @@ export default class Fellow {
 
 	/**
 	Make note that this fellow authors this repository slug
-	@method authorsGithubRepository
+	@method authorsRepository
 	@param {String} slug The github repository slug that this user authors
 	@chainable
 	*/
-	authorsGithubRepository (slug) {
-		this.ensureGithubRepository(slug).authors = true
+	authorsRepository (slug) {
+		this.ensureRepository(slug).authors = true
 		return this
 	}
 }

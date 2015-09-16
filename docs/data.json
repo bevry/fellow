@@ -137,7 +137,67 @@
         },
         {
             "file": "esnext/lib/fellow.js",
-            "line": 115,
+            "line": 112,
+            "description": "Get all fellows who contribute to a particular repository",
+            "static": 1,
+            "itemtype": "method",
+            "name": "contributesRepository",
+            "params": [
+                {
+                    "name": "repoSlug",
+                    "description": "The repository slug",
+                    "type": "String"
+                }
+            ],
+            "return": {
+                "description": "An array of the fellow objects that contribute to the repository",
+                "type": "Array"
+            },
+            "class": "Fellow"
+        },
+        {
+            "file": "esnext/lib/fellow.js",
+            "line": 125,
+            "description": "Get all fellows who maintain a particular repository",
+            "static": 1,
+            "itemtype": "method",
+            "name": "maintainsRepository",
+            "params": [
+                {
+                    "name": "repoSlug",
+                    "description": "The repository slug",
+                    "type": "String"
+                }
+            ],
+            "return": {
+                "description": "An array of the fellow objects that maintain to the repository",
+                "type": "Array"
+            },
+            "class": "Fellow"
+        },
+        {
+            "file": "esnext/lib/fellow.js",
+            "line": 138,
+            "description": "Get all fellows who author a particular repository",
+            "static": 1,
+            "itemtype": "method",
+            "name": "authorsRepository",
+            "params": [
+                {
+                    "name": "repoSlug",
+                    "description": "The repository slug",
+                    "type": "String"
+                }
+            ],
+            "return": {
+                "description": "An array of the fellow objects that author to the repository",
+                "type": "Array"
+            },
+            "class": "Fellow"
+        },
+        {
+            "file": "esnext/lib/fellow.js",
+            "line": 155,
             "itemtype": "property",
             "name": "name",
             "type": "String",
@@ -145,7 +205,7 @@
         },
         {
             "file": "esnext/lib/fellow.js",
-            "line": 131,
+            "line": 171,
             "description": "If the name is prefixed with a series of numbers, that is considered the year\nE.g. In `2015+ Bevry Pty Ltd` then `2015+` is the years\nE.g. In `2013-2015 Bevry Pty Ltd` then `2013-2015` is the years",
             "itemtype": "property",
             "name": "years",
@@ -154,7 +214,7 @@
         },
         {
             "file": "esnext/lib/fellow.js",
-            "line": 139,
+            "line": 179,
             "itemtype": "property",
             "name": "email",
             "type": "String",
@@ -162,8 +222,8 @@
         },
         {
             "file": "esnext/lib/fellow.js",
-            "line": 144,
-            "description": "If this is a github URL, then `githubUrl` and `githubUsername` are extracted and this is not yet\nIf this is not a github URL, then it is set to `homepage`\nWhen fetched, it will return `homepage || githubUrl || null`",
+            "line": 184,
+            "description": "When set, will determine if it is a github, facebook, or twitter url\nIf it is, then it will extract the username and url from it\nIf this is not one of those urls, then it will set the homepage variable\nWhen fetching, it will fetch `homepage || githubUrl || facebookUrl || twitterUrl || null`",
             "itemtype": "property",
             "name": "url",
             "type": "String",
@@ -171,7 +231,7 @@
         },
         {
             "file": "esnext/lib/fellow.js",
-            "line": 165,
+            "line": 220,
             "itemtype": "property",
             "name": "homepage",
             "type": "String",
@@ -179,7 +239,7 @@
         },
         {
             "file": "esnext/lib/fellow.js",
-            "line": 170,
+            "line": 225,
             "itemtype": "property",
             "name": "githubUrl",
             "type": "String",
@@ -187,7 +247,7 @@
         },
         {
             "file": "esnext/lib/fellow.js",
-            "line": 175,
+            "line": 230,
             "itemtype": "property",
             "name": "githubUsername",
             "type": "String",
@@ -195,7 +255,7 @@
         },
         {
             "file": "esnext/lib/fellow.js",
-            "line": 183,
+            "line": 238,
             "description": "Construct our fellow instance with the value",
             "itemtype": "property",
             "name": "value The value used to set the properties of the fellow, forwarded to setValue",
@@ -204,7 +264,7 @@
         },
         {
             "file": "esnext/lib/fellow.js",
-            "line": 192,
+            "line": 247,
             "description": "Update our fellow with the passed value",
             "itemtype": "property",
             "name": "fellow A string in the format of \"Benjamin Lupton <b@lupton.cc> (https://balupton.com)\" or an object with properties",
@@ -214,12 +274,12 @@
         },
         {
             "file": "esnext/lib/fellow.js",
-            "line": 238,
+            "line": 296,
             "description": "Ensures that the github repository exists on the class",
             "access": "private",
             "tagname": "",
             "itemtype": "method",
-            "name": "ensureGithubRepository",
+            "name": "ensureRepository",
             "params": [
                 {
                     "name": "slug",
@@ -235,19 +295,19 @@
         },
         {
             "file": "esnext/lib/fellow.js",
-            "line": 251,
+            "line": 309,
             "description": "Get all added github repository slugs that this fellow contributes to",
             "itemtype": "property",
-            "name": "contributedGithubRepositories",
+            "name": "contributedRepositories",
             "type": "Array",
             "class": "Fellow"
         },
         {
             "file": "esnext/lib/fellow.js",
-            "line": 267,
+            "line": 325,
             "description": "Make note that this fellow contributes to this repository slug",
             "itemtype": "method",
-            "name": "contributesToGithubRepository",
+            "name": "contributesRepository",
             "params": [
                 {
                     "name": "slug",
@@ -260,19 +320,19 @@
         },
         {
             "file": "esnext/lib/fellow.js",
-            "line": 278,
+            "line": 336,
             "description": "Get all added github repository slugs that this fellow maintains",
             "itemtype": "property",
-            "name": "maintainedGithubRepositories",
+            "name": "maintainedRepositories",
             "type": "Array",
             "class": "Fellow"
         },
         {
             "file": "esnext/lib/fellow.js",
-            "line": 294,
+            "line": 352,
             "description": "Make note that this fellow maintains this repository slug",
             "itemtype": "method",
-            "name": "maintainsGithubRepository",
+            "name": "maintainsRepository",
             "params": [
                 {
                     "name": "slug",
@@ -285,19 +345,19 @@
         },
         {
             "file": "esnext/lib/fellow.js",
-            "line": 305,
+            "line": 363,
             "description": "Get all added github repository slugs that this fellow authors",
             "itemtype": "property",
-            "name": "authoredGithubRepositories",
+            "name": "authoredRepositories",
             "type": "Array",
             "class": "Fellow"
         },
         {
             "file": "esnext/lib/fellow.js",
-            "line": 321,
+            "line": 379,
             "description": "Make note that this fellow authors this repository slug",
             "itemtype": "method",
-            "name": "authorsGithubRepository",
+            "name": "authorsRepository",
             "params": [
                 {
                     "name": "slug",
