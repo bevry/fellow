@@ -42,7 +42,7 @@ Fellow is a package for creating people that can be unified by their shared valu
 <a href="http://browserify.org" title="Browserify lets you require('modules') in the browser by bundling up all of your dependencies"><h3>Browserify</h3></a><ul>
 <li>Install: <code>npm install --save fellow</code></li>
 <li>Use: <code>require('fellow')</code></li>
-<li>CDN URL: <code>//wzrd.in/bundle/fellow@1.1.0</code></li></ul>
+<li>CDN URL: <code>//wzrd.in/bundle/fellow@1.2.0</code></li></ul>
 
 <a href="http://enderjs.com" title="Ender is a full featured package manager for your browser"><h3>Ender</h3></a><ul>
 <li>Install: <code>ender add fellow</code></li>

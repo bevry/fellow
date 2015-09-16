@@ -153,6 +153,10 @@ export default class Fellow {
 	// Properties
 
 	/**
+	If the name is empty, we will try to fallback to githubUsername then twitterUsername
+	If the name is prefixed with a series of numbers, that is considered the year
+	E.g. In `2015+ Bevry Pty Ltd` then `2015+` is the years
+	E.g. In `2013-2015 Bevry Pty Ltd` then `2013-2015` is the years
 	@property name
 	@type String
 	*/
@@ -165,13 +169,11 @@ export default class Fellow {
 	}
 
 	get name () {
-		return this._name
+		return this._name || this.githubUsername || this.twitterUsername || null
 	}
 
 	/**
-	If the name is prefixed with a series of numbers, that is considered the year
-	E.g. In `2015+ Bevry Pty Ltd` then `2015+` is the years
-	E.g. In `2013-2015 Bevry Pty Ltd` then `2013-2015` is the years
+	The years that this fellow has
 	@property years
 	@type String
 	*/

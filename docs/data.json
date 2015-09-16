@@ -198,6 +198,7 @@
         {
             "file": "esnext/lib/fellow.js",
             "line": 155,
+            "description": "If the name is empty, we will try to fallback to githubUsername then twitterUsername\nIf the name is prefixed with a series of numbers, that is considered the year\nE.g. In `2015+ Bevry Pty Ltd` then `2015+` is the years\nE.g. In `2013-2015 Bevry Pty Ltd` then `2013-2015` is the years",
             "itemtype": "property",
             "name": "name",
             "type": "String",
@@ -205,8 +206,8 @@
         },
         {
             "file": "esnext/lib/fellow.js",
-            "line": 171,
-            "description": "If the name is prefixed with a series of numbers, that is considered the year\nE.g. In `2015+ Bevry Pty Ltd` then `2015+` is the years\nE.g. In `2013-2015 Bevry Pty Ltd` then `2013-2015` is the years",
+            "line": 175,
+            "description": "The years that this fellow has",
             "itemtype": "property",
             "name": "years",
             "type": "String",
@@ -214,7 +215,7 @@
         },
         {
             "file": "esnext/lib/fellow.js",
-            "line": 179,
+            "line": 181,
             "itemtype": "property",
             "name": "email",
             "type": "String",
@@ -222,7 +223,7 @@
         },
         {
             "file": "esnext/lib/fellow.js",
-            "line": 184,
+            "line": 186,
             "description": "When set, will determine if it is a github, facebook, or twitter url\nIf it is, then it will extract the username and url from it\nIf this is not one of those urls, then it will set the homepage variable\nWhen fetching, it will fetch `homepage || githubUrl || facebookUrl || twitterUrl || null`",
             "itemtype": "property",
             "name": "url",
@@ -231,7 +232,7 @@
         },
         {
             "file": "esnext/lib/fellow.js",
-            "line": 220,
+            "line": 222,
             "itemtype": "property",
             "name": "homepage",
             "type": "String",
@@ -239,7 +240,7 @@
         },
         {
             "file": "esnext/lib/fellow.js",
-            "line": 225,
+            "line": 227,
             "itemtype": "property",
             "name": "githubUrl",
             "type": "String",
@@ -247,7 +248,7 @@
         },
         {
             "file": "esnext/lib/fellow.js",
-            "line": 230,
+            "line": 232,
             "itemtype": "property",
             "name": "githubUsername",
             "type": "String",
@@ -255,7 +256,7 @@
         },
         {
             "file": "esnext/lib/fellow.js",
-            "line": 238,
+            "line": 240,
             "description": "Construct our fellow instance with the value",
             "itemtype": "property",
             "name": "value The value used to set the properties of the fellow, forwarded to setValue",
@@ -264,7 +265,7 @@
         },
         {
             "file": "esnext/lib/fellow.js",
-            "line": 247,
+            "line": 249,
             "description": "Update our fellow with the passed value",
             "itemtype": "property",
             "name": "fellow A string in the format of \"Benjamin Lupton <b@lupton.cc> (https://balupton.com)\" or an object with properties",
@@ -274,7 +275,7 @@
         },
         {
             "file": "esnext/lib/fellow.js",
-            "line": 296,
+            "line": 298,
             "description": "Ensures that the github repository exists on the class",
             "access": "private",
             "tagname": "",
@@ -295,7 +296,7 @@
         },
         {
             "file": "esnext/lib/fellow.js",
-            "line": 309,
+            "line": 311,
             "description": "Get all added github repository slugs that this fellow contributes to",
             "itemtype": "property",
             "name": "contributedRepositories",
@@ -304,7 +305,7 @@
         },
         {
             "file": "esnext/lib/fellow.js",
-            "line": 325,
+            "line": 327,
             "description": "Make note that this fellow contributes to this repository slug",
             "itemtype": "method",
             "name": "contributesRepository",
@@ -320,7 +321,7 @@
         },
         {
             "file": "esnext/lib/fellow.js",
-            "line": 336,
+            "line": 338,
             "description": "Get all added github repository slugs that this fellow maintains",
             "itemtype": "property",
             "name": "maintainedRepositories",
@@ -329,7 +330,7 @@
         },
         {
             "file": "esnext/lib/fellow.js",
-            "line": 352,
+            "line": 354,
             "description": "Make note that this fellow maintains this repository slug",
             "itemtype": "method",
             "name": "maintainsRepository",
@@ -345,7 +346,7 @@
         },
         {
             "file": "esnext/lib/fellow.js",
-            "line": 363,
+            "line": 365,
             "description": "Get all added github repository slugs that this fellow authors",
             "itemtype": "property",
             "name": "authoredRepositories",
@@ -354,7 +355,7 @@
         },
         {
             "file": "esnext/lib/fellow.js",
-            "line": 379,
+            "line": 381,
             "description": "Make note that this fellow authors this repository slug",
             "itemtype": "method",
             "name": "authorsRepository",
