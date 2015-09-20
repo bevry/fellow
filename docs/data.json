@@ -66,18 +66,6 @@
         {
             "file": "esnext/lib/fellow.js",
             "line": 33,
-            "description": "An array of fields that will denote if the user is the same user or not when using ensure",
-            "access": "protected",
-            "tagname": "",
-            "static": 1,
-            "itemtype": "property",
-            "name": "ensureFields",
-            "type": "Array",
-            "class": "Fellow"
-        },
-        {
-            "file": "esnext/lib/fellow.js",
-            "line": 45,
             "description": "With the value, see if an existing fellow exists in our singleton list property with the value, otherwise create a new fellow instance with the value and add them to our singleton list",
             "static": 1,
             "itemtype": "method",
@@ -97,7 +85,37 @@
         },
         {
             "file": "esnext/lib/fellow.js",
-            "line": 72,
+            "line": 57,
+            "description": "An array of fields that will denote if the user is the same user or not when using ensure",
+            "access": "protected",
+            "tagname": "",
+            "itemtype": "property",
+            "name": "ensureFields",
+            "type": "Array",
+            "class": "Fellow"
+        },
+        {
+            "file": "esnext/lib/fellow.js",
+            "line": 67,
+            "description": "Compare a fellow to another fellow, uses ensureFields for the comparison\nIf an ensureField is an array for both ourself and the other fellow, we will check to see if only one item of that array is similar (this is useful for email comparisons)",
+            "itemtype": "method",
+            "name": "compare",
+            "params": [
+                {
+                    "name": "other",
+                    "description": "The other fellow to compare ourselves with",
+                    "type": "Fellow"
+                }
+            ],
+            "return": {
+                "description": "Returns `true` if they appear to be the same person, or `false` if not",
+                "type": "Boolean"
+            },
+            "class": "Fellow"
+        },
+        {
+            "file": "esnext/lib/fellow.js",
+            "line": 96,
             "description": "Get a fellow from the singleton list",
             "static": 1,
             "itemtype": "method",
@@ -117,7 +135,7 @@
         },
         {
             "file": "esnext/lib/fellow.js",
-            "line": 83,
+            "line": 107,
             "description": "Add a fellow or a series of people, denoted by the value, to the singleton list",
             "static": 1,
             "itemtype": "method",
@@ -137,7 +155,7 @@
         },
         {
             "file": "esnext/lib/fellow.js",
-            "line": 112,
+            "line": 136,
             "description": "Get all fellows who contribute to a particular repository",
             "static": 1,
             "itemtype": "method",
@@ -157,7 +175,7 @@
         },
         {
             "file": "esnext/lib/fellow.js",
-            "line": 125,
+            "line": 149,
             "description": "Get all fellows who maintain a particular repository",
             "static": 1,
             "itemtype": "method",
@@ -177,7 +195,7 @@
         },
         {
             "file": "esnext/lib/fellow.js",
-            "line": 138,
+            "line": 162,
             "description": "Get all fellows who author a particular repository",
             "static": 1,
             "itemtype": "method",
@@ -197,25 +215,17 @@
         },
         {
             "file": "esnext/lib/fellow.js",
-            "line": 155,
-            "description": "If the name is empty, we will try to fallback to githubUsername then twitterUsername\nIf the name is prefixed with a series of numbers, that is considered the year\nE.g. In `2015+ Bevry Pty Ltd` then `2015+` is the years\nE.g. In `2013-2015 Bevry Pty Ltd` then `2013-2015` is the years",
+            "line": 179,
+            "description": "Get the serialisable values of this fellow",
             "itemtype": "property",
-            "name": "name",
-            "type": "String",
+            "name": "json",
+            "type": "Object",
             "class": "Fellow"
         },
         {
             "file": "esnext/lib/fellow.js",
-            "line": 175,
-            "description": "The years that this fellow has",
-            "itemtype": "property",
-            "name": "years",
-            "type": "String",
-            "class": "Fellow"
-        },
-        {
-            "file": "esnext/lib/fellow.js",
-            "line": 181,
+            "line": 189,
+            "description": "Updating the email will add the email to the start of the `emails` array",
             "itemtype": "property",
             "name": "email",
             "type": "String",
@@ -223,7 +233,7 @@
         },
         {
             "file": "esnext/lib/fellow.js",
-            "line": 186,
+            "line": 205,
             "description": "When set, will determine if it is a github, facebook, or twitter url\nIf it is, then it will extract the username and url from it\nIf this is not one of those urls, then it will set the homepage variable\nWhen fetching, it will fetch `homepage || githubUrl || facebookUrl || twitterUrl || null`",
             "itemtype": "property",
             "name": "url",
@@ -232,7 +242,7 @@
         },
         {
             "file": "esnext/lib/fellow.js",
-            "line": 222,
+            "line": 241,
             "itemtype": "property",
             "name": "homepage",
             "type": "String",
@@ -240,7 +250,7 @@
         },
         {
             "file": "esnext/lib/fellow.js",
-            "line": 227,
+            "line": 246,
             "itemtype": "property",
             "name": "githubUrl",
             "type": "String",
@@ -248,7 +258,7 @@
         },
         {
             "file": "esnext/lib/fellow.js",
-            "line": 232,
+            "line": 251,
             "itemtype": "property",
             "name": "githubUsername",
             "type": "String",
@@ -256,16 +266,48 @@
         },
         {
             "file": "esnext/lib/fellow.js",
-            "line": 240,
+            "line": 256,
+            "itemtype": "property",
+            "name": "twitterUrl",
+            "type": "String",
+            "class": "Fellow"
+        },
+        {
+            "file": "esnext/lib/fellow.js",
+            "line": 261,
+            "itemtype": "property",
+            "name": "twitterUsername",
+            "type": "String",
+            "class": "Fellow"
+        },
+        {
+            "file": "esnext/lib/fellow.js",
+            "line": 266,
+            "itemtype": "property",
+            "name": "facebookUrl",
+            "type": "String",
+            "class": "Fellow"
+        },
+        {
+            "file": "esnext/lib/fellow.js",
+            "line": 271,
+            "itemtype": "property",
+            "name": "facebookUsername",
+            "type": "String",
+            "class": "Fellow"
+        },
+        {
+            "file": "esnext/lib/fellow.js",
+            "line": 279,
             "description": "Construct our fellow instance with the value",
             "itemtype": "property",
-            "name": "value The value used to set the properties of the fellow, forwarded to setValue",
+            "name": "value The value used to set the properties of the fellow, forwarded to set",
             "type": "Mixed",
             "class": "Fellow"
         },
         {
             "file": "esnext/lib/fellow.js",
-            "line": 249,
+            "line": 289,
             "description": "Update our fellow with the passed value",
             "itemtype": "property",
             "name": "fellow A string in the format of \"Benjamin Lupton <b@lupton.cc> (https://balupton.com)\" or an object with properties",
@@ -275,7 +317,7 @@
         },
         {
             "file": "esnext/lib/fellow.js",
-            "line": 298,
+            "line": 338,
             "description": "Ensures that the github repository exists on the class",
             "access": "private",
             "tagname": "",
@@ -296,7 +338,7 @@
         },
         {
             "file": "esnext/lib/fellow.js",
-            "line": 311,
+            "line": 351,
             "description": "Get all added github repository slugs that this fellow contributes to",
             "itemtype": "property",
             "name": "contributedRepositories",
@@ -305,7 +347,7 @@
         },
         {
             "file": "esnext/lib/fellow.js",
-            "line": 327,
+            "line": 367,
             "description": "Make note that this fellow contributes to this repository slug",
             "itemtype": "method",
             "name": "contributesRepository",
@@ -321,7 +363,7 @@
         },
         {
             "file": "esnext/lib/fellow.js",
-            "line": 338,
+            "line": 378,
             "description": "Get all added github repository slugs that this fellow maintains",
             "itemtype": "property",
             "name": "maintainedRepositories",
@@ -330,7 +372,7 @@
         },
         {
             "file": "esnext/lib/fellow.js",
-            "line": 354,
+            "line": 394,
             "description": "Make note that this fellow maintains this repository slug",
             "itemtype": "method",
             "name": "maintainsRepository",
@@ -346,7 +388,7 @@
         },
         {
             "file": "esnext/lib/fellow.js",
-            "line": 365,
+            "line": 405,
             "description": "Get all added github repository slugs that this fellow authors",
             "itemtype": "property",
             "name": "authoredRepositories",
@@ -355,7 +397,7 @@
         },
         {
             "file": "esnext/lib/fellow.js",
-            "line": 381,
+            "line": 421,
             "description": "Make note that this fellow authors this repository slug",
             "itemtype": "method",
             "name": "authorsRepository",

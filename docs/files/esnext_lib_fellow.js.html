@@ -113,18 +113,6 @@ export default class Fellow {
     }
 
     /**
-    An array of fields that will denote if the user is the same user or not when using ensure
-    @protected
-    @static
-    @property ensureFields
-    @type Array
-    */
-    static get ensureFields () {
-        if ( this._ensureFields == null )  this._ensureFields = [&#x27;email&#x27;, &#x27;homepage&#x27;, &#x27;githubUsername&#x27;]
-        return this._ensureFields
-    }
-
-    /**
     With the value, see if an existing fellow exists in our singleton list property with the value, otherwise create a new fellow instance with the value and add them to our singleton list
     @static
     @method ensure
@@ -133,13 +121,10 @@ export default class Fellow {
     */
     static ensure (value, add = true) {
         const newFellow = this.create(value)
-        const fields = this.ensureFields
         const people = this.list
         for ( const existingFellow of people ) {
-            for ( const field of fields ) {
-                if ( newFellow[field] &amp;&amp; newFellow[field] === existingFellow[field] ) {
-                    return existingFellow.setValue(value)
-                }
+            if ( newFellow.compare(existingFellow) ) {
+                return existingFellow.set(value)
             }
         }
         if ( add ) {
@@ -149,6 +134,45 @@ export default class Fellow {
         else {
             return null
         }
+    }
+
+    /**
+    An array of fields that will denote if the user is the same user or not when using ensure
+    @protected
+    @property ensureFields
+    @type Array
+    */
+    get ensureFields () {
+        return [&#x27;emails&#x27;, &#x27;homepage&#x27;, &#x27;githubUsername&#x27;, &#x27;twitterUsername&#x27;, &#x27;facebookUsername&#x27;]
+    }
+
+    /**
+    Compare a fellow to another fellow, uses ensureFields for the comparison
+    If an ensureField is an array for both ourself and the other fellow, we will check to see if only one item of that array is similar (this is useful for email comparisons)
+    @method compare
+    @param {Fellow} other The other fellow to compare ourselves with
+    @return {Boolean} Returns &#x60;true&#x60; if they appear to be the same person, or &#x60;false&#x60; if not
+    */
+    compare (other) {
+        const fields = this.ensureFields
+        for ( const field of fields ) {
+            const value = this[field]
+            const otherValue = other[field]
+
+            if ( value &amp;&amp; otherValue ) {
+                if ( Array.isArray(value) &amp;&amp; Array.isArray(otherValue) ) {
+                    for ( const item of value ) {
+                        if ( otherValue.indexOf(item) !== -1 ) {
+                            return true
+                        }
+                    }
+                }
+                else if ( value === otherValue ) {
+                    return true
+                }
+            }
+        }
+        return false
     }
 
     /**
@@ -235,35 +259,30 @@ export default class Fellow {
     // Properties
 
     /**
-    If the name is empty, we will try to fallback to githubUsername then twitterUsername
-    If the name is prefixed with a series of numbers, that is considered the year
-    E.g. In &#x60;2015+ Bevry Pty Ltd&#x60; then &#x60;2015+&#x60; is the years
-    E.g. In &#x60;2013-2015 Bevry Pty Ltd&#x60; then &#x60;2013-2015&#x60; is the years
-    @property name
-    @type String
+    Get the serialisable values of this fellow
+    @property json
+    @type Object
     */
-    set name (value) {
-        const match = (/^((?:[0-9]+[\-\+]?)+)?(.+)$/).exec(value)
-        if ( match ) {
-            this.years = String(match[1] || &#x27;&#x27;).trim()
-            this._name = (match[2] || &#x27;&#x27;).trim()
-        }
-    }
-
-    get name () {
-        return this._name || this.githubUsername || this.twitterUsername || null
+    get json () {
+        const json = JSON.parse(JSON.stringify(this))
+        return json
     }
 
     /**
-    The years that this fellow has
-    @property years
-    @type String
-    */
-
-    /**
+    Updating the email will add the email to the start of the &#x60;emails&#x60; array
     @property email
     @type String
     */
+    set email (value) {
+        const index = this.emails.indexOf(value)
+        if ( index !== -1 ) {
+            this.emails = this.emails.slice(0, index).concat(this.emails.slice(index + 1))
+        }
+        this.emails.unshift(value)
+    }
+    get email () {
+        return this.emails[0] || null
+    }
 
     /**
     When set, will determine if it is a github, facebook, or twitter url
@@ -316,16 +335,37 @@ export default class Fellow {
     @type String
     */
 
+    /**
+    @property twitterUrl
+    @type String
+    */
+
+    /**
+    @property twitterUsername
+    @type String
+    */
+
+    /**
+    @property facebookUrl
+    @type String
+    */
+
+    /**
+    @property facebookUsername
+    @type String
+    */
+
     // -----------------------------------
     // Methods
 
     /**
     Construct our fellow instance with the value
     @method constructor
-    @property {Mixed} value The value used to set the properties of the fellow, forwarded to setValue
+    @property {Mixed} value The value used to set the properties of the fellow, forwarded to set
     */
     constructor (value) {
-        this.setValue(value)
+        if ( !this.emails ) this.emails = []
+        this.set(value)
     }
 
     /**
@@ -333,7 +373,7 @@ export default class Fellow {
     @property {String|Object} fellow A string in the format of &quot;Benjamin Lupton &lt;b@lupton.cc&gt; (https://balupton.com)&quot; or an object with properties
     @chainable
     */
-    setValue (fellow) {
+    set (fellow) {
         // String format
         // Benjamin Lupton &lt;b@lupton.cc&gt; (https://balupton.com)
         if ( typeof fellow === &#x27;string&#x27; ) {

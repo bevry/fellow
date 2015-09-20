@@ -7,6 +7,21 @@ const Fellow = require('../../')
 joe.suite('fellow', function (suite, test) {
 	const name = 'Benjamin Lupton', email = 'b@lupton.cc', homepage = 'https://balupton.com', githubUrl = 'https://github.com/balupton'
 
+	test('create instance with string value', function () {
+		const fellow = new Fellow(`${name} <${email}>`)
+		equal(fellow.name, name, 'name is correct')
+		equal(fellow.email, email, 'email is correct')
+		deepEqual(fellow.json, {emails: [email], name}, 'json data is correct')
+
+		fellow.email = 'bennie@lupton.cc'
+		equal(fellow.email, 'bennie@lupton.cc', 'updated email is correct')
+		deepEqual(fellow.emails, ['bennie@lupton.cc', email], 'updated emails are correct')
+
+		fellow.email = email
+		equal(fellow.email, email, 'reverted email is correct')
+		deepEqual(fellow.emails, [email, 'bennie@lupton.cc'], 'reverted emails are correct')
+	})
+
 	test('create instance with string value and githubUrl', function () {
 		const fellow = new Fellow(`${name} <${email}> (${githubUrl})`)
 		equal(fellow.name, name, 'name is correct')
@@ -38,28 +53,16 @@ joe.suite('fellow', function (suite, test) {
 	test('create instance with string value then be able to update it', function () {
 		const fellow = new Fellow(`${name} <${email}> (${githubUrl})`)
 
-		fellow.setValue(`${name} <${email}> (${homepage})`)
+		fellow.set(`${name} <${email}> (${homepage})`)
 		equal(fellow.name, name, 'name is correct')
 		equal(fellow.email, email, 'email is correct')
 		equal(fellow.url, homepage, 'url was updated to the homepage')
 		equal(fellow.homepage, homepage, 'homepage was updated to the homepage')
 		equal(fellow.githubUrl, githubUrl, 'githubUrl is still present')
 
-		fellow.setValue(`${name} <${email}> (${githubUrl})`)
+		fellow.set(`${name} <${email}> (${githubUrl})`)
 		equal(fellow.url, homepage, 'url stayed as the the homepage')
 		equal(fellow.homepage, homepage, 'homepage stayed as the homepage')
-
-		fellow.name = '2015+ Benjamin Lupton'
-		equal(fellow.years, '2015+', 'year was extracted')
-		equal(fellow.name, name, 'name was extracted from combined year')
-
-		fellow.name = '2015-2016 Benjamin Lupton'
-		equal(fellow.years, '2015-2016', 'year was extracted')
-		equal(fellow.name, name, 'name was extracted from combined year')
-
-		fellow.name = '2015 Benjamin Lupton'
-		equal(fellow.years, '2015', 'year was extracted')
-		equal(fellow.name, name, 'name was extracted from combined year')
 	})
 
 	suite('singleton', function (suite, test) {
