@@ -1,3 +1,8 @@
-// 18 September 2015
-// https://github.com/bevry/base
-module.exports = require('esnextguardian')('./esnext/lib/fellow.js', './es5/lib/fellow.js', require)
+// 2015 December 8
+// https://github.com/bevry/esnextguardian
+'use strict'
+module.exports = require('esnextguardian')(
+    require('path').join(__dirname, 'esnext', 'lib', 'fellow.js'),
+    require('path').join(__dirname, 'es5', 'lib', 'fellow.js'),
+    require
+)

@@ -80,13 +80,16 @@
 
 <div class="file">
     <pre class="code prettyprint linenums">
+/* eslint no-magic-numbers:0 */
+&#x27;use strict&#x27;
+
 /**
 A fellow with similarties to other people
 
 @class Fellow
 @constructor
 */
-export default class Fellow {
+class Fellow {
 
     // -----------------------------------
     // Static Helpers
@@ -198,14 +201,10 @@ export default class Fellow {
             return [this.ensure(value)]
         }
         else if ( typeof value === &#x27;string&#x27; ) {
-            return value.split(/, +/).map((fellow) =&gt; {
-                return this.ensure(fellow)
-            })
+            return value.split(/, +/).map((fellow) =&gt; this.ensure(fellow))
         }
         else if ( Array.isArray(value) ) {
-            return value.map((value) =&gt; {
-                return this.ensure(value)
-            })
+            return value.map((value) =&gt; this.ensure(value))
         }
         else if ( value ) {
             return [this.ensure(value)]
@@ -511,6 +510,9 @@ export default class Fellow {
         return this
     }
 }
+
+// Export
+module.exports = Fellow
 
     </pre>
 </div>

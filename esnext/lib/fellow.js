@@ -1,10 +1,13 @@
+/* eslint no-magic-numbers:0 */
+'use strict'
+
 /**
 A fellow with similarties to other people
 
 @class Fellow
 @constructor
 */
-export default class Fellow {
+class Fellow {
 
 	// -----------------------------------
 	// Static Helpers
@@ -116,14 +119,10 @@ export default class Fellow {
 			return [this.ensure(value)]
 		}
 		else if ( typeof value === 'string' ) {
-			return value.split(/, +/).map((fellow) => {
-				return this.ensure(fellow)
-			})
+			return value.split(/, +/).map((fellow) => this.ensure(fellow))
 		}
 		else if ( Array.isArray(value) ) {
-			return value.map((value) => {
-				return this.ensure(value)
-			})
+			return value.map((value) => this.ensure(value))
 		}
 		else if ( value ) {
 			return [this.ensure(value)]
@@ -429,3 +428,6 @@ export default class Fellow {
 		return this
 	}
 }
+
+// Export
+module.exports = Fellow

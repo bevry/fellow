@@ -1,3 +1,6 @@
+/* eslint no-magic-numbers:0 */
+'use strict'
+
 // Import
 const joe = require('joe')
 const {equal, deepEqual} = require('assert-helpers')
