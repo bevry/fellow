@@ -1,5 +1,8 @@
 # History
 
+## v2.2.0 2016 April 30
+- Updated internal conventions
+
 ## v2.1.0 2015 December 9
 - Updated internal conventions
 

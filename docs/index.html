@@ -1,115 +1,3517 @@
-<!DOCTYPE html>
-<html lang="en">
+<!doctype html>
+<html>
 <head>
-    <meta charset="utf-8">
-    <title>Fellow API</title>
-    <link rel="stylesheet" href="http://yui.yahooapis.com/3.9.1/build/cssgrids/cssgrids-min.css">
-    <link rel="stylesheet" href="./assets/vendor/prettify/prettify-min.css">
-    <link rel="stylesheet" href="./assets/css/main.css" id="site_styles">
-    <link rel="icon" href="./assets/favicon.ico">
-    <script src="http://yui.yahooapis.com/combo?3.9.1/build/yui/yui-min.js"></script>
+  <meta charset='utf-8' />
+  <title>  | Documentation</title>
+  <meta name='viewport' content='width=device-width,initial-scale=1'>
+  <link href='assets/bass.css' type='text/css' rel='stylesheet' />
+  <link href='assets/style.css' type='text/css' rel='stylesheet' />
+  <link href='assets/github.css' type='text/css' rel='stylesheet' />
 </head>
-<body class="yui3-skin-sam">
-
-<div id="doc">
-    <div id="hd" class="yui3-g header">
-        <div class="yui3-u-3-4">
-                <h1><img src="./assets/css/logo.png" title="Fellow API" width="117" height="52"></h1>
+<body class='documentation'>
+  <div class='container'>
+    <div class='clearfix md-mxn2'>
+      <div class='fixed md-show fix-3 overflow-auto max-height-100'>
+        <div class='py1 px2'>
+          <h3 class='mb0 no-anchor'></h3>
+          <div class='mb1'><code></code></div>
+          <input
+            placeholder='Filter'
+            id='filter-input'
+            class='col12 block field'
+            type='text' />
+          <div id='toc'>
+              <a
+                href='#_createClass'
+                class='block bold'>
+                _createClass
+              </a>
+              <a
+                href='#Fellow'
+                class='block bold'>
+                Fellow
+              </a>
+                <a
+                  href='#Fellow.add'
+                  class='regular block'>
+                  .add
+                </a>
+                <a
+                  href='#Fellow.authorsRepository'
+                  class='regular block'>
+                  .authorsRepository
+                </a>
+                <a
+                  href='#Fellow.contributesRepository'
+                  class='regular block'>
+                  .contributesRepository
+                </a>
+                <a
+                  href='#Fellow.create'
+                  class='regular block'>
+                  .create
+                </a>
+                <a
+                  href='#Fellow.ensure'
+                  class='regular block'>
+                  .ensure
+                </a>
+                <a
+                  href='#Fellow.get'
+                  class='regular block'>
+                  .get
+                </a>
+                <a
+                  href='#Fellow.list'
+                  class='regular block'>
+                  .list
+                </a>
+                <a
+                  href='#Fellow.maintainsRepository'
+                  class='regular block'>
+                  .maintainsRepository
+                </a>
+                <a
+                  href='#Fellow.authoredRepositories'
+                  class='regular block'>
+                  #authoredRepositories
+                </a>
+                <a
+                  href='#Fellow.authorsRepository'
+                  class='regular block'>
+                  #authorsRepository
+                </a>
+                <a
+                  href='#Fellow.compare'
+                  class='regular block'>
+                  #compare
+                </a>
+                <a
+                  href='#Fellow.constructor'
+                  class='regular block'>
+                  #constructor
+                </a>
+                <a
+                  href='#Fellow.constructor'
+                  class='regular block'>
+                  #constructor
+                </a>
+                <a
+                  href='#Fellow.constructor'
+                  class='regular block'>
+                  #constructor
+                </a>
+                <a
+                  href='#Fellow.constructor'
+                  class='regular block'>
+                  #constructor
+                </a>
+                <a
+                  href='#Fellow.constructor'
+                  class='regular block'>
+                  #constructor
+                </a>
+                <a
+                  href='#Fellow.constructor'
+                  class='regular block'>
+                  #constructor
+                </a>
+                <a
+                  href='#Fellow.constructor'
+                  class='regular block'>
+                  #constructor
+                </a>
+                <a
+                  href='#Fellow.constructor'
+                  class='regular block'>
+                  #constructor
+                </a>
+                <a
+                  href='#Fellow.contributedRepositories'
+                  class='regular block'>
+                  #contributedRepositories
+                </a>
+                <a
+                  href='#Fellow.contributesRepository'
+                  class='regular block'>
+                  #contributesRepository
+                </a>
+                <a
+                  href='#Fellow.email'
+                  class='regular block'>
+                  #email
+                </a>
+                <a
+                  href='#Fellow.ensureFields'
+                  class='regular block'>
+                  #ensureFields
+                </a>
+                <a
+                  href='#Fellow.json'
+                  class='regular block'>
+                  #json
+                </a>
+                <a
+                  href='#Fellow.maintainedRepositories'
+                  class='regular block'>
+                  #maintainedRepositories
+                </a>
+                <a
+                  href='#Fellow.maintainsRepository'
+                  class='regular block'>
+                  #maintainsRepository
+                </a>
+                <a
+                  href='#Fellow.set'
+                  class='regular block'>
+                  #set
+                </a>
+                <a
+                  href='#Fellow.url'
+                  class='regular block'>
+                  #url
+                </a>
+              <a
+                href='#Fellow'
+                class='block bold'>
+                Fellow
+              </a>
+                <a
+                  href='#Fellow.add'
+                  class='regular block'>
+                  .add
+                </a>
+                <a
+                  href='#Fellow.authorsRepository'
+                  class='regular block'>
+                  .authorsRepository
+                </a>
+                <a
+                  href='#Fellow.contributesRepository'
+                  class='regular block'>
+                  .contributesRepository
+                </a>
+                <a
+                  href='#Fellow.create'
+                  class='regular block'>
+                  .create
+                </a>
+                <a
+                  href='#Fellow.ensure'
+                  class='regular block'>
+                  .ensure
+                </a>
+                <a
+                  href='#Fellow.get'
+                  class='regular block'>
+                  .get
+                </a>
+                <a
+                  href='#Fellow.list'
+                  class='regular block'>
+                  .list
+                </a>
+                <a
+                  href='#Fellow.maintainsRepository'
+                  class='regular block'>
+                  .maintainsRepository
+                </a>
+                <a
+                  href='#Fellow.authoredRepositories'
+                  class='regular block'>
+                  #authoredRepositories
+                </a>
+                <a
+                  href='#Fellow.authorsRepository'
+                  class='regular block'>
+                  #authorsRepository
+                </a>
+                <a
+                  href='#Fellow.compare'
+                  class='regular block'>
+                  #compare
+                </a>
+                <a
+                  href='#Fellow.constructor'
+                  class='regular block'>
+                  #constructor
+                </a>
+                <a
+                  href='#Fellow.constructor'
+                  class='regular block'>
+                  #constructor
+                </a>
+                <a
+                  href='#Fellow.constructor'
+                  class='regular block'>
+                  #constructor
+                </a>
+                <a
+                  href='#Fellow.constructor'
+                  class='regular block'>
+                  #constructor
+                </a>
+                <a
+                  href='#Fellow.constructor'
+                  class='regular block'>
+                  #constructor
+                </a>
+                <a
+                  href='#Fellow.constructor'
+                  class='regular block'>
+                  #constructor
+                </a>
+                <a
+                  href='#Fellow.constructor'
+                  class='regular block'>
+                  #constructor
+                </a>
+                <a
+                  href='#Fellow.constructor'
+                  class='regular block'>
+                  #constructor
+                </a>
+                <a
+                  href='#Fellow.contributedRepositories'
+                  class='regular block'>
+                  #contributedRepositories
+                </a>
+                <a
+                  href='#Fellow.contributesRepository'
+                  class='regular block'>
+                  #contributesRepository
+                </a>
+                <a
+                  href='#Fellow.email'
+                  class='regular block'>
+                  #email
+                </a>
+                <a
+                  href='#Fellow.ensureFields'
+                  class='regular block'>
+                  #ensureFields
+                </a>
+                <a
+                  href='#Fellow.json'
+                  class='regular block'>
+                  #json
+                </a>
+                <a
+                  href='#Fellow.maintainedRepositories'
+                  class='regular block'>
+                  #maintainedRepositories
+                </a>
+                <a
+                  href='#Fellow.maintainsRepository'
+                  class='regular block'>
+                  #maintainsRepository
+                </a>
+                <a
+                  href='#Fellow.set'
+                  class='regular block'>
+                  #set
+                </a>
+                <a
+                  href='#Fellow.url'
+                  class='regular block'>
+                  #url
+                </a>
+              <a
+                href='#get'
+                class='block bold'>
+                get
+              </a>
+              <a
+                href='#get'
+                class='block bold'>
+                get
+              </a>
+              <a
+                href='#get'
+                class='block bold'>
+                get
+              </a>
+              <a
+                href='#get'
+                class='block bold'>
+                get
+              </a>
+              <a
+                href='#get'
+                class='block bold'>
+                get
+              </a>
+              <a
+                href='#get'
+                class='block bold'>
+                get
+              </a>
+              <a
+                href='#get'
+                class='block bold'>
+                get
+              </a>
+              <a
+                href='#get'
+                class='block bold'>
+                get
+              </a>
+              <a
+                href='#get'
+                class='block bold'>
+                get
+              </a>
+              <a
+                href='#get'
+                class='block bold'>
+                get
+              </a>
+              <a
+                href='#get'
+                class='block bold'>
+                get
+              </a>
+              <a
+                href='#get'
+                class='block bold'>
+                get
+              </a>
+              <a
+                href='#get'
+                class='block bold'>
+                get
+              </a>
+              <a
+                href='#value'
+                class='block bold'>
+                value
+              </a>
+              <a
+                href='#value'
+                class='block bold'>
+                value
+              </a>
+              <a
+                href='#value'
+                class='block bold'>
+                value
+              </a>
+              <a
+                href='#value'
+                class='block bold'>
+                value
+              </a>
+              <a
+                href='#value'
+                class='block bold'>
+                value
+              </a>
+              <a
+                href='#value'
+                class='block bold'>
+                value
+              </a>
+              <a
+                href='#value'
+                class='block bold'>
+                value
+              </a>
+              <a
+                href='#value'
+                class='block bold'>
+                value
+              </a>
+              <a
+                href='#value'
+                class='block bold'>
+                value
+              </a>
+              <a
+                href='#value'
+                class='block bold'>
+                value
+              </a>
+              <a
+                href='#value'
+                class='block bold'>
+                value
+              </a>
+              <a
+                href='#value'
+                class='block bold'>
+                value
+              </a>
+              <a
+                href='#value'
+                class='block bold'>
+                value
+              </a>
+              <a
+                href='#value'
+                class='block bold'>
+                value
+              </a>
+          </div>
         </div>
-        <div class="yui3-u-1-4 version">
-            <em>API Docs for: 5.0.0</em>
-        </div>
-    </div>
-    <div id="bd" class="yui3-g">
+      </div>
+      <div class='fix-margin-3'>
+        <div class='px2'>
+<div class='py1'><section class='py2 clearfix'>
+  <h2 id='_createClass' class='mt0'>
+    _createClass<span class='gray'>(fellow)</span>
+  </h2>
+    <p><a href='https://github.com/bevry/fellow/blob/a6743608fddea0dbc88ebc22925e29db3bf549a0/es2015/index.js#L397-L548'><code>es2015/index.js</code></a></p>
+  
+  
+  
+  
+  
+  <p>Update our fellow with the passed value</p>
 
-        <div class="yui3-u-1-4">
-            <div id="docs-sidebar" class="sidebar apidocs">
-                <div id="api-list">
-                    <h2 class="off-left">APIs</h2>
-                    <div id="api-tabview" class="tabview">
-                        <ul class="tabs">
-                            <li><a href="#api-classes">Classes</a></li>
-                            <li><a href="#api-modules">Modules</a></li>
-                        </ul>
-                
-                        <div id="api-tabview-filter">
-                            <input type="search" id="api-filter" placeholder="Type to filter APIs">
-                        </div>
-                
-                        <div id="api-tabview-panel">
-                            <ul id="api-classes" class="apis classes">
-                                <li><a href="./classes/Fellow.html">Fellow</a></li>
-                            </ul>
-                
-                
-                            <ul id="api-modules" class="apis modules">
-                            </ul>
-                        </div>
-                    </div>
-                </div>
+    <h4>Parameters</h4>
+    <ul class='suppress-p-margin'>
+        <li>(
+<a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/String">String</a>
+|
+<a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Object">Object</a>
+)
+ <strong>fellow</strong>
+          :
+          <div class='force-inline'>
+            <p>A string in the format of "Benjamin Lupton <a href="mailto:b@lupton.cc">b@lupton.cc</a> (<a href="https://balupton.com">https://balupton.com</a>)" or an object with properties</p>
+
+          </div>
+        </li>
+    </ul>
+      <h4>Returns</h4>
+      <code>this
+</code>
+      
+      <div class='force-inline'>
+        
+      </div>
+</section>
+</div><div class='py1'><section class='py2 clearfix'>
+  <h2 id='Fellow' class='mt0'>
+    Fellow<span class='gray'></span>
+  </h2>
+    <p><a href='https://github.com/bevry/fellow/blob/a6743608fddea0dbc88ebc22925e29db3bf549a0/es2015/index.js#L14-L551'><code>es2015/index.js</code></a></p>
+  
+  
+  
+  
+  
+  <p>A fellow with similarties to other people</p>
+
+      <h4>Static members</h4>
+        <div class='collapsible' id='Fellow.add'>
+          <a href='#Fellow.add'>
+            <code>
+              .add<span class='gray'>(value)</span>
+            </code>
+            <div class='force-inline'>
+              <p>Add a fellow or a series of people, denoted by the value, to the singleton list</p>
+
             </div>
+          </a>
+          <div class='collapser border px2 m2'>
+<section class='py2 clearfix'>
+  <h2 id='Fellow.add' class='mt0'>
+    add<span class='gray'>(value)</span>
+  </h2>
+    <p><a href='https://github.com/bevry/fellow/blob/a6743608fddea0dbc88ebc22925e29db3bf549a0/source/index.js#L112-L128'><code>source/index.js</code></a></p>
+  
+  
+  
+  
+  
+  <p>Add a fellow or a series of people, denoted by the value, to the singleton list</p>
+
+    <h4>Parameters</h4>
+    <ul class='suppress-p-margin'>
+        <li>Mixed
+ <strong>value</strong>
+          :
+          <div class='force-inline'>
+            <p>The fellow or people to add</p>
+
+          </div>
+        </li>
+    </ul>
+      <h4>Returns</h4>
+      <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Array">Array</a>
+</code>
+      :
+      <div class='force-inline'>
+        <p>An array of the fellow objects for the passed people</p>
+
+      </div>
+</section>
+          </div>
         </div>
-        <div class="yui3-u-3-4">
-                <div id="api-options">
-                    Show:
-                    <label for="api-show-inherited">
-                        <input type="checkbox" id="api-show-inherited" checked>
-                        Inherited
-                    </label>
-            
-                    <label for="api-show-protected">
-                        <input type="checkbox" id="api-show-protected">
-                        Protected
-                    </label>
-            
-                    <label for="api-show-private">
-                        <input type="checkbox" id="api-show-private">
-                        Private
-                    </label>
-                    <label for="api-show-deprecated">
-                        <input type="checkbox" id="api-show-deprecated">
-                        Deprecated
-                    </label>
-            
-                </div>
-            
-            <div class="apidocs">
-                <div id="docs-main">
-                    <div class="content">
-    <div class="apidocs">
-        <div id="docs-main" class="content">
-            <p>
-            Browse to a module or class using the sidebar to view its API documentation.
-            </p>
+        <div class='collapsible' id='Fellow.authorsRepository'>
+          <a href='#Fellow.authorsRepository'>
+            <code>
+              .authorsRepository<span class='gray'>(repoSlug)</span>
+            </code>
+            <div class='force-inline'>
+              <p>Get all fellows who author a particular repository</p>
 
-            <h2>Keyboard Shortcuts</h2>
-
-            <ul>
-                <li><p>Press <kbd>s</kbd> to focus the API search box.</p></li>
-
-                <li><p>Use <kbd>Up</kbd> and <kbd>Down</kbd> to select classes, modules, and search results.</p></li>
-
-                <li class="mac-only"><p>With the API search box or sidebar focused, use <kbd><span class="cmd">&#x2318;</span>-Left</kbd> or <kbd><span class="cmd">&#x2318;</span>-Right</kbd> to switch sidebar tabs.</p></li>
-
-                <li class="pc-only"><p>With the API search box or sidebar focused, use <kbd>Ctrl+Left</kbd> and <kbd>Ctrl+Right</kbd> to switch sidebar tabs.</p></li>
-            </ul>
-        </div>
-    </div>
-
-
-                    </div>
-                </div>
             </div>
+          </a>
+          <div class='collapser border px2 m2'>
+<section class='py2 clearfix'>
+  <h2 id='Fellow.authorsRepository' class='mt0'>
+    authorsRepository<span class='gray'>(repoSlug)</span>
+  </h2>
+    <p><a href='https://github.com/bevry/fellow/blob/a6743608fddea0dbc88ebc22925e29db3bf549a0/source/index.js#L163-L167'><code>source/index.js</code></a></p>
+  
+  
+  
+  
+  
+  <p>Get all fellows who author a particular repository</p>
+
+    <h4>Parameters</h4>
+    <ul class='suppress-p-margin'>
+        <li><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/String">String</a>
+ <strong>repoSlug</strong>
+          :
+          <div class='force-inline'>
+            <p>The repository slug</p>
+
+          </div>
+        </li>
+    </ul>
+      <h4>Returns</h4>
+      <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Array">Array</a>
+</code>
+      :
+      <div class='force-inline'>
+        <p>An array of the fellow objects that author to the repository</p>
+
+      </div>
+</section>
+          </div>
         </div>
-    </div>
+        <div class='collapsible' id='Fellow.contributesRepository'>
+          <a href='#Fellow.contributesRepository'>
+            <code>
+              .contributesRepository<span class='gray'>(repoSlug)</span>
+            </code>
+            <div class='force-inline'>
+              <p>Get all fellows who contribute to a particular repository</p>
+
+            </div>
+          </a>
+          <div class='collapser border px2 m2'>
+<section class='py2 clearfix'>
+  <h2 id='Fellow.contributesRepository' class='mt0'>
+    contributesRepository<span class='gray'>(repoSlug)</span>
+  </h2>
+    <p><a href='https://github.com/bevry/fellow/blob/a6743608fddea0dbc88ebc22925e29db3bf549a0/source/index.js#L137-L141'><code>source/index.js</code></a></p>
+  
+  
+  
+  
+  
+  <p>Get all fellows who contribute to a particular repository</p>
+
+    <h4>Parameters</h4>
+    <ul class='suppress-p-margin'>
+        <li><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/String">String</a>
+ <strong>repoSlug</strong>
+          :
+          <div class='force-inline'>
+            <p>The repository slug</p>
+
+          </div>
+        </li>
+    </ul>
+      <h4>Returns</h4>
+      <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Array">Array</a>
+</code>
+      :
+      <div class='force-inline'>
+        <p>An array of the fellow objects that contribute to the repository</p>
+
+      </div>
+</section>
+          </div>
+        </div>
+        <div class='collapsible' id='Fellow.create'>
+          <a href='#Fellow.create'>
+            <code>
+              .create<span class='gray'>(value)</span>
+            </code>
+            <div class='force-inline'>
+              <p>Create a new Fellow instance with the value, however if the value is already a fellow instance, then just return it</p>
+
+            </div>
+          </a>
+          <div class='collapser border px2 m2'>
+<section class='py2 clearfix'>
+  <h2 id='Fellow.create' class='mt0'>
+    create<span class='gray'>(value)</span>
+  </h2>
+    <p><a href='https://github.com/bevry/fellow/blob/a6743608fddea0dbc88ebc22925e29db3bf549a0/source/index.js#L17-L19'><code>source/index.js</code></a></p>
+  
+  
+  
+  
+  
+  <p>Create a new Fellow instance with the value, however if the value is already a fellow instance, then just return it</p>
+
+    <h4>Parameters</h4>
+    <ul class='suppress-p-margin'>
+        <li>Mixed
+ <strong>value</strong>
+          :
+          <div class='force-inline'>
+            
+          </div>
+        </li>
+    </ul>
+      <h4>Returns</h4>
+      <code>Fellow
+</code>
+      :
+      <div class='force-inline'>
+        <p>The new fellow instance</p>
+
+      </div>
+</section>
+          </div>
+        </div>
+        <div class='collapsible' id='Fellow.ensure'>
+          <a href='#Fellow.ensure'>
+            <code>
+              .ensure<span class='gray'>(value, [add])</span>
+            </code>
+            <div class='force-inline'>
+              <p>With the value, see if an existing fellow exists in our singleton list property with the value, otherwise create a new fellow instance with the value and add them to our singleton list</p>
+
+            </div>
+          </a>
+          <div class='collapser border px2 m2'>
+<section class='py2 clearfix'>
+  <h2 id='Fellow.ensure' class='mt0'>
+    ensure<span class='gray'>(value, [add])</span>
+  </h2>
+    <p><a href='https://github.com/bevry/fellow/blob/a6743608fddea0dbc88ebc22925e29db3bf549a0/source/index.js#L39-L54'><code>source/index.js</code></a></p>
+  
+  
+  
+  
+  
+  <p>With the value, see if an existing fellow exists in our singleton list property with the value, otherwise create a new fellow instance with the value and add them to our singleton list</p>
+
+    <h4>Parameters</h4>
+    <ul class='suppress-p-margin'>
+        <li>Mixed
+ <strong>value</strong>
+          :
+          <div class='force-inline'>
+            <p>The value to create a new fellow instance or find the existing fellow instance with</p>
+
+          </div>
+        </li>
+        <li><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Boolean">boolean</a>
+=
+ <strong>add</strong>
+            (default <code>true</code>)
+          :
+          <div class='force-inline'>
+            <p>Whether to add the created person to the list</p>
+
+          </div>
+        </li>
+    </ul>
+      <h4>Returns</h4>
+      <code>Fellow
+</code>
+      :
+      <div class='force-inline'>
+        <p>The new or existing fellow instance</p>
+
+      </div>
+</section>
+          </div>
+        </div>
+        <div class='collapsible' id='Fellow.get'>
+          <a href='#Fellow.get'>
+            <code>
+              .get<span class='gray'>(value)</span>
+            </code>
+            <div class='force-inline'>
+              <p>Get a fellow from the singleton list</p>
+
+            </div>
+          </a>
+          <div class='collapser border px2 m2'>
+<section class='py2 clearfix'>
+  <h2 id='Fellow.get' class='mt0'>
+    get<span class='gray'>(value)</span>
+  </h2>
+    <p><a href='https://github.com/bevry/fellow/blob/a6743608fddea0dbc88ebc22925e29db3bf549a0/source/index.js#L101-L103'><code>source/index.js</code></a></p>
+  
+  
+  
+  
+  
+  <p>Get a fellow from the singleton list</p>
+
+    <h4>Parameters</h4>
+    <ul class='suppress-p-margin'>
+        <li>Mixed
+ <strong>value</strong>
+          :
+          <div class='force-inline'>
+            <p>The value to fetch the value with</p>
+
+          </div>
+        </li>
+    </ul>
+      <h4>Returns</h4>
+      <code>(
+Fellow
+|
+<a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/null">Null</a>
+)
+</code>
+      :
+      <div class='force-inline'>
+        <p>The fetched fellow, if they exist with that value</p>
+
+      </div>
+</section>
+          </div>
+        </div>
+        <div class='collapsible' id='Fellow.list'>
+          <a href='#Fellow.list'>
+            <code>
+              .list<span class='gray'></span>
+            </code>
+            <div class='force-inline'>
+              <p>A singleton array attached to the class object that stores it's people objects</p>
+
+            </div>
+          </a>
+          <div class='collapser border px2 m2'>
+<section class='py2 clearfix'>
+  <h2 id='Fellow.list' class='mt0'>
+    list<span class='gray'></span>
+  </h2>
+    <p><a href='https://github.com/bevry/fellow/blob/a6743608fddea0dbc88ebc22925e29db3bf549a0/source/index.js#L26-L29'><code>source/index.js</code></a></p>
+  
+  
+  
+  
+  
+  <p>A singleton array attached to the class object that stores it's people objects</p>
+
+    <h4>Properties</h4>
+    <ul class='suppress-p-margin'>
+        <li><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Array">Array</a>
+ <strong>list</strong>
+            </li>
+    </li>
+</section>
+          </div>
+        </div>
+        <div class='collapsible' id='Fellow.maintainsRepository'>
+          <a href='#Fellow.maintainsRepository'>
+            <code>
+              .maintainsRepository<span class='gray'>(repoSlug)</span>
+            </code>
+            <div class='force-inline'>
+              <p>Get all fellows who maintain a particular repository</p>
+
+            </div>
+          </a>
+          <div class='collapser border px2 m2'>
+<section class='py2 clearfix'>
+  <h2 id='Fellow.maintainsRepository' class='mt0'>
+    maintainsRepository<span class='gray'>(repoSlug)</span>
+  </h2>
+    <p><a href='https://github.com/bevry/fellow/blob/a6743608fddea0dbc88ebc22925e29db3bf549a0/source/index.js#L150-L154'><code>source/index.js</code></a></p>
+  
+  
+  
+  
+  
+  <p>Get all fellows who maintain a particular repository</p>
+
+    <h4>Parameters</h4>
+    <ul class='suppress-p-margin'>
+        <li><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/String">String</a>
+ <strong>repoSlug</strong>
+          :
+          <div class='force-inline'>
+            <p>The repository slug</p>
+
+          </div>
+        </li>
+    </ul>
+      <h4>Returns</h4>
+      <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Array">Array</a>
+</code>
+      :
+      <div class='force-inline'>
+        <p>An array of the fellow objects that maintain to the repository</p>
+
+      </div>
+</section>
+          </div>
+        </div>
+      <h4>Instance members</h4>
+        <div class='collapsible' id='Fellow.authoredRepositories'>
+          <a href='#Fellow.authoredRepositories'>
+            <code>
+              #authoredRepositories<span class='gray'></span>
+            </code>
+            <div class='force-inline'>
+              <p>Get all added github repository slugs that this fellow authors</p>
+
+            </div>
+          </a>
+          <div class='collapser border px2'>
+<section class='py2 clearfix'>
+  <h2 id='Fellow.authoredRepositories' class='mt0'>
+    authoredRepositories<span class='gray'></span>
+  </h2>
+    <p><a href='https://github.com/bevry/fellow/blob/a6743608fddea0dbc88ebc22925e29db3bf549a0/source/index.js#L384-L389'><code>source/index.js</code></a></p>
+  
+  
+  
+  
+  
+  <p>Get all added github repository slugs that this fellow authors</p>
+
+    <h4>Properties</h4>
+    <ul class='suppress-p-margin'>
+        <li><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Array">Array</a>
+ <strong>authoredRepositories</strong>
+            </li>
+    </li>
+</section>
+          </div>
+        </div>
+        <div class='collapsible' id='Fellow.authorsRepository'>
+          <a href='#Fellow.authorsRepository'>
+            <code>
+              #authorsRepository<span class='gray'>(slug)</span>
+            </code>
+            <div class='force-inline'>
+              <p>Make note that this fellow authors this repository slug</p>
+
+            </div>
+          </a>
+          <div class='collapser border px2'>
+<section class='py2 clearfix'>
+  <h2 id='Fellow.authorsRepository' class='mt0'>
+    authorsRepository<span class='gray'>(slug)</span>
+  </h2>
+    <p><a href='https://github.com/bevry/fellow/blob/a6743608fddea0dbc88ebc22925e29db3bf549a0/source/index.js#L397-L400'><code>source/index.js</code></a></p>
+  
+  
+  
+  
+  
+  <p>Make note that this fellow authors this repository slug</p>
+
+    <h4>Parameters</h4>
+    <ul class='suppress-p-margin'>
+        <li><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/String">String</a>
+ <strong>slug</strong>
+          :
+          <div class='force-inline'>
+            <p>The github repository slug that this user authors</p>
+
+          </div>
+        </li>
+    </ul>
+      <h4>Returns</h4>
+      <code>this
+</code>
+      
+      <div class='force-inline'>
+        
+      </div>
+</section>
+          </div>
+        </div>
+        <div class='collapsible' id='Fellow.compare'>
+          <a href='#Fellow.compare'>
+            <code>
+              #compare<span class='gray'>(other)</span>
+            </code>
+            <div class='force-inline'>
+              <p>Compare a fellow to another fellow, uses ensureFields for the comparison
+If an ensureField is an array for both ourself and the other fellow, we will check to see if only one item of that array is similar (this is useful for email comparisons)</p>
+
+            </div>
+          </a>
+          <div class='collapser border px2'>
+<section class='py2 clearfix'>
+  <h2 id='Fellow.compare' class='mt0'>
+    compare<span class='gray'>(other)</span>
+  </h2>
+    <p><a href='https://github.com/bevry/fellow/blob/a6743608fddea0dbc88ebc22925e29db3bf549a0/source/index.js#L72-L92'><code>source/index.js</code></a></p>
+  
+  
+  
+  
+  
+  <p>Compare a fellow to another fellow, uses ensureFields for the comparison
+If an ensureField is an array for both ourself and the other fellow, we will check to see if only one item of that array is similar (this is useful for email comparisons)</p>
+
+    <h4>Parameters</h4>
+    <ul class='suppress-p-margin'>
+        <li>Fellow
+ <strong>other</strong>
+          :
+          <div class='force-inline'>
+            <p>The other fellow to compare ourselves with</p>
+
+          </div>
+        </li>
+    </ul>
+      <h4>Returns</h4>
+      <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Boolean">Boolean</a>
+</code>
+      :
+      <div class='force-inline'>
+        <p>Returns <code>true</code> if they appear to be the same person, or <code>false</code> if not</p>
+
+      </div>
+</section>
+          </div>
+        </div>
+        <div class='collapsible' id='Fellow.constructor'>
+          <a href='#Fellow.constructor'>
+            <code>
+              #constructor<span class='gray'>(value)</span>
+            </code>
+            <div class='force-inline'>
+              
+            </div>
+          </a>
+          <div class='collapser border px2'>
+<section class='py2 clearfix'>
+  <h2 id='Fellow.constructor' class='mt0'>
+    constructor<span class='gray'>(value)</span>
+  </h2>
+    <p><a href='https://github.com/bevry/fellow/blob/a6743608fddea0dbc88ebc22925e29db3bf549a0/source/index.js#L269-L272'><code>source/index.js</code></a></p>
+  
+  
+  
+  
+  
+  
+    <h4>Parameters</h4>
+    <ul class='suppress-p-margin'>
+        <li> <strong>value</strong>
+          :
+          <div class='force-inline'>
+            
+          </div>
+        </li>
+    </ul>
+    <h4>Properties</h4>
+    <ul class='suppress-p-margin'>
+        <li><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/String">String</a>
+ <strong>facebookUrl</strong>
+            </li>
+    </li>
+</section>
+          </div>
+        </div>
+        <div class='collapsible' id='Fellow.constructor'>
+          <a href='#Fellow.constructor'>
+            <code>
+              #constructor<span class='gray'>(value)</span>
+            </code>
+            <div class='force-inline'>
+              
+            </div>
+          </a>
+          <div class='collapser border px2'>
+<section class='py2 clearfix'>
+  <h2 id='Fellow.constructor' class='mt0'>
+    constructor<span class='gray'>(value)</span>
+  </h2>
+    <p><a href='https://github.com/bevry/fellow/blob/a6743608fddea0dbc88ebc22925e29db3bf549a0/source/index.js#L269-L272'><code>source/index.js</code></a></p>
+  
+  
+  
+  
+  
+  
+    <h4>Parameters</h4>
+    <ul class='suppress-p-margin'>
+        <li> <strong>value</strong>
+          :
+          <div class='force-inline'>
+            
+          </div>
+        </li>
+    </ul>
+    <h4>Properties</h4>
+    <ul class='suppress-p-margin'>
+        <li><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/String">String</a>
+ <strong>facebookUsername</strong>
+            </li>
+    </li>
+</section>
+          </div>
+        </div>
+        <div class='collapsible' id='Fellow.constructor'>
+          <a href='#Fellow.constructor'>
+            <code>
+              #constructor<span class='gray'>(value)</span>
+            </code>
+            <div class='force-inline'>
+              <p>Construct our fellow instance with the value</p>
+
+            </div>
+          </a>
+          <div class='collapser border px2'>
+<section class='py2 clearfix'>
+  <h2 id='Fellow.constructor' class='mt0'>
+    constructor<span class='gray'>(value)</span>
+  </h2>
+    <p><a href='https://github.com/bevry/fellow/blob/a6743608fddea0dbc88ebc22925e29db3bf549a0/source/index.js#L269-L272'><code>source/index.js</code></a></p>
+  
+  
+  
+  
+  
+  <p>Construct our fellow instance with the value</p>
+
+    <h4>Parameters</h4>
+    <ul class='suppress-p-margin'>
+        <li>Mixed
+ <strong>value</strong>
+          :
+          <div class='force-inline'>
+            <p>The value used to set the properties of the fellow, forwarded to set</p>
+
+          </div>
+        </li>
+    </ul>
+</section>
+          </div>
+        </div>
+        <div class='collapsible' id='Fellow.constructor'>
+          <a href='#Fellow.constructor'>
+            <code>
+              #constructor<span class='gray'>(value)</span>
+            </code>
+            <div class='force-inline'>
+              
+            </div>
+          </a>
+          <div class='collapser border px2'>
+<section class='py2 clearfix'>
+  <h2 id='Fellow.constructor' class='mt0'>
+    constructor<span class='gray'>(value)</span>
+  </h2>
+    <p><a href='https://github.com/bevry/fellow/blob/a6743608fddea0dbc88ebc22925e29db3bf549a0/source/index.js#L269-L272'><code>source/index.js</code></a></p>
+  
+  
+  
+  
+  
+  
+    <h4>Parameters</h4>
+    <ul class='suppress-p-margin'>
+        <li> <strong>value</strong>
+          :
+          <div class='force-inline'>
+            
+          </div>
+        </li>
+    </ul>
+    <h4>Properties</h4>
+    <ul class='suppress-p-margin'>
+        <li><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/String">String</a>
+ <strong>twitterUsername</strong>
+            </li>
+    </li>
+</section>
+          </div>
+        </div>
+        <div class='collapsible' id='Fellow.constructor'>
+          <a href='#Fellow.constructor'>
+            <code>
+              #constructor<span class='gray'>(value)</span>
+            </code>
+            <div class='force-inline'>
+              
+            </div>
+          </a>
+          <div class='collapser border px2'>
+<section class='py2 clearfix'>
+  <h2 id='Fellow.constructor' class='mt0'>
+    constructor<span class='gray'>(value)</span>
+  </h2>
+    <p><a href='https://github.com/bevry/fellow/blob/a6743608fddea0dbc88ebc22925e29db3bf549a0/source/index.js#L269-L272'><code>source/index.js</code></a></p>
+  
+  
+  
+  
+  
+  
+    <h4>Parameters</h4>
+    <ul class='suppress-p-margin'>
+        <li> <strong>value</strong>
+          :
+          <div class='force-inline'>
+            
+          </div>
+        </li>
+    </ul>
+    <h4>Properties</h4>
+    <ul class='suppress-p-margin'>
+        <li><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/String">String</a>
+ <strong>twitterUrl</strong>
+            </li>
+    </li>
+</section>
+          </div>
+        </div>
+        <div class='collapsible' id='Fellow.constructor'>
+          <a href='#Fellow.constructor'>
+            <code>
+              #constructor<span class='gray'>(value)</span>
+            </code>
+            <div class='force-inline'>
+              
+            </div>
+          </a>
+          <div class='collapser border px2'>
+<section class='py2 clearfix'>
+  <h2 id='Fellow.constructor' class='mt0'>
+    constructor<span class='gray'>(value)</span>
+  </h2>
+    <p><a href='https://github.com/bevry/fellow/blob/a6743608fddea0dbc88ebc22925e29db3bf549a0/source/index.js#L269-L272'><code>source/index.js</code></a></p>
+  
+  
+  
+  
+  
+  
+    <h4>Parameters</h4>
+    <ul class='suppress-p-margin'>
+        <li> <strong>value</strong>
+          :
+          <div class='force-inline'>
+            
+          </div>
+        </li>
+    </ul>
+    <h4>Properties</h4>
+    <ul class='suppress-p-margin'>
+        <li><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/String">String</a>
+ <strong>homepage</strong>
+            </li>
+    </li>
+</section>
+          </div>
+        </div>
+        <div class='collapsible' id='Fellow.constructor'>
+          <a href='#Fellow.constructor'>
+            <code>
+              #constructor<span class='gray'>(value)</span>
+            </code>
+            <div class='force-inline'>
+              
+            </div>
+          </a>
+          <div class='collapser border px2'>
+<section class='py2 clearfix'>
+  <h2 id='Fellow.constructor' class='mt0'>
+    constructor<span class='gray'>(value)</span>
+  </h2>
+    <p><a href='https://github.com/bevry/fellow/blob/a6743608fddea0dbc88ebc22925e29db3bf549a0/source/index.js#L269-L272'><code>source/index.js</code></a></p>
+  
+  
+  
+  
+  
+  
+    <h4>Parameters</h4>
+    <ul class='suppress-p-margin'>
+        <li> <strong>value</strong>
+          :
+          <div class='force-inline'>
+            
+          </div>
+        </li>
+    </ul>
+    <h4>Properties</h4>
+    <ul class='suppress-p-margin'>
+        <li><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/String">String</a>
+ <strong>githubUrl</strong>
+            </li>
+    </li>
+</section>
+          </div>
+        </div>
+        <div class='collapsible' id='Fellow.constructor'>
+          <a href='#Fellow.constructor'>
+            <code>
+              #constructor<span class='gray'>(value)</span>
+            </code>
+            <div class='force-inline'>
+              
+            </div>
+          </a>
+          <div class='collapser border px2'>
+<section class='py2 clearfix'>
+  <h2 id='Fellow.constructor' class='mt0'>
+    constructor<span class='gray'>(value)</span>
+  </h2>
+    <p><a href='https://github.com/bevry/fellow/blob/a6743608fddea0dbc88ebc22925e29db3bf549a0/source/index.js#L269-L272'><code>source/index.js</code></a></p>
+  
+  
+  
+  
+  
+  
+    <h4>Parameters</h4>
+    <ul class='suppress-p-margin'>
+        <li> <strong>value</strong>
+          :
+          <div class='force-inline'>
+            
+          </div>
+        </li>
+    </ul>
+    <h4>Properties</h4>
+    <ul class='suppress-p-margin'>
+        <li><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/String">String</a>
+ <strong>githubUsername</strong>
+            </li>
+    </li>
+</section>
+          </div>
+        </div>
+        <div class='collapsible' id='Fellow.contributedRepositories'>
+          <a href='#Fellow.contributedRepositories'>
+            <code>
+              #contributedRepositories<span class='gray'></span>
+            </code>
+            <div class='force-inline'>
+              <p>Get all added github repository slugs that this fellow contributes to</p>
+
+            </div>
+          </a>
+          <div class='collapser border px2'>
+<section class='py2 clearfix'>
+  <h2 id='Fellow.contributedRepositories' class='mt0'>
+    contributedRepositories<span class='gray'></span>
+  </h2>
+    <p><a href='https://github.com/bevry/fellow/blob/a6743608fddea0dbc88ebc22925e29db3bf549a0/source/index.js#L340-L345'><code>source/index.js</code></a></p>
+  
+  
+  
+  
+  
+  <p>Get all added github repository slugs that this fellow contributes to</p>
+
+    <h4>Properties</h4>
+    <ul class='suppress-p-margin'>
+        <li><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Array">Array</a>
+ <strong>contributedRepositories</strong>
+            </li>
+    </li>
+</section>
+          </div>
+        </div>
+        <div class='collapsible' id='Fellow.contributesRepository'>
+          <a href='#Fellow.contributesRepository'>
+            <code>
+              #contributesRepository<span class='gray'>(slug)</span>
+            </code>
+            <div class='force-inline'>
+              <p>Make note that this fellow contributes to this repository slug</p>
+
+            </div>
+          </a>
+          <div class='collapser border px2'>
+<section class='py2 clearfix'>
+  <h2 id='Fellow.contributesRepository' class='mt0'>
+    contributesRepository<span class='gray'>(slug)</span>
+  </h2>
+    <p><a href='https://github.com/bevry/fellow/blob/a6743608fddea0dbc88ebc22925e29db3bf549a0/source/index.js#L353-L356'><code>source/index.js</code></a></p>
+  
+  
+  
+  
+  
+  <p>Make note that this fellow contributes to this repository slug</p>
+
+    <h4>Parameters</h4>
+    <ul class='suppress-p-margin'>
+        <li><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/String">String</a>
+ <strong>slug</strong>
+          :
+          <div class='force-inline'>
+            <p>The github repository slug that this user contributes to</p>
+
+          </div>
+        </li>
+    </ul>
+      <h4>Returns</h4>
+      <code>this
+</code>
+      
+      <div class='force-inline'>
+        
+      </div>
+</section>
+          </div>
+        </div>
+        <div class='collapsible' id='Fellow.email'>
+          <a href='#Fellow.email'>
+            <code>
+              #email<span class='gray'>(value)</span>
+            </code>
+            <div class='force-inline'>
+              <p>Updating the email will add the email to the start of the <code>emails</code> array</p>
+
+            </div>
+          </a>
+          <div class='collapser border px2'>
+<section class='py2 clearfix'>
+  <h2 id='Fellow.email' class='mt0'>
+    email<span class='gray'>(value)</span>
+  </h2>
+    <p><a href='https://github.com/bevry/fellow/blob/a6743608fddea0dbc88ebc22925e29db3bf549a0/source/index.js#L187-L193'><code>source/index.js</code></a></p>
+  
+  
+  
+  
+  
+  <p>Updating the email will add the email to the start of the <code>emails</code> array</p>
+
+    <h4>Parameters</h4>
+    <ul class='suppress-p-margin'>
+        <li><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/String">String</a>
+ <strong>value</strong>
+          :
+          <div class='force-inline'>
+            <p>The email to add to the emails</p>
+
+          </div>
+        </li>
+    </ul>
+    <h4>Properties</h4>
+    <ul class='suppress-p-margin'>
+        <li><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/String">String</a>
+ <strong>email</strong>
+            </li>
+    </li>
+</section>
+          </div>
+        </div>
+        <div class='collapsible' id='Fellow.ensureFields'>
+          <a href='#Fellow.ensureFields'>
+            <code>
+              #ensureFields<span class='gray'></span>
+            </code>
+            <div class='force-inline'>
+              <p>An array of fields that will denote if the user is the same user or not when using ensure</p>
+
+            </div>
+          </a>
+          <div class='collapser border px2'>
+<section class='py2 clearfix'>
+  <h2 id='Fellow.ensureFields' class='mt0'>
+    ensureFields<span class='gray'></span>
+  </h2>
+    <p><a href='https://github.com/bevry/fellow/blob/a6743608fddea0dbc88ebc22925e29db3bf549a0/source/index.js#L61-L63'><code>source/index.js</code></a></p>
+  
+  
+  
+  
+  
+  <p>An array of fields that will denote if the user is the same user or not when using ensure</p>
+
+    <h4>Properties</h4>
+    <ul class='suppress-p-margin'>
+        <li><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Array">Array</a>
+ <strong>ensureFields</strong>
+            </li>
+    </li>
+</section>
+          </div>
+        </div>
+        <div class='collapsible' id='Fellow.json'>
+          <a href='#Fellow.json'>
+            <code>
+              #json<span class='gray'></span>
+            </code>
+            <div class='force-inline'>
+              <p>Get the serialisable values of this fellow</p>
+
+            </div>
+          </a>
+          <div class='collapser border px2'>
+<section class='py2 clearfix'>
+  <h2 id='Fellow.json' class='mt0'>
+    json<span class='gray'></span>
+  </h2>
+    <p><a href='https://github.com/bevry/fellow/blob/a6743608fddea0dbc88ebc22925e29db3bf549a0/source/index.js#L177-L180'><code>source/index.js</code></a></p>
+  
+  
+  
+  
+  
+  <p>Get the serialisable values of this fellow</p>
+
+    <h4>Properties</h4>
+    <ul class='suppress-p-margin'>
+        <li><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Object">Object</a>
+ <strong>json</strong>
+            </li>
+    </li>
+</section>
+          </div>
+        </div>
+        <div class='collapsible' id='Fellow.maintainedRepositories'>
+          <a href='#Fellow.maintainedRepositories'>
+            <code>
+              #maintainedRepositories<span class='gray'></span>
+            </code>
+            <div class='force-inline'>
+              <p>Get all added github repository slugs that this fellow maintains</p>
+
+            </div>
+          </a>
+          <div class='collapser border px2'>
+<section class='py2 clearfix'>
+  <h2 id='Fellow.maintainedRepositories' class='mt0'>
+    maintainedRepositories<span class='gray'></span>
+  </h2>
+    <p><a href='https://github.com/bevry/fellow/blob/a6743608fddea0dbc88ebc22925e29db3bf549a0/source/index.js#L362-L367'><code>source/index.js</code></a></p>
+  
+  
+  
+  
+  
+  <p>Get all added github repository slugs that this fellow maintains</p>
+
+    <h4>Properties</h4>
+    <ul class='suppress-p-margin'>
+        <li><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Array">Array</a>
+ <strong>maintainedRepositories</strong>
+            </li>
+    </li>
+</section>
+          </div>
+        </div>
+        <div class='collapsible' id='Fellow.maintainsRepository'>
+          <a href='#Fellow.maintainsRepository'>
+            <code>
+              #maintainsRepository<span class='gray'>(slug)</span>
+            </code>
+            <div class='force-inline'>
+              <p>Make note that this fellow maintains this repository slug</p>
+
+            </div>
+          </a>
+          <div class='collapser border px2'>
+<section class='py2 clearfix'>
+  <h2 id='Fellow.maintainsRepository' class='mt0'>
+    maintainsRepository<span class='gray'>(slug)</span>
+  </h2>
+    <p><a href='https://github.com/bevry/fellow/blob/a6743608fddea0dbc88ebc22925e29db3bf549a0/source/index.js#L375-L378'><code>source/index.js</code></a></p>
+  
+  
+  
+  
+  
+  <p>Make note that this fellow maintains this repository slug</p>
+
+    <h4>Parameters</h4>
+    <ul class='suppress-p-margin'>
+        <li><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/String">String</a>
+ <strong>slug</strong>
+          :
+          <div class='force-inline'>
+            <p>The github repository slug that this user maintains</p>
+
+          </div>
+        </li>
+    </ul>
+      <h4>Returns</h4>
+      <code>this
+</code>
+      
+      <div class='force-inline'>
+        
+      </div>
+</section>
+          </div>
+        </div>
+        <div class='collapsible' id='Fellow.set'>
+          <a href='#Fellow.set'>
+            <code>
+              #set<span class='gray'>(fellow)</span>
+            </code>
+            <div class='force-inline'>
+              <p>Update our fellow with the passed value</p>
+
+            </div>
+          </a>
+          <div class='collapser border px2'>
+<section class='py2 clearfix'>
+  <h2 id='Fellow.set' class='mt0'>
+    set<span class='gray'>(fellow)</span>
+  </h2>
+    <p><a href='https://github.com/bevry/fellow/blob/a6743608fddea0dbc88ebc22925e29db3bf549a0/source/index.js#L279-L317'><code>source/index.js</code></a></p>
+  
+  
+  
+  
+  
+  <p>Update our fellow with the passed value</p>
+
+    <h4>Parameters</h4>
+    <ul class='suppress-p-margin'>
+        <li>(
+<a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/String">String</a>
+|
+<a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Object">Object</a>
+)
+ <strong>fellow</strong>
+          :
+          <div class='force-inline'>
+            <p>A string in the format of "Benjamin Lupton <a href="mailto:b@lupton.cc">b@lupton.cc</a> (<a href="https://balupton.com">https://balupton.com</a>)" or an object with properties</p>
+
+          </div>
+        </li>
+    </ul>
+      <h4>Returns</h4>
+      <code>this
+</code>
+      
+      <div class='force-inline'>
+        
+      </div>
+</section>
+          </div>
+        </div>
+        <div class='collapsible' id='Fellow.url'>
+          <a href='#Fellow.url'>
+            <code>
+              #url<span class='gray'>(value)</span>
+            </code>
+            <div class='force-inline'>
+              <p>When set, will determine if it is a github, facebook, or twitter url
+If it is, then it will extract the username and url from it
+If this is not one of those urls, then it will set the homepage variable
+When fetching, it will fetch <code>homepage || githubUrl || facebookUrl || twitterUrl || null</code></p>
+
+            </div>
+          </a>
+          <div class='collapser border px2'>
+<section class='py2 clearfix'>
+  <h2 id='Fellow.url' class='mt0'>
+    url<span class='gray'>(value)</span>
+  </h2>
+    <p><a href='https://github.com/bevry/fellow/blob/a6743608fddea0dbc88ebc22925e29db3bf549a0/source/index.js#L206-L229'><code>source/index.js</code></a></p>
+  
+  
+  
+  
+  
+  <p>When set, will determine if it is a github, facebook, or twitter url
+If it is, then it will extract the username and url from it
+If this is not one of those urls, then it will set the homepage variable
+When fetching, it will fetch <code>homepage || githubUrl || facebookUrl || twitterUrl || null</code></p>
+
+    <h4>Parameters</h4>
+    <ul class='suppress-p-margin'>
+        <li><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/String">String</a>
+ <strong>value</strong>
+          :
+          <div class='force-inline'>
+            
+          </div>
+        </li>
+    </ul>
+    <h4>Properties</h4>
+    <ul class='suppress-p-margin'>
+        <li><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/String">String</a>
+ <strong>url</strong>
+            </li>
+    </li>
+</section>
+          </div>
+        </div>
+</section>
+</div><div class='py1'><section class='py2 clearfix'>
+  <h2 id='Fellow' class='mt0'>
+    Fellow<span class='gray'></span>
+  </h2>
+    <p><a href='https://github.com/bevry/fellow/blob/a6743608fddea0dbc88ebc22925e29db3bf549a0/source/index.js#L5-L401'><code>source/index.js</code></a></p>
+  
+  
+  
+  
+  
+  <p>A fellow with similarties to other people</p>
+
+      <h4>Static members</h4>
+        <div class='collapsible' id='Fellow.add'>
+          <a href='#Fellow.add'>
+            <code>
+              .add<span class='gray'>(value)</span>
+            </code>
+            <div class='force-inline'>
+              <p>Add a fellow or a series of people, denoted by the value, to the singleton list</p>
+
+            </div>
+          </a>
+          <div class='collapser border px2 m2'>
+<section class='py2 clearfix'>
+  <h2 id='Fellow.add' class='mt0'>
+    add<span class='gray'>(value)</span>
+  </h2>
+    <p><a href='https://github.com/bevry/fellow/blob/a6743608fddea0dbc88ebc22925e29db3bf549a0/source/index.js#L112-L128'><code>source/index.js</code></a></p>
+  
+  
+  
+  
+  
+  <p>Add a fellow or a series of people, denoted by the value, to the singleton list</p>
+
+    <h4>Parameters</h4>
+    <ul class='suppress-p-margin'>
+        <li>Mixed
+ <strong>value</strong>
+          :
+          <div class='force-inline'>
+            <p>The fellow or people to add</p>
+
+          </div>
+        </li>
+    </ul>
+      <h4>Returns</h4>
+      <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Array">Array</a>
+</code>
+      :
+      <div class='force-inline'>
+        <p>An array of the fellow objects for the passed people</p>
+
+      </div>
+</section>
+          </div>
+        </div>
+        <div class='collapsible' id='Fellow.authorsRepository'>
+          <a href='#Fellow.authorsRepository'>
+            <code>
+              .authorsRepository<span class='gray'>(repoSlug)</span>
+            </code>
+            <div class='force-inline'>
+              <p>Get all fellows who author a particular repository</p>
+
+            </div>
+          </a>
+          <div class='collapser border px2 m2'>
+<section class='py2 clearfix'>
+  <h2 id='Fellow.authorsRepository' class='mt0'>
+    authorsRepository<span class='gray'>(repoSlug)</span>
+  </h2>
+    <p><a href='https://github.com/bevry/fellow/blob/a6743608fddea0dbc88ebc22925e29db3bf549a0/source/index.js#L163-L167'><code>source/index.js</code></a></p>
+  
+  
+  
+  
+  
+  <p>Get all fellows who author a particular repository</p>
+
+    <h4>Parameters</h4>
+    <ul class='suppress-p-margin'>
+        <li><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/String">String</a>
+ <strong>repoSlug</strong>
+          :
+          <div class='force-inline'>
+            <p>The repository slug</p>
+
+          </div>
+        </li>
+    </ul>
+      <h4>Returns</h4>
+      <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Array">Array</a>
+</code>
+      :
+      <div class='force-inline'>
+        <p>An array of the fellow objects that author to the repository</p>
+
+      </div>
+</section>
+          </div>
+        </div>
+        <div class='collapsible' id='Fellow.contributesRepository'>
+          <a href='#Fellow.contributesRepository'>
+            <code>
+              .contributesRepository<span class='gray'>(repoSlug)</span>
+            </code>
+            <div class='force-inline'>
+              <p>Get all fellows who contribute to a particular repository</p>
+
+            </div>
+          </a>
+          <div class='collapser border px2 m2'>
+<section class='py2 clearfix'>
+  <h2 id='Fellow.contributesRepository' class='mt0'>
+    contributesRepository<span class='gray'>(repoSlug)</span>
+  </h2>
+    <p><a href='https://github.com/bevry/fellow/blob/a6743608fddea0dbc88ebc22925e29db3bf549a0/source/index.js#L137-L141'><code>source/index.js</code></a></p>
+  
+  
+  
+  
+  
+  <p>Get all fellows who contribute to a particular repository</p>
+
+    <h4>Parameters</h4>
+    <ul class='suppress-p-margin'>
+        <li><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/String">String</a>
+ <strong>repoSlug</strong>
+          :
+          <div class='force-inline'>
+            <p>The repository slug</p>
+
+          </div>
+        </li>
+    </ul>
+      <h4>Returns</h4>
+      <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Array">Array</a>
+</code>
+      :
+      <div class='force-inline'>
+        <p>An array of the fellow objects that contribute to the repository</p>
+
+      </div>
+</section>
+          </div>
+        </div>
+        <div class='collapsible' id='Fellow.create'>
+          <a href='#Fellow.create'>
+            <code>
+              .create<span class='gray'>(value)</span>
+            </code>
+            <div class='force-inline'>
+              <p>Create a new Fellow instance with the value, however if the value is already a fellow instance, then just return it</p>
+
+            </div>
+          </a>
+          <div class='collapser border px2 m2'>
+<section class='py2 clearfix'>
+  <h2 id='Fellow.create' class='mt0'>
+    create<span class='gray'>(value)</span>
+  </h2>
+    <p><a href='https://github.com/bevry/fellow/blob/a6743608fddea0dbc88ebc22925e29db3bf549a0/source/index.js#L17-L19'><code>source/index.js</code></a></p>
+  
+  
+  
+  
+  
+  <p>Create a new Fellow instance with the value, however if the value is already a fellow instance, then just return it</p>
+
+    <h4>Parameters</h4>
+    <ul class='suppress-p-margin'>
+        <li>Mixed
+ <strong>value</strong>
+          :
+          <div class='force-inline'>
+            
+          </div>
+        </li>
+    </ul>
+      <h4>Returns</h4>
+      <code>Fellow
+</code>
+      :
+      <div class='force-inline'>
+        <p>The new fellow instance</p>
+
+      </div>
+</section>
+          </div>
+        </div>
+        <div class='collapsible' id='Fellow.ensure'>
+          <a href='#Fellow.ensure'>
+            <code>
+              .ensure<span class='gray'>(value, [add])</span>
+            </code>
+            <div class='force-inline'>
+              <p>With the value, see if an existing fellow exists in our singleton list property with the value, otherwise create a new fellow instance with the value and add them to our singleton list</p>
+
+            </div>
+          </a>
+          <div class='collapser border px2 m2'>
+<section class='py2 clearfix'>
+  <h2 id='Fellow.ensure' class='mt0'>
+    ensure<span class='gray'>(value, [add])</span>
+  </h2>
+    <p><a href='https://github.com/bevry/fellow/blob/a6743608fddea0dbc88ebc22925e29db3bf549a0/source/index.js#L39-L54'><code>source/index.js</code></a></p>
+  
+  
+  
+  
+  
+  <p>With the value, see if an existing fellow exists in our singleton list property with the value, otherwise create a new fellow instance with the value and add them to our singleton list</p>
+
+    <h4>Parameters</h4>
+    <ul class='suppress-p-margin'>
+        <li>Mixed
+ <strong>value</strong>
+          :
+          <div class='force-inline'>
+            <p>The value to create a new fellow instance or find the existing fellow instance with</p>
+
+          </div>
+        </li>
+        <li><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Boolean">boolean</a>
+=
+ <strong>add</strong>
+            (default <code>true</code>)
+          :
+          <div class='force-inline'>
+            <p>Whether to add the created person to the list</p>
+
+          </div>
+        </li>
+    </ul>
+      <h4>Returns</h4>
+      <code>Fellow
+</code>
+      :
+      <div class='force-inline'>
+        <p>The new or existing fellow instance</p>
+
+      </div>
+</section>
+          </div>
+        </div>
+        <div class='collapsible' id='Fellow.get'>
+          <a href='#Fellow.get'>
+            <code>
+              .get<span class='gray'>(value)</span>
+            </code>
+            <div class='force-inline'>
+              <p>Get a fellow from the singleton list</p>
+
+            </div>
+          </a>
+          <div class='collapser border px2 m2'>
+<section class='py2 clearfix'>
+  <h2 id='Fellow.get' class='mt0'>
+    get<span class='gray'>(value)</span>
+  </h2>
+    <p><a href='https://github.com/bevry/fellow/blob/a6743608fddea0dbc88ebc22925e29db3bf549a0/source/index.js#L101-L103'><code>source/index.js</code></a></p>
+  
+  
+  
+  
+  
+  <p>Get a fellow from the singleton list</p>
+
+    <h4>Parameters</h4>
+    <ul class='suppress-p-margin'>
+        <li>Mixed
+ <strong>value</strong>
+          :
+          <div class='force-inline'>
+            <p>The value to fetch the value with</p>
+
+          </div>
+        </li>
+    </ul>
+      <h4>Returns</h4>
+      <code>(
+Fellow
+|
+<a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/null">Null</a>
+)
+</code>
+      :
+      <div class='force-inline'>
+        <p>The fetched fellow, if they exist with that value</p>
+
+      </div>
+</section>
+          </div>
+        </div>
+        <div class='collapsible' id='Fellow.list'>
+          <a href='#Fellow.list'>
+            <code>
+              .list<span class='gray'></span>
+            </code>
+            <div class='force-inline'>
+              <p>A singleton array attached to the class object that stores it's people objects</p>
+
+            </div>
+          </a>
+          <div class='collapser border px2 m2'>
+<section class='py2 clearfix'>
+  <h2 id='Fellow.list' class='mt0'>
+    list<span class='gray'></span>
+  </h2>
+    <p><a href='https://github.com/bevry/fellow/blob/a6743608fddea0dbc88ebc22925e29db3bf549a0/source/index.js#L26-L29'><code>source/index.js</code></a></p>
+  
+  
+  
+  
+  
+  <p>A singleton array attached to the class object that stores it's people objects</p>
+
+    <h4>Properties</h4>
+    <ul class='suppress-p-margin'>
+        <li><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Array">Array</a>
+ <strong>list</strong>
+            </li>
+    </li>
+</section>
+          </div>
+        </div>
+        <div class='collapsible' id='Fellow.maintainsRepository'>
+          <a href='#Fellow.maintainsRepository'>
+            <code>
+              .maintainsRepository<span class='gray'>(repoSlug)</span>
+            </code>
+            <div class='force-inline'>
+              <p>Get all fellows who maintain a particular repository</p>
+
+            </div>
+          </a>
+          <div class='collapser border px2 m2'>
+<section class='py2 clearfix'>
+  <h2 id='Fellow.maintainsRepository' class='mt0'>
+    maintainsRepository<span class='gray'>(repoSlug)</span>
+  </h2>
+    <p><a href='https://github.com/bevry/fellow/blob/a6743608fddea0dbc88ebc22925e29db3bf549a0/source/index.js#L150-L154'><code>source/index.js</code></a></p>
+  
+  
+  
+  
+  
+  <p>Get all fellows who maintain a particular repository</p>
+
+    <h4>Parameters</h4>
+    <ul class='suppress-p-margin'>
+        <li><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/String">String</a>
+ <strong>repoSlug</strong>
+          :
+          <div class='force-inline'>
+            <p>The repository slug</p>
+
+          </div>
+        </li>
+    </ul>
+      <h4>Returns</h4>
+      <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Array">Array</a>
+</code>
+      :
+      <div class='force-inline'>
+        <p>An array of the fellow objects that maintain to the repository</p>
+
+      </div>
+</section>
+          </div>
+        </div>
+      <h4>Instance members</h4>
+        <div class='collapsible' id='Fellow.authoredRepositories'>
+          <a href='#Fellow.authoredRepositories'>
+            <code>
+              #authoredRepositories<span class='gray'></span>
+            </code>
+            <div class='force-inline'>
+              <p>Get all added github repository slugs that this fellow authors</p>
+
+            </div>
+          </a>
+          <div class='collapser border px2'>
+<section class='py2 clearfix'>
+  <h2 id='Fellow.authoredRepositories' class='mt0'>
+    authoredRepositories<span class='gray'></span>
+  </h2>
+    <p><a href='https://github.com/bevry/fellow/blob/a6743608fddea0dbc88ebc22925e29db3bf549a0/source/index.js#L384-L389'><code>source/index.js</code></a></p>
+  
+  
+  
+  
+  
+  <p>Get all added github repository slugs that this fellow authors</p>
+
+    <h4>Properties</h4>
+    <ul class='suppress-p-margin'>
+        <li><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Array">Array</a>
+ <strong>authoredRepositories</strong>
+            </li>
+    </li>
+</section>
+          </div>
+        </div>
+        <div class='collapsible' id='Fellow.authorsRepository'>
+          <a href='#Fellow.authorsRepository'>
+            <code>
+              #authorsRepository<span class='gray'>(slug)</span>
+            </code>
+            <div class='force-inline'>
+              <p>Make note that this fellow authors this repository slug</p>
+
+            </div>
+          </a>
+          <div class='collapser border px2'>
+<section class='py2 clearfix'>
+  <h2 id='Fellow.authorsRepository' class='mt0'>
+    authorsRepository<span class='gray'>(slug)</span>
+  </h2>
+    <p><a href='https://github.com/bevry/fellow/blob/a6743608fddea0dbc88ebc22925e29db3bf549a0/source/index.js#L397-L400'><code>source/index.js</code></a></p>
+  
+  
+  
+  
+  
+  <p>Make note that this fellow authors this repository slug</p>
+
+    <h4>Parameters</h4>
+    <ul class='suppress-p-margin'>
+        <li><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/String">String</a>
+ <strong>slug</strong>
+          :
+          <div class='force-inline'>
+            <p>The github repository slug that this user authors</p>
+
+          </div>
+        </li>
+    </ul>
+      <h4>Returns</h4>
+      <code>this
+</code>
+      
+      <div class='force-inline'>
+        
+      </div>
+</section>
+          </div>
+        </div>
+        <div class='collapsible' id='Fellow.compare'>
+          <a href='#Fellow.compare'>
+            <code>
+              #compare<span class='gray'>(other)</span>
+            </code>
+            <div class='force-inline'>
+              <p>Compare a fellow to another fellow, uses ensureFields for the comparison
+If an ensureField is an array for both ourself and the other fellow, we will check to see if only one item of that array is similar (this is useful for email comparisons)</p>
+
+            </div>
+          </a>
+          <div class='collapser border px2'>
+<section class='py2 clearfix'>
+  <h2 id='Fellow.compare' class='mt0'>
+    compare<span class='gray'>(other)</span>
+  </h2>
+    <p><a href='https://github.com/bevry/fellow/blob/a6743608fddea0dbc88ebc22925e29db3bf549a0/source/index.js#L72-L92'><code>source/index.js</code></a></p>
+  
+  
+  
+  
+  
+  <p>Compare a fellow to another fellow, uses ensureFields for the comparison
+If an ensureField is an array for both ourself and the other fellow, we will check to see if only one item of that array is similar (this is useful for email comparisons)</p>
+
+    <h4>Parameters</h4>
+    <ul class='suppress-p-margin'>
+        <li>Fellow
+ <strong>other</strong>
+          :
+          <div class='force-inline'>
+            <p>The other fellow to compare ourselves with</p>
+
+          </div>
+        </li>
+    </ul>
+      <h4>Returns</h4>
+      <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Boolean">Boolean</a>
+</code>
+      :
+      <div class='force-inline'>
+        <p>Returns <code>true</code> if they appear to be the same person, or <code>false</code> if not</p>
+
+      </div>
+</section>
+          </div>
+        </div>
+        <div class='collapsible' id='Fellow.constructor'>
+          <a href='#Fellow.constructor'>
+            <code>
+              #constructor<span class='gray'>(value)</span>
+            </code>
+            <div class='force-inline'>
+              
+            </div>
+          </a>
+          <div class='collapser border px2'>
+<section class='py2 clearfix'>
+  <h2 id='Fellow.constructor' class='mt0'>
+    constructor<span class='gray'>(value)</span>
+  </h2>
+    <p><a href='https://github.com/bevry/fellow/blob/a6743608fddea0dbc88ebc22925e29db3bf549a0/source/index.js#L269-L272'><code>source/index.js</code></a></p>
+  
+  
+  
+  
+  
+  
+    <h4>Parameters</h4>
+    <ul class='suppress-p-margin'>
+        <li> <strong>value</strong>
+          :
+          <div class='force-inline'>
+            
+          </div>
+        </li>
+    </ul>
+    <h4>Properties</h4>
+    <ul class='suppress-p-margin'>
+        <li><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/String">String</a>
+ <strong>facebookUrl</strong>
+            </li>
+    </li>
+</section>
+          </div>
+        </div>
+        <div class='collapsible' id='Fellow.constructor'>
+          <a href='#Fellow.constructor'>
+            <code>
+              #constructor<span class='gray'>(value)</span>
+            </code>
+            <div class='force-inline'>
+              
+            </div>
+          </a>
+          <div class='collapser border px2'>
+<section class='py2 clearfix'>
+  <h2 id='Fellow.constructor' class='mt0'>
+    constructor<span class='gray'>(value)</span>
+  </h2>
+    <p><a href='https://github.com/bevry/fellow/blob/a6743608fddea0dbc88ebc22925e29db3bf549a0/source/index.js#L269-L272'><code>source/index.js</code></a></p>
+  
+  
+  
+  
+  
+  
+    <h4>Parameters</h4>
+    <ul class='suppress-p-margin'>
+        <li> <strong>value</strong>
+          :
+          <div class='force-inline'>
+            
+          </div>
+        </li>
+    </ul>
+    <h4>Properties</h4>
+    <ul class='suppress-p-margin'>
+        <li><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/String">String</a>
+ <strong>facebookUsername</strong>
+            </li>
+    </li>
+</section>
+          </div>
+        </div>
+        <div class='collapsible' id='Fellow.constructor'>
+          <a href='#Fellow.constructor'>
+            <code>
+              #constructor<span class='gray'>(value)</span>
+            </code>
+            <div class='force-inline'>
+              <p>Construct our fellow instance with the value</p>
+
+            </div>
+          </a>
+          <div class='collapser border px2'>
+<section class='py2 clearfix'>
+  <h2 id='Fellow.constructor' class='mt0'>
+    constructor<span class='gray'>(value)</span>
+  </h2>
+    <p><a href='https://github.com/bevry/fellow/blob/a6743608fddea0dbc88ebc22925e29db3bf549a0/source/index.js#L269-L272'><code>source/index.js</code></a></p>
+  
+  
+  
+  
+  
+  <p>Construct our fellow instance with the value</p>
+
+    <h4>Parameters</h4>
+    <ul class='suppress-p-margin'>
+        <li>Mixed
+ <strong>value</strong>
+          :
+          <div class='force-inline'>
+            <p>The value used to set the properties of the fellow, forwarded to set</p>
+
+          </div>
+        </li>
+    </ul>
+</section>
+          </div>
+        </div>
+        <div class='collapsible' id='Fellow.constructor'>
+          <a href='#Fellow.constructor'>
+            <code>
+              #constructor<span class='gray'>(value)</span>
+            </code>
+            <div class='force-inline'>
+              
+            </div>
+          </a>
+          <div class='collapser border px2'>
+<section class='py2 clearfix'>
+  <h2 id='Fellow.constructor' class='mt0'>
+    constructor<span class='gray'>(value)</span>
+  </h2>
+    <p><a href='https://github.com/bevry/fellow/blob/a6743608fddea0dbc88ebc22925e29db3bf549a0/source/index.js#L269-L272'><code>source/index.js</code></a></p>
+  
+  
+  
+  
+  
+  
+    <h4>Parameters</h4>
+    <ul class='suppress-p-margin'>
+        <li> <strong>value</strong>
+          :
+          <div class='force-inline'>
+            
+          </div>
+        </li>
+    </ul>
+    <h4>Properties</h4>
+    <ul class='suppress-p-margin'>
+        <li><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/String">String</a>
+ <strong>twitterUsername</strong>
+            </li>
+    </li>
+</section>
+          </div>
+        </div>
+        <div class='collapsible' id='Fellow.constructor'>
+          <a href='#Fellow.constructor'>
+            <code>
+              #constructor<span class='gray'>(value)</span>
+            </code>
+            <div class='force-inline'>
+              
+            </div>
+          </a>
+          <div class='collapser border px2'>
+<section class='py2 clearfix'>
+  <h2 id='Fellow.constructor' class='mt0'>
+    constructor<span class='gray'>(value)</span>
+  </h2>
+    <p><a href='https://github.com/bevry/fellow/blob/a6743608fddea0dbc88ebc22925e29db3bf549a0/source/index.js#L269-L272'><code>source/index.js</code></a></p>
+  
+  
+  
+  
+  
+  
+    <h4>Parameters</h4>
+    <ul class='suppress-p-margin'>
+        <li> <strong>value</strong>
+          :
+          <div class='force-inline'>
+            
+          </div>
+        </li>
+    </ul>
+    <h4>Properties</h4>
+    <ul class='suppress-p-margin'>
+        <li><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/String">String</a>
+ <strong>twitterUrl</strong>
+            </li>
+    </li>
+</section>
+          </div>
+        </div>
+        <div class='collapsible' id='Fellow.constructor'>
+          <a href='#Fellow.constructor'>
+            <code>
+              #constructor<span class='gray'>(value)</span>
+            </code>
+            <div class='force-inline'>
+              
+            </div>
+          </a>
+          <div class='collapser border px2'>
+<section class='py2 clearfix'>
+  <h2 id='Fellow.constructor' class='mt0'>
+    constructor<span class='gray'>(value)</span>
+  </h2>
+    <p><a href='https://github.com/bevry/fellow/blob/a6743608fddea0dbc88ebc22925e29db3bf549a0/source/index.js#L269-L272'><code>source/index.js</code></a></p>
+  
+  
+  
+  
+  
+  
+    <h4>Parameters</h4>
+    <ul class='suppress-p-margin'>
+        <li> <strong>value</strong>
+          :
+          <div class='force-inline'>
+            
+          </div>
+        </li>
+    </ul>
+    <h4>Properties</h4>
+    <ul class='suppress-p-margin'>
+        <li><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/String">String</a>
+ <strong>homepage</strong>
+            </li>
+    </li>
+</section>
+          </div>
+        </div>
+        <div class='collapsible' id='Fellow.constructor'>
+          <a href='#Fellow.constructor'>
+            <code>
+              #constructor<span class='gray'>(value)</span>
+            </code>
+            <div class='force-inline'>
+              
+            </div>
+          </a>
+          <div class='collapser border px2'>
+<section class='py2 clearfix'>
+  <h2 id='Fellow.constructor' class='mt0'>
+    constructor<span class='gray'>(value)</span>
+  </h2>
+    <p><a href='https://github.com/bevry/fellow/blob/a6743608fddea0dbc88ebc22925e29db3bf549a0/source/index.js#L269-L272'><code>source/index.js</code></a></p>
+  
+  
+  
+  
+  
+  
+    <h4>Parameters</h4>
+    <ul class='suppress-p-margin'>
+        <li> <strong>value</strong>
+          :
+          <div class='force-inline'>
+            
+          </div>
+        </li>
+    </ul>
+    <h4>Properties</h4>
+    <ul class='suppress-p-margin'>
+        <li><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/String">String</a>
+ <strong>githubUrl</strong>
+            </li>
+    </li>
+</section>
+          </div>
+        </div>
+        <div class='collapsible' id='Fellow.constructor'>
+          <a href='#Fellow.constructor'>
+            <code>
+              #constructor<span class='gray'>(value)</span>
+            </code>
+            <div class='force-inline'>
+              
+            </div>
+          </a>
+          <div class='collapser border px2'>
+<section class='py2 clearfix'>
+  <h2 id='Fellow.constructor' class='mt0'>
+    constructor<span class='gray'>(value)</span>
+  </h2>
+    <p><a href='https://github.com/bevry/fellow/blob/a6743608fddea0dbc88ebc22925e29db3bf549a0/source/index.js#L269-L272'><code>source/index.js</code></a></p>
+  
+  
+  
+  
+  
+  
+    <h4>Parameters</h4>
+    <ul class='suppress-p-margin'>
+        <li> <strong>value</strong>
+          :
+          <div class='force-inline'>
+            
+          </div>
+        </li>
+    </ul>
+    <h4>Properties</h4>
+    <ul class='suppress-p-margin'>
+        <li><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/String">String</a>
+ <strong>githubUsername</strong>
+            </li>
+    </li>
+</section>
+          </div>
+        </div>
+        <div class='collapsible' id='Fellow.contributedRepositories'>
+          <a href='#Fellow.contributedRepositories'>
+            <code>
+              #contributedRepositories<span class='gray'></span>
+            </code>
+            <div class='force-inline'>
+              <p>Get all added github repository slugs that this fellow contributes to</p>
+
+            </div>
+          </a>
+          <div class='collapser border px2'>
+<section class='py2 clearfix'>
+  <h2 id='Fellow.contributedRepositories' class='mt0'>
+    contributedRepositories<span class='gray'></span>
+  </h2>
+    <p><a href='https://github.com/bevry/fellow/blob/a6743608fddea0dbc88ebc22925e29db3bf549a0/source/index.js#L340-L345'><code>source/index.js</code></a></p>
+  
+  
+  
+  
+  
+  <p>Get all added github repository slugs that this fellow contributes to</p>
+
+    <h4>Properties</h4>
+    <ul class='suppress-p-margin'>
+        <li><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Array">Array</a>
+ <strong>contributedRepositories</strong>
+            </li>
+    </li>
+</section>
+          </div>
+        </div>
+        <div class='collapsible' id='Fellow.contributesRepository'>
+          <a href='#Fellow.contributesRepository'>
+            <code>
+              #contributesRepository<span class='gray'>(slug)</span>
+            </code>
+            <div class='force-inline'>
+              <p>Make note that this fellow contributes to this repository slug</p>
+
+            </div>
+          </a>
+          <div class='collapser border px2'>
+<section class='py2 clearfix'>
+  <h2 id='Fellow.contributesRepository' class='mt0'>
+    contributesRepository<span class='gray'>(slug)</span>
+  </h2>
+    <p><a href='https://github.com/bevry/fellow/blob/a6743608fddea0dbc88ebc22925e29db3bf549a0/source/index.js#L353-L356'><code>source/index.js</code></a></p>
+  
+  
+  
+  
+  
+  <p>Make note that this fellow contributes to this repository slug</p>
+
+    <h4>Parameters</h4>
+    <ul class='suppress-p-margin'>
+        <li><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/String">String</a>
+ <strong>slug</strong>
+          :
+          <div class='force-inline'>
+            <p>The github repository slug that this user contributes to</p>
+
+          </div>
+        </li>
+    </ul>
+      <h4>Returns</h4>
+      <code>this
+</code>
+      
+      <div class='force-inline'>
+        
+      </div>
+</section>
+          </div>
+        </div>
+        <div class='collapsible' id='Fellow.email'>
+          <a href='#Fellow.email'>
+            <code>
+              #email<span class='gray'>(value)</span>
+            </code>
+            <div class='force-inline'>
+              <p>Updating the email will add the email to the start of the <code>emails</code> array</p>
+
+            </div>
+          </a>
+          <div class='collapser border px2'>
+<section class='py2 clearfix'>
+  <h2 id='Fellow.email' class='mt0'>
+    email<span class='gray'>(value)</span>
+  </h2>
+    <p><a href='https://github.com/bevry/fellow/blob/a6743608fddea0dbc88ebc22925e29db3bf549a0/source/index.js#L187-L193'><code>source/index.js</code></a></p>
+  
+  
+  
+  
+  
+  <p>Updating the email will add the email to the start of the <code>emails</code> array</p>
+
+    <h4>Parameters</h4>
+    <ul class='suppress-p-margin'>
+        <li><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/String">String</a>
+ <strong>value</strong>
+          :
+          <div class='force-inline'>
+            <p>The email to add to the emails</p>
+
+          </div>
+        </li>
+    </ul>
+    <h4>Properties</h4>
+    <ul class='suppress-p-margin'>
+        <li><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/String">String</a>
+ <strong>email</strong>
+            </li>
+    </li>
+</section>
+          </div>
+        </div>
+        <div class='collapsible' id='Fellow.ensureFields'>
+          <a href='#Fellow.ensureFields'>
+            <code>
+              #ensureFields<span class='gray'></span>
+            </code>
+            <div class='force-inline'>
+              <p>An array of fields that will denote if the user is the same user or not when using ensure</p>
+
+            </div>
+          </a>
+          <div class='collapser border px2'>
+<section class='py2 clearfix'>
+  <h2 id='Fellow.ensureFields' class='mt0'>
+    ensureFields<span class='gray'></span>
+  </h2>
+    <p><a href='https://github.com/bevry/fellow/blob/a6743608fddea0dbc88ebc22925e29db3bf549a0/source/index.js#L61-L63'><code>source/index.js</code></a></p>
+  
+  
+  
+  
+  
+  <p>An array of fields that will denote if the user is the same user or not when using ensure</p>
+
+    <h4>Properties</h4>
+    <ul class='suppress-p-margin'>
+        <li><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Array">Array</a>
+ <strong>ensureFields</strong>
+            </li>
+    </li>
+</section>
+          </div>
+        </div>
+        <div class='collapsible' id='Fellow.json'>
+          <a href='#Fellow.json'>
+            <code>
+              #json<span class='gray'></span>
+            </code>
+            <div class='force-inline'>
+              <p>Get the serialisable values of this fellow</p>
+
+            </div>
+          </a>
+          <div class='collapser border px2'>
+<section class='py2 clearfix'>
+  <h2 id='Fellow.json' class='mt0'>
+    json<span class='gray'></span>
+  </h2>
+    <p><a href='https://github.com/bevry/fellow/blob/a6743608fddea0dbc88ebc22925e29db3bf549a0/source/index.js#L177-L180'><code>source/index.js</code></a></p>
+  
+  
+  
+  
+  
+  <p>Get the serialisable values of this fellow</p>
+
+    <h4>Properties</h4>
+    <ul class='suppress-p-margin'>
+        <li><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Object">Object</a>
+ <strong>json</strong>
+            </li>
+    </li>
+</section>
+          </div>
+        </div>
+        <div class='collapsible' id='Fellow.maintainedRepositories'>
+          <a href='#Fellow.maintainedRepositories'>
+            <code>
+              #maintainedRepositories<span class='gray'></span>
+            </code>
+            <div class='force-inline'>
+              <p>Get all added github repository slugs that this fellow maintains</p>
+
+            </div>
+          </a>
+          <div class='collapser border px2'>
+<section class='py2 clearfix'>
+  <h2 id='Fellow.maintainedRepositories' class='mt0'>
+    maintainedRepositories<span class='gray'></span>
+  </h2>
+    <p><a href='https://github.com/bevry/fellow/blob/a6743608fddea0dbc88ebc22925e29db3bf549a0/source/index.js#L362-L367'><code>source/index.js</code></a></p>
+  
+  
+  
+  
+  
+  <p>Get all added github repository slugs that this fellow maintains</p>
+
+    <h4>Properties</h4>
+    <ul class='suppress-p-margin'>
+        <li><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Array">Array</a>
+ <strong>maintainedRepositories</strong>
+            </li>
+    </li>
+</section>
+          </div>
+        </div>
+        <div class='collapsible' id='Fellow.maintainsRepository'>
+          <a href='#Fellow.maintainsRepository'>
+            <code>
+              #maintainsRepository<span class='gray'>(slug)</span>
+            </code>
+            <div class='force-inline'>
+              <p>Make note that this fellow maintains this repository slug</p>
+
+            </div>
+          </a>
+          <div class='collapser border px2'>
+<section class='py2 clearfix'>
+  <h2 id='Fellow.maintainsRepository' class='mt0'>
+    maintainsRepository<span class='gray'>(slug)</span>
+  </h2>
+    <p><a href='https://github.com/bevry/fellow/blob/a6743608fddea0dbc88ebc22925e29db3bf549a0/source/index.js#L375-L378'><code>source/index.js</code></a></p>
+  
+  
+  
+  
+  
+  <p>Make note that this fellow maintains this repository slug</p>
+
+    <h4>Parameters</h4>
+    <ul class='suppress-p-margin'>
+        <li><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/String">String</a>
+ <strong>slug</strong>
+          :
+          <div class='force-inline'>
+            <p>The github repository slug that this user maintains</p>
+
+          </div>
+        </li>
+    </ul>
+      <h4>Returns</h4>
+      <code>this
+</code>
+      
+      <div class='force-inline'>
+        
+      </div>
+</section>
+          </div>
+        </div>
+        <div class='collapsible' id='Fellow.set'>
+          <a href='#Fellow.set'>
+            <code>
+              #set<span class='gray'>(fellow)</span>
+            </code>
+            <div class='force-inline'>
+              <p>Update our fellow with the passed value</p>
+
+            </div>
+          </a>
+          <div class='collapser border px2'>
+<section class='py2 clearfix'>
+  <h2 id='Fellow.set' class='mt0'>
+    set<span class='gray'>(fellow)</span>
+  </h2>
+    <p><a href='https://github.com/bevry/fellow/blob/a6743608fddea0dbc88ebc22925e29db3bf549a0/source/index.js#L279-L317'><code>source/index.js</code></a></p>
+  
+  
+  
+  
+  
+  <p>Update our fellow with the passed value</p>
+
+    <h4>Parameters</h4>
+    <ul class='suppress-p-margin'>
+        <li>(
+<a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/String">String</a>
+|
+<a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Object">Object</a>
+)
+ <strong>fellow</strong>
+          :
+          <div class='force-inline'>
+            <p>A string in the format of "Benjamin Lupton <a href="mailto:b@lupton.cc">b@lupton.cc</a> (<a href="https://balupton.com">https://balupton.com</a>)" or an object with properties</p>
+
+          </div>
+        </li>
+    </ul>
+      <h4>Returns</h4>
+      <code>this
+</code>
+      
+      <div class='force-inline'>
+        
+      </div>
+</section>
+          </div>
+        </div>
+        <div class='collapsible' id='Fellow.url'>
+          <a href='#Fellow.url'>
+            <code>
+              #url<span class='gray'>(value)</span>
+            </code>
+            <div class='force-inline'>
+              <p>When set, will determine if it is a github, facebook, or twitter url
+If it is, then it will extract the username and url from it
+If this is not one of those urls, then it will set the homepage variable
+When fetching, it will fetch <code>homepage || githubUrl || facebookUrl || twitterUrl || null</code></p>
+
+            </div>
+          </a>
+          <div class='collapser border px2'>
+<section class='py2 clearfix'>
+  <h2 id='Fellow.url' class='mt0'>
+    url<span class='gray'>(value)</span>
+  </h2>
+    <p><a href='https://github.com/bevry/fellow/blob/a6743608fddea0dbc88ebc22925e29db3bf549a0/source/index.js#L206-L229'><code>source/index.js</code></a></p>
+  
+  
+  
+  
+  
+  <p>When set, will determine if it is a github, facebook, or twitter url
+If it is, then it will extract the username and url from it
+If this is not one of those urls, then it will set the homepage variable
+When fetching, it will fetch <code>homepage || githubUrl || facebookUrl || twitterUrl || null</code></p>
+
+    <h4>Parameters</h4>
+    <ul class='suppress-p-margin'>
+        <li><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/String">String</a>
+ <strong>value</strong>
+          :
+          <div class='force-inline'>
+            
+          </div>
+        </li>
+    </ul>
+    <h4>Properties</h4>
+    <ul class='suppress-p-margin'>
+        <li><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/String">String</a>
+ <strong>url</strong>
+            </li>
+    </li>
+</section>
+          </div>
+        </div>
+</section>
+</div><div class='py1'><section class='py2 clearfix'>
+  <h2 id='get' class='mt0'>
+    get<span class='gray'></span>
+  </h2>
+    <p><a href='https://github.com/bevry/fellow/blob/a6743608fddea0dbc88ebc22925e29db3bf549a0/es2015/index.js#L121-L124'><code>es2015/index.js</code></a></p>
+  
+  
+  
+  
+  
+  <p>Get the serialisable values of this fellow</p>
+
+    <h4>Properties</h4>
+    <ul class='suppress-p-margin'>
+        <li><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Object">Object</a>
+ <strong>json</strong>
+            </li>
+    </li>
+</section>
+</div><div class='py1'><section class='py2 clearfix'>
+  <h2 id='get' class='mt0'>
+    get<span class='gray'></span>
+  </h2>
+    <p><a href='https://github.com/bevry/fellow/blob/a6743608fddea0dbc88ebc22925e29db3bf549a0/es2015/index.js#L217-L381'><code>es2015/index.js</code></a></p>
+  
+  
+  
+  
+  
+  
+    <h4>Properties</h4>
+    <ul class='suppress-p-margin'>
+        <li><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/String">String</a>
+ <strong>facebookUrl</strong>
+            </li>
+    </li>
+</section>
+</div><div class='py1'><section class='py2 clearfix'>
+  <h2 id='get' class='mt0'>
+    get<span class='gray'>(value)</span>
+  </h2>
+    <p><a href='https://github.com/bevry/fellow/blob/a6743608fddea0dbc88ebc22925e29db3bf549a0/es2015/index.js#L217-L381'><code>es2015/index.js</code></a></p>
+  
+  
+  
+  
+  
+  <p>Construct our fellow instance with the value</p>
+
+    <h4>Parameters</h4>
+    <ul class='suppress-p-margin'>
+        <li>Mixed
+ <strong>value</strong>
+          :
+          <div class='force-inline'>
+            <p>The value used to set the properties of the fellow, forwarded to set</p>
+
+          </div>
+        </li>
+    </ul>
+</section>
+</div><div class='py1'><section class='py2 clearfix'>
+  <h2 id='get' class='mt0'>
+    get<span class='gray'></span>
+  </h2>
+    <p><a href='https://github.com/bevry/fellow/blob/a6743608fddea0dbc88ebc22925e29db3bf549a0/es2015/index.js#L217-L381'><code>es2015/index.js</code></a></p>
+  
+  
+  
+  
+  
+  
+    <h4>Properties</h4>
+    <ul class='suppress-p-margin'>
+        <li><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/String">String</a>
+ <strong>twitterUsername</strong>
+            </li>
+    </li>
+</section>
+</div><div class='py1'><section class='py2 clearfix'>
+  <h2 id='get' class='mt0'>
+    get<span class='gray'></span>
+  </h2>
+    <p><a href='https://github.com/bevry/fellow/blob/a6743608fddea0dbc88ebc22925e29db3bf549a0/es2015/index.js#L217-L381'><code>es2015/index.js</code></a></p>
+  
+  
+  
+  
+  
+  
+    <h4>Properties</h4>
+    <ul class='suppress-p-margin'>
+        <li><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/String">String</a>
+ <strong>twitterUrl</strong>
+            </li>
+    </li>
+</section>
+</div><div class='py1'><section class='py2 clearfix'>
+  <h2 id='get' class='mt0'>
+    get<span class='gray'></span>
+  </h2>
+    <p><a href='https://github.com/bevry/fellow/blob/a6743608fddea0dbc88ebc22925e29db3bf549a0/es2015/index.js#L217-L381'><code>es2015/index.js</code></a></p>
+  
+  
+  
+  
+  
+  
+    <h4>Properties</h4>
+    <ul class='suppress-p-margin'>
+        <li><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/String">String</a>
+ <strong>githubUsername</strong>
+            </li>
+    </li>
+</section>
+</div><div class='py1'><section class='py2 clearfix'>
+  <h2 id='get' class='mt0'>
+    get<span class='gray'>(value)</span>
+  </h2>
+    <p><a href='https://github.com/bevry/fellow/blob/a6743608fddea0dbc88ebc22925e29db3bf549a0/es2015/index.js#L98-L110'><code>es2015/index.js</code></a></p>
+  
+  
+  
+  
+  
+  <p>Get a fellow from the singleton list</p>
+
+    <h4>Parameters</h4>
+    <ul class='suppress-p-margin'>
+        <li>Mixed
+ <strong>value</strong>
+          :
+          <div class='force-inline'>
+            <p>The value to fetch the value with</p>
+
+          </div>
+        </li>
+    </ul>
+      <h4>Returns</h4>
+      <code>(
+Fellow
+|
+<a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/null">Null</a>
+)
+</code>
+      :
+      <div class='force-inline'>
+        <p>The fetched fellow, if they exist with that value</p>
+
+      </div>
+</section>
+</div><div class='py1'><section class='py2 clearfix'>
+  <h2 id='get' class='mt0'>
+    get<span class='gray'></span>
+  </h2>
+    <p><a href='https://github.com/bevry/fellow/blob/a6743608fddea0dbc88ebc22925e29db3bf549a0/es2015/index.js#L107-L109'><code>es2015/index.js</code></a></p>
+  
+  
+  
+  
+  
+  <p>An array of fields that will denote if the user is the same user or not when using ensure</p>
+
+    <h4>Properties</h4>
+    <ul class='suppress-p-margin'>
+        <li><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Array">Array</a>
+ <strong>ensureFields</strong>
+            </li>
+    </li>
+</section>
+</div><div class='py1'><section class='py2 clearfix'>
+  <h2 id='get' class='mt0'>
+    get<span class='gray'></span>
+  </h2>
+    <p><a href='https://github.com/bevry/fellow/blob/a6743608fddea0dbc88ebc22925e29db3bf549a0/es2015/index.js#L217-L381'><code>es2015/index.js</code></a></p>
+  
+  
+  
+  
+  
+  
+    <h4>Properties</h4>
+    <ul class='suppress-p-margin'>
+        <li><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/String">String</a>
+ <strong>githubUrl</strong>
+            </li>
+    </li>
+</section>
+</div><div class='py1'><section class='py2 clearfix'>
+  <h2 id='get' class='mt0'>
+    get<span class='gray'>(value)</span>
+  </h2>
+    <p><a href='https://github.com/bevry/fellow/blob/a6743608fddea0dbc88ebc22925e29db3bf549a0/es2015/index.js#L132-L154'><code>es2015/index.js</code></a></p>
+  
+  
+  
+  
+  
+  <p>Updating the email will add the email to the start of the <code>emails</code> array</p>
+
+    <h4>Parameters</h4>
+    <ul class='suppress-p-margin'>
+        <li><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/String">String</a>
+ <strong>value</strong>
+          :
+          <div class='force-inline'>
+            <p>The email to add to the emails</p>
+
+          </div>
+        </li>
+    </ul>
+    <h4>Properties</h4>
+    <ul class='suppress-p-margin'>
+        <li><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/String">String</a>
+ <strong>email</strong>
+            </li>
+    </li>
+</section>
+</div><div class='py1'><section class='py2 clearfix'>
+  <h2 id='get' class='mt0'>
+    get<span class='gray'>(value)</span>
+  </h2>
+    <p><a href='https://github.com/bevry/fellow/blob/a6743608fddea0dbc88ebc22925e29db3bf549a0/es2015/index.js#L154-L217'><code>es2015/index.js</code></a></p>
+  
+  
+  
+  
+  
+  <p>When set, will determine if it is a github, facebook, or twitter url
+If it is, then it will extract the username and url from it
+If this is not one of those urls, then it will set the homepage variable
+When fetching, it will fetch <code>homepage || githubUrl || facebookUrl || twitterUrl || null</code></p>
+
+    <h4>Parameters</h4>
+    <ul class='suppress-p-margin'>
+        <li><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/String">String</a>
+ <strong>value</strong>
+          :
+          <div class='force-inline'>
+            
+          </div>
+        </li>
+    </ul>
+    <h4>Properties</h4>
+    <ul class='suppress-p-margin'>
+        <li><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/String">String</a>
+ <strong>url</strong>
+            </li>
+    </li>
+</section>
+</div><div class='py1'><section class='py2 clearfix'>
+  <h2 id='get' class='mt0'>
+    get<span class='gray'></span>
+  </h2>
+    <p><a href='https://github.com/bevry/fellow/blob/a6743608fddea0dbc88ebc22925e29db3bf549a0/es2015/index.js#L217-L381'><code>es2015/index.js</code></a></p>
+  
+  
+  
+  
+  
+  
+    <h4>Properties</h4>
+    <ul class='suppress-p-margin'>
+        <li><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/String">String</a>
+ <strong>homepage</strong>
+            </li>
+    </li>
+</section>
+</div><div class='py1'><section class='py2 clearfix'>
+  <h2 id='get' class='mt0'>
+    get<span class='gray'></span>
+  </h2>
+    <p><a href='https://github.com/bevry/fellow/blob/a6743608fddea0dbc88ebc22925e29db3bf549a0/es2015/index.js#L217-L381'><code>es2015/index.js</code></a></p>
+  
+  
+  
+  
+  
+  
+    <h4>Properties</h4>
+    <ul class='suppress-p-margin'>
+        <li><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/String">String</a>
+ <strong>facebookUsername</strong>
+            </li>
+    </li>
+</section>
+</div><div class='py1'><section class='py2 clearfix'>
+  <h2 id='value' class='mt0'>
+    value<span class='gray'>(slug)</span>
+  </h2>
+    <p><a href='https://github.com/bevry/fellow/blob/a6743608fddea0dbc88ebc22925e29db3bf549a0/es2015/index.js#L514-L517'><code>es2015/index.js</code></a></p>
+  
+  
+  
+  
+  
+  <p>Make note that this fellow authors this repository slug</p>
+
+    <h4>Parameters</h4>
+    <ul class='suppress-p-margin'>
+        <li><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/String">String</a>
+ <strong>slug</strong>
+          :
+          <div class='force-inline'>
+            <p>The github repository slug that this user authors</p>
+
+          </div>
+        </li>
+    </ul>
+      <h4>Returns</h4>
+      <code>this
+</code>
+      
+      <div class='force-inline'>
+        
+      </div>
+</section>
+</div><div class='py1'><section class='py2 clearfix'>
+  <h2 id='value' class='mt0'>
+    value<span class='gray'></span>
+  </h2>
+    <p><a href='https://github.com/bevry/fellow/blob/a6743608fddea0dbc88ebc22925e29db3bf549a0/es2015/index.js#L241-L292'><code>es2015/index.js</code></a></p>
+  
+  
+  
+  
+  
+  <p>A singleton array attached to the class object that stores it's people objects</p>
+
+    <h4>Properties</h4>
+    <ul class='suppress-p-margin'>
+        <li><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Array">Array</a>
+ <strong>list</strong>
+            </li>
+    </li>
+</section>
+</div><div class='py1'><section class='py2 clearfix'>
+  <h2 id='value' class='mt0'>
+    value<span class='gray'>(value, [add])</span>
+  </h2>
+    <p><a href='https://github.com/bevry/fellow/blob/a6743608fddea0dbc88ebc22925e29db3bf549a0/es2015/index.js#L253-L291'><code>es2015/index.js</code></a></p>
+  
+  
+  
+  
+  
+  <p>With the value, see if an existing fellow exists in our singleton list property with the value, otherwise create a new fellow instance with the value and add them to our singleton list</p>
+
+    <h4>Parameters</h4>
+    <ul class='suppress-p-margin'>
+        <li>Mixed
+ <strong>value</strong>
+          :
+          <div class='force-inline'>
+            <p>The value to create a new fellow instance or find the existing fellow instance with</p>
+
+          </div>
+        </li>
+        <li><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Boolean">boolean</a>
+=
+ <strong>add</strong>
+            (default <code>true</code>)
+          :
+          <div class='force-inline'>
+            <p>Whether to add the created person to the list</p>
+
+          </div>
+        </li>
+    </ul>
+      <h4>Returns</h4>
+      <code>Fellow
+</code>
+      :
+      <div class='force-inline'>
+        <p>The new or existing fellow instance</p>
+
+      </div>
+</section>
+</div><div class='py1'><section class='py2 clearfix'>
+  <h2 id='value' class='mt0'>
+    value<span class='gray'>(value)</span>
+  </h2>
+    <p><a href='https://github.com/bevry/fellow/blob/a6743608fddea0dbc88ebc22925e29db3bf549a0/es2015/index.js#L306-L336'><code>es2015/index.js</code></a></p>
+  
+  
+  
+  
+  
+  <p>Add a fellow or a series of people, denoted by the value, to the singleton list</p>
+
+    <h4>Parameters</h4>
+    <ul class='suppress-p-margin'>
+        <li>Mixed
+ <strong>value</strong>
+          :
+          <div class='force-inline'>
+            <p>The fellow or people to add</p>
+
+          </div>
+        </li>
+    </ul>
+      <h4>Returns</h4>
+      <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Array">Array</a>
+</code>
+      :
+      <div class='force-inline'>
+        <p>An array of the fellow objects for the passed people</p>
+
+      </div>
+</section>
+</div><div class='py1'><section class='py2 clearfix'>
+  <h2 id='value' class='mt0'>
+    value<span class='gray'>(repoSlug)</span>
+  </h2>
+    <p><a href='https://github.com/bevry/fellow/blob/a6743608fddea0dbc88ebc22925e29db3bf549a0/es2015/index.js#L336-L352'><code>es2015/index.js</code></a></p>
+  
+  
+  
+  
+  
+  <p>Get all fellows who contribute to a particular repository</p>
+
+    <h4>Parameters</h4>
+    <ul class='suppress-p-margin'>
+        <li><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/String">String</a>
+ <strong>repoSlug</strong>
+          :
+          <div class='force-inline'>
+            <p>The repository slug</p>
+
+          </div>
+        </li>
+    </ul>
+      <h4>Returns</h4>
+      <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Array">Array</a>
+</code>
+      :
+      <div class='force-inline'>
+        <p>An array of the fellow objects that contribute to the repository</p>
+
+      </div>
+</section>
+</div><div class='py1'><section class='py2 clearfix'>
+  <h2 id='value' class='mt0'>
+    value<span class='gray'>(repoSlug)</span>
+  </h2>
+    <p><a href='https://github.com/bevry/fellow/blob/a6743608fddea0dbc88ebc22925e29db3bf549a0/es2015/index.js#L352-L368'><code>es2015/index.js</code></a></p>
+  
+  
+  
+  
+  
+  <p>Get all fellows who maintain a particular repository</p>
+
+    <h4>Parameters</h4>
+    <ul class='suppress-p-margin'>
+        <li><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/String">String</a>
+ <strong>repoSlug</strong>
+          :
+          <div class='force-inline'>
+            <p>The repository slug</p>
+
+          </div>
+        </li>
+    </ul>
+      <h4>Returns</h4>
+      <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Array">Array</a>
+</code>
+      :
+      <div class='force-inline'>
+        <p>An array of the fellow objects that maintain to the repository</p>
+
+      </div>
+</section>
+</div><div class='py1'><section class='py2 clearfix'>
+  <h2 id='value' class='mt0'>
+    value<span class='gray'>(repoSlug)</span>
+  </h2>
+    <p><a href='https://github.com/bevry/fellow/blob/a6743608fddea0dbc88ebc22925e29db3bf549a0/es2015/index.js#L368-L375'><code>es2015/index.js</code></a></p>
+  
+  
+  
+  
+  
+  <p>Get all fellows who author a particular repository</p>
+
+    <h4>Parameters</h4>
+    <ul class='suppress-p-margin'>
+        <li><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/String">String</a>
+ <strong>repoSlug</strong>
+          :
+          <div class='force-inline'>
+            <p>The repository slug</p>
+
+          </div>
+        </li>
+    </ul>
+      <h4>Returns</h4>
+      <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Array">Array</a>
+</code>
+      :
+      <div class='force-inline'>
+        <p>An array of the fellow objects that author to the repository</p>
+
+      </div>
+</section>
+</div><div class='py1'><section class='py2 clearfix'>
+  <h2 id='value' class='mt0'>
+    value<span class='gray'>(value)</span>
+  </h2>
+    <p><a href='https://github.com/bevry/fellow/blob/a6743608fddea0dbc88ebc22925e29db3bf549a0/es2015/index.js#L231-L233'><code>es2015/index.js</code></a></p>
+  
+  
+  
+  
+  
+  <p>Create a new Fellow instance with the value, however if the value is already a fellow instance, then just return it</p>
+
+    <h4>Parameters</h4>
+    <ul class='suppress-p-margin'>
+        <li>Mixed
+ <strong>value</strong>
+          :
+          <div class='force-inline'>
+            
+          </div>
+        </li>
+    </ul>
+      <h4>Returns</h4>
+      <code>Fellow
+</code>
+      :
+      <div class='force-inline'>
+        <p>The new fellow instance</p>
+
+      </div>
+</section>
+</div><div class='py1'><section class='py2 clearfix'>
+  <h2 id='value' class='mt0'>
+    value<span class='gray'></span>
+  </h2>
+    <p><a href='https://github.com/bevry/fellow/blob/a6743608fddea0dbc88ebc22925e29db3bf549a0/es2015/index.js#L464-L484'><code>es2015/index.js</code></a></p>
+  
+  
+  
+  
+  
+  <p>Get all added github repository slugs that this fellow contributes to</p>
+
+    <h4>Properties</h4>
+    <ul class='suppress-p-margin'>
+        <li><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Array">Array</a>
+ <strong>contributedRepositories</strong>
+            </li>
+    </li>
+</section>
+</div><div class='py1'><section class='py2 clearfix'>
+  <h2 id='value' class='mt0'>
+    value<span class='gray'>(slug)</span>
+  </h2>
+    <p><a href='https://github.com/bevry/fellow/blob/a6743608fddea0dbc88ebc22925e29db3bf549a0/es2015/index.js#L474-L477'><code>es2015/index.js</code></a></p>
+  
+  
+  
+  
+  
+  <p>Make note that this fellow contributes to this repository slug</p>
+
+    <h4>Parameters</h4>
+    <ul class='suppress-p-margin'>
+        <li><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/String">String</a>
+ <strong>slug</strong>
+          :
+          <div class='force-inline'>
+            <p>The github repository slug that this user contributes to</p>
+
+          </div>
+        </li>
+    </ul>
+      <h4>Returns</h4>
+      <code>this
+</code>
+      
+      <div class='force-inline'>
+        
+      </div>
+</section>
+</div><div class='py1'><section class='py2 clearfix'>
+  <h2 id='value' class='mt0'>
+    value<span class='gray'></span>
+  </h2>
+    <p><a href='https://github.com/bevry/fellow/blob/a6743608fddea0dbc88ebc22925e29db3bf549a0/es2015/index.js#L484-L504'><code>es2015/index.js</code></a></p>
+  
+  
+  
+  
+  
+  <p>Get all added github repository slugs that this fellow maintains</p>
+
+    <h4>Properties</h4>
+    <ul class='suppress-p-margin'>
+        <li><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Array">Array</a>
+ <strong>maintainedRepositories</strong>
+            </li>
+    </li>
+</section>
+</div><div class='py1'><section class='py2 clearfix'>
+  <h2 id='value' class='mt0'>
+    value<span class='gray'>(slug)</span>
+  </h2>
+    <p><a href='https://github.com/bevry/fellow/blob/a6743608fddea0dbc88ebc22925e29db3bf549a0/es2015/index.js#L494-L497'><code>es2015/index.js</code></a></p>
+  
+  
+  
+  
+  
+  <p>Make note that this fellow maintains this repository slug</p>
+
+    <h4>Parameters</h4>
+    <ul class='suppress-p-margin'>
+        <li><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/String">String</a>
+ <strong>slug</strong>
+          :
+          <div class='force-inline'>
+            <p>The github repository slug that this user maintains</p>
+
+          </div>
+        </li>
+    </ul>
+      <h4>Returns</h4>
+      <code>this
+</code>
+      
+      <div class='force-inline'>
+        
+      </div>
+</section>
+</div><div class='py1'><section class='py2 clearfix'>
+  <h2 id='value' class='mt0'>
+    value<span class='gray'></span>
+  </h2>
+    <p><a href='https://github.com/bevry/fellow/blob/a6743608fddea0dbc88ebc22925e29db3bf549a0/es2015/index.js#L504-L518'><code>es2015/index.js</code></a></p>
+  
+  
+  
+  
+  
+  <p>Get all added github repository slugs that this fellow authors</p>
+
+    <h4>Properties</h4>
+    <ul class='suppress-p-margin'>
+        <li><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Array">Array</a>
+ <strong>authoredRepositories</strong>
+            </li>
+    </li>
+</section>
+</div><div class='py1'><section class='py2 clearfix'>
+  <h2 id='value' class='mt0'>
+    value<span class='gray'>(other)</span>
+  </h2>
+    <p><a href='https://github.com/bevry/fellow/blob/a6743608fddea0dbc88ebc22925e29db3bf549a0/es2015/index.js#L26-L88'><code>es2015/index.js</code></a></p>
+  
+  
+  
+  
+  
+  <p>Compare a fellow to another fellow, uses ensureFields for the comparison
+If an ensureField is an array for both ourself and the other fellow, we will check to see if only one item of that array is similar (this is useful for email comparisons)</p>
+
+    <h4>Parameters</h4>
+    <ul class='suppress-p-margin'>
+        <li>Fellow
+ <strong>other</strong>
+          :
+          <div class='force-inline'>
+            <p>The other fellow to compare ourselves with</p>
+
+          </div>
+        </li>
+    </ul>
+      <h4>Returns</h4>
+      <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Boolean">Boolean</a>
+</code>
+      :
+      <div class='force-inline'>
+        <p>Returns <code>true</code> if they appear to be the same person, or <code>false</code> if not</p>
+
+      </div>
+</section>
 </div>
-<script src="./assets/vendor/prettify/prettify-min.js"></script>
-<script>prettyPrint();</script>
-<script src="./assets/js/yui-prettify.js"></script>
-<script src="./assets/../api.js"></script>
-<script src="./assets/js/api-filter.js"></script>
-<script src="./assets/js/api-list.js"></script>
-<script src="./assets/js/api-search.js"></script>
-<script src="./assets/js/apidocs.js"></script>
+        </div>
+      </div>
+    </div>
+  </div>
+  <script src='assets/anchor.js'></script>
+  <script src='assets/site.js'></script>
 </body>
 </html>
