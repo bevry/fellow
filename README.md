@@ -42,7 +42,7 @@ Fellow is a package for creating people that can be unified by their shared valu
 <a href="http://browserify.org" title="Browserify lets you require('modules') in the browser by bundling up all of your dependencies"><h3>Browserify</h3></a><ul>
 <li>Install: <code>npm install --save fellow</code></li>
 <li>Module: <code>require('fellow')</code></li>
-<li>CDN URL: <code>//wzrd.in/bundle/fellow@2.2.0</code></li></ul>
+<li>CDN URL: <code>//wzrd.in/bundle/fellow@2.3.0</code></li></ul>
 
 <a href="http://enderjs.com" title="Ender is a full featured package manager for your browser"><h3>Ender</h3></a><ul>
 <li>Install: <code>ender add fellow</code></li>
@@ -94,7 +94,7 @@ Fellow is a package for creating people that can be unified by their shared valu
 
 These amazing people are maintaining this project:
 
-<ul><li><a href="http://balupton.com">Benjamin Lupton</a></li></ul>
+<ul><li><a href="https://github.com/balupton">Benjamin Lupton</a> — <a href="https://github.com/bevry/fellow/commits?author=balupton" title="View the GitHub contributions of Benjamin Lupton on repository bevry/fellow">view contributions</a></li></ul>
 
 <h3>Sponsors</h3>
 
@@ -111,8 +111,7 @@ No sponsors yet! Will you be the first?
 
 These amazing people have contributed code to this project:
 
-<ul><li><a href="http://balupton.com">Benjamin Lupton</a></li>
-<li><a href="https://balupton.com">Benjamin Lupton</a> — <a href="https://github.com/bevry/fellow/commits?author=balupton" title="View the GitHub contributions of Benjamin Lupton on repository bevry/fellow">view contributions</a></li></ul>
+<ul><li><a href="https://github.com/balupton">Benjamin Lupton</a> — <a href="https://github.com/bevry/fellow/commits?author=balupton" title="View the GitHub contributions of Benjamin Lupton on repository bevry/fellow">view contributions</a></li></ul>
 
 <a href="https://github.com/bevry/fellow/blob/master/CONTRIBUTING.md#files">Discover how you can contribute by heading on over to the <code>CONTRIBUTING.md</code> file.</a>
 

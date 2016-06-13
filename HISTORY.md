@@ -1,5 +1,8 @@
 # History
 
+## v2.3.0 2016 June 13
+- Fellow homepage will now change `https` to `http` to prevent duplicates
+
 ## v2.2.0 2016 April 30
 - Updated internal conventions
 

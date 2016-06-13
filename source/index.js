@@ -1,5 +1,16 @@
 /**
-A fellow with similarties to other people
+A fellow with similarties to other people.
+
+Also contains the properties:
+
+- {String} homepage
+- {String} githubUrl
+- {String} githubUsername
+- {String} twitterUrl
+- {String} twitterUsername
+- {String} facebookUrl
+- {String} facebookUsername
+
 @class Fellow
 */
 class Fellow {
@@ -10,8 +21,7 @@ class Fellow {
 	/**
 	Create a new Fellow instance with the value, however if the value is already a fellow instance, then just return it
 	@static
-	@method create
-	@param {Mixed} value
+	@param {*} value
 	@returns {Fellow} The new fellow instance
 	*/
 	static create (value) {
@@ -21,7 +31,7 @@ class Fellow {
 	/**
 	A singleton array attached to the class object that stores it's people objects
 	@static
-	@property {Array} list
+	@type {Array}
 	*/
 	static get list () {
 		if ( this._list == null )  this._list = []
@@ -31,8 +41,7 @@ class Fellow {
 	/**
 	With the value, see if an existing fellow exists in our singleton list property with the value, otherwise create a new fellow instance with the value and add them to our singleton list
 	@static
-	@method ensure
-	@param {Mixed} value - The value to create a new fellow instance or find the existing fellow instance with
+	@param {*} value - The value to create a new fellow instance or find the existing fellow instance with
 	@param {boolean} [add=true] - Whether to add the created person to the list
 	@returns {Fellow} The new or existing fellow instance
 	*/
@@ -55,8 +64,8 @@ class Fellow {
 
 	/**
 	An array of fields that will denote if the user is the same user or not when using ensure
-	@protected
-	@property {Array} ensureFields
+	@access protected
+	@type {Array}
 	*/
 	get ensureFields () {
 		return ['emails', 'homepage', 'githubUsername', 'twitterUsername', 'facebookUsername']
@@ -65,7 +74,6 @@ class Fellow {
 	/**
 	Compare a fellow to another fellow, uses ensureFields for the comparison
 	If an ensureField is an array for both ourself and the other fellow, we will check to see if only one item of that array is similar (this is useful for email comparisons)
-	@method compare
 	@param {Fellow} other The other fellow to compare ourselves with
 	@returns {Boolean} Returns `true` if they appear to be the same person, or `false` if not
 	*/
@@ -93,9 +101,8 @@ class Fellow {
 
 	/**
 	Get a fellow from the singleton list
-	@static
 	@method get
-	@param {Mixed} value The value to fetch the value with
+	@param {*} value The value to fetch the value with
 	@returns {Fellow|Null} The fetched fellow, if they exist with that value
 	*/
 	static get (value) {
@@ -105,8 +112,7 @@ class Fellow {
 	/**
 	Add a fellow or a series of people, denoted by the value, to the singleton list
 	@static
-	@method add
-	@param {Mixed} value The fellow or people to add
+	@param {*} value The fellow or people to add
 	@returns {Array} An array of the fellow objects for the passed people
 	*/
 	static add (value) {
@@ -130,7 +136,6 @@ class Fellow {
 	/**
 	Get all fellows who contribute to a particular repository
 	@static
-	@method contributesRepository
 	@param {String} repoSlug The repository slug
 	@returns {Array} An array of the fellow objects that contribute to the repository
 	*/
@@ -143,7 +148,6 @@ class Fellow {
 	/**
 	Get all fellows who maintain a particular repository
 	@static
-	@method maintainsRepository
 	@param {String} repoSlug The repository slug
 	@returns {Array} An array of the fellow objects that maintain to the repository
 	*/
@@ -156,7 +160,6 @@ class Fellow {
 	/**
 	Get all fellows who author a particular repository
 	@static
-	@method authorsRepository
 	@param {String} repoSlug The repository slug
 	@returns {Array} An array of the fellow objects that author to the repository
 	*/
@@ -172,7 +175,7 @@ class Fellow {
 
 	/**
 	Get the serialisable values of this fellow
-	@property {Object} json
+	@type {Object}
 	*/
 	get json () {
 		const json = JSON.parse(JSON.stringify(this))
@@ -180,7 +183,11 @@ class Fellow {
 	}
 
 	/**
-	Updating the email will add the email to the start of the `emails` array
+	When fetching,
+	Updating the email will add the email to the start of the `emails` array.
+
+	When getting,
+	Fetches the first email from the emails array.
 	@property {String} email
 	@param {String} value - The email to add to the emails
 	*/
@@ -196,12 +203,16 @@ class Fellow {
 	}
 
 	/**
-	When set, will determine if it is a github, facebook, or twitter url
-	If it is, then it will extract the username and url from it
-	If this is not one of those urls, then it will set the homepage variable
-	When fetching, it will fetch `homepage || githubUrl || facebookUrl || twitterUrl || null`
-	@property {String} url
+	When setting,
+	Will determine passed url is a github, facebook, or twitter url.
+	If it is, then it will extract the username and url from it.
+	If this is not one of those urls, then it will set the homepage variable.
+
+	When getting,
+	Will fetch `homepage || githubUrl || facebookUrl || twitterUrl || null`
+	@type {String}
 	@param {String} value
+	@returns {this}
 	*/
 	set url (value) {
 		const githubMatch = (/^.+github.com\/([^\/]+)\/?$/).exec(value)
@@ -222,7 +233,7 @@ class Fellow {
 					this.twtterUrl = 'https://twitter.com/' + this.twitterUsername
 				}
 				else {
-					this.homepage = value
+					this.homepage = value.replace(/^https/, 'http')
 				}
 			}
 		}
@@ -231,43 +242,16 @@ class Fellow {
 		return this.homepage || this.githubUrl || this.facebookUrl || this.twitterUrl || null
 	}
 
-	/**
-	@property {String} homepage
-	*/
-
-	/**
-	@property {String} githubUrl
-	*/
-
-	/**
-	@property {String} githubUsername
-	*/
-
-	/**
-	@property {String} twitterUrl
-	*/
-
-	/**
-	@property {String} twitterUsername
-	*/
-
-	/**
-	@property {String} facebookUrl
-	*/
-
-	/**
-	@property {String} facebookUsername
-	*/
 
 	// -----------------------------------
 	// Methods
 
 	/**
 	Construct our fellow instance with the value
-	@param {Mixed} value The value used to set the properties of the fellow, forwarded to set
+	@param {*} value - The value used to set the properties of the fellow, forwarded to set
 	*/
 	constructor (value) {
-		if ( !this.emails ) this.emails = []
+		if ( !this.emails )  this.emails = []
 		this.set(value)
 	}
 
@@ -299,9 +283,11 @@ class Fellow {
 				if ( key[0] === '_' )  return  // skip if private
 				const value = fellow[key] || null
 				if ( value ) {
+					// if not a url field, e.g. name or email
 					if ( urlFields.indexOf(key) === -1 ) {
 						this[key] = value
 					}
+					// if any of the url fields, redirect to url setter
 					else {
 						this.url = value
 					}
@@ -323,8 +309,7 @@ class Fellow {
 	/**
 	Ensures that the github repository exists on the class
 	@private
-	@method ensureRepository
-	@param {String} slug Github repository slug (e.g. "bevry/projectz")
+	@param {String} slug - Github repository slug (e.g. "bevry/projectz")
 	@returns {Object} The repository object
 	*/
 	ensureRepository (slug) {
@@ -335,7 +320,7 @@ class Fellow {
 
 	/**
 	Get all added github repository slugs that this fellow contributes to
-	@property {Array} contributedRepositories
+	@type {Array}
 	*/
 	get contributedRepositories () {
 		return Object.keys(this._Repositories || {}).filter((slug) => {
@@ -346,8 +331,7 @@ class Fellow {
 
 	/**
 	Make note that this fellow contributes to this repository slug
-	@method contributesRepository
-	@param {String} slug The github repository slug that this user contributes to
+	@param {String} slug - The github repository slug that this user contributes to
 	@returns {this}
 	*/
 	contributesRepository (slug) {
@@ -357,7 +341,7 @@ class Fellow {
 
 	/**
 	Get all added github repository slugs that this fellow maintains
-	@property {Array} maintainedRepositories
+	@type {Array}
 	*/
 	get maintainedRepositories () {
 		return Object.keys(this._Repositories || {}).filter((slug) => {
@@ -368,8 +352,7 @@ class Fellow {
 
 	/**
 	Make note that this fellow maintains this repository slug
-	@method maintainsRepository
-	@param {String} slug The github repository slug that this user maintains
+	@param {String} slug - The github repository slug that this user maintains
 	@returns {this}
 	*/
 	maintainsRepository (slug) {
@@ -379,7 +362,7 @@ class Fellow {
 
 	/**
 	Get all added github repository slugs that this fellow authors
-	@property {Array} authoredRepositories
+	@type {Array}
 	*/
 	get authoredRepositories () {
 		return Object.keys(this._Repositories || {}).filter((slug) => {
@@ -390,14 +373,14 @@ class Fellow {
 
 	/**
 	Make note that this fellow authors this repository slug
-	@method authorsRepository
-	@param {String} slug The github repository slug that this user authors
+	@param {String} slug - The github repository slug that this user authors
 	@returns {this}
 	*/
 	authorsRepository (slug) {
 		this.ensureRepository(slug).authors = true
 		return this
 	}
+
 }
 
 // Export
