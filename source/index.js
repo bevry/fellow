@@ -1,20 +1,17 @@
+'use strict'
+
 /**
-A fellow with similarties to other people.
-
-Also contains the properties:
-
-- {String} homepage
-- {String} githubUrl
-- {String} githubUsername
-- {String} twitterUrl
-- {String} twitterUsername
-- {String} facebookUrl
-- {String} facebookUsername
-
-@class Fellow
-*/
+ * A fellow with similarties to other people.
+ * @property {string} homepage
+ * @property {string} githubUrl
+ * @property {string} githubUsername
+ * @property {string} twitterUrl
+ * @property {string} twitterUsername
+ * @property {string} facebookUrl
+ * @property {string} facebookUsername
+ * @class
+ */
 class Fellow {
-
 	// -----------------------------------
 	// Static Helpers
 
@@ -24,7 +21,7 @@ class Fellow {
 	@param {*} value
 	@returns {Fellow} The new fellow instance
 	*/
-	static create (value) {
+	static create(value) {
 		return value instanceof this ? value : new this(value)
 	}
 
@@ -33,8 +30,8 @@ class Fellow {
 	@static
 	@type {Array}
 	*/
-	static get list () {
-		if ( this._list == null )  this._list = []
+	static get list() {
+		if (this._list == null) this._list = []
 		return this._list
 	}
 
@@ -45,19 +42,18 @@ class Fellow {
 	@param {boolean} [add=true] - Whether to add the created person to the list
 	@returns {Fellow} The new or existing fellow instance
 	*/
-	static ensure (value, add = true) {
+	static ensure(value, add = true) {
 		const newFellow = this.create(value)
 		const people = this.list
-		for ( const existingFellow of people ) {
-			if ( newFellow.compare(existingFellow) ) {
+		for (const existingFellow of people) {
+			if (newFellow.compare(existingFellow)) {
 				return existingFellow.set(value)
 			}
 		}
-		if ( add ) {
+		if (add) {
 			people.push(newFellow)
 			return newFellow
-		}
-		else {
+		} else {
 			return null
 		}
 	}
@@ -67,8 +63,14 @@ class Fellow {
 	@access protected
 	@type {Array}
 	*/
-	get ensureFields () {
-		return ['emails', 'homepage', 'githubUsername', 'twitterUsername', 'facebookUsername']
+	get ensureFields() {
+		return [
+			'emails',
+			'homepage',
+			'githubUsername',
+			'twitterUsername',
+			'facebookUsername'
+		]
 	}
 
 	/**
@@ -77,21 +79,20 @@ class Fellow {
 	@param {Fellow} other The other fellow to compare ourselves with
 	@returns {Boolean} Returns `true` if they appear to be the same person, or `false` if not
 	*/
-	compare (other) {
+	compare(other) {
 		const fields = this.ensureFields
-		for ( const field of fields ) {
+		for (const field of fields) {
 			const value = this[field]
 			const otherValue = other[field]
 
-			if ( value && otherValue ) {
-				if ( Array.isArray(value) && Array.isArray(otherValue) ) {
-					for ( const item of value ) {
-						if ( otherValue.indexOf(item) !== -1 ) {
+			if (value && otherValue) {
+				if (Array.isArray(value) && Array.isArray(otherValue)) {
+					for (const item of value) {
+						if (otherValue.indexOf(item) !== -1) {
 							return true
 						}
 					}
-				}
-				else if ( value === otherValue ) {
+				} else if (value === otherValue) {
 					return true
 				}
 			}
@@ -105,7 +106,7 @@ class Fellow {
 	@param {*} value The value to fetch the value with
 	@returns {Fellow|Null} The fetched fellow, if they exist with that value
 	*/
-	static get (value) {
+	static get(value) {
 		return this.ensure(value, false)
 	}
 
@@ -115,20 +116,16 @@ class Fellow {
 	@param {*} value The fellow or people to add
 	@returns {Array} An array of the fellow objects for the passed people
 	*/
-	static add (value) {
-		if ( value instanceof this ) {
+	static add(value) {
+		if (value instanceof this) {
 			return [this.ensure(value)]
-		}
-		else if ( typeof value === 'string' ) {
-			return value.split(/, +/).map((fellow) => this.ensure(fellow))
-		}
-		else if ( Array.isArray(value) ) {
-			return value.map((value) => this.ensure(value))
-		}
-		else if ( value ) {
+		} else if (typeof value === 'string') {
+			return value.split(/, +/).map(fellow => this.ensure(fellow))
+		} else if (Array.isArray(value)) {
+			return value.map(value => this.ensure(value))
+		} else if (value) {
 			return [this.ensure(value)]
-		}
-		else {
+		} else {
 			return []
 		}
 	}
@@ -139,8 +136,8 @@ class Fellow {
 	@param {String} repoSlug The repository slug
 	@returns {Array} An array of the fellow objects that contribute to the repository
 	*/
-	static contributesRepository (repoSlug) {
-		return this.list.filter(function (fellow) {
+	static contributesRepository(repoSlug) {
+		return this.list.filter(function(fellow) {
 			return fellow.ensureRepository(repoSlug).contributes
 		})
 	}
@@ -151,8 +148,8 @@ class Fellow {
 	@param {String} repoSlug The repository slug
 	@returns {Array} An array of the fellow objects that maintain to the repository
 	*/
-	static maintainsRepository (repoSlug) {
-		return this.list.filter(function (fellow) {
+	static maintainsRepository(repoSlug) {
+		return this.list.filter(function(fellow) {
 			return fellow.ensureRepository(repoSlug).maintains
 		})
 	}
@@ -163,12 +160,11 @@ class Fellow {
 	@param {String} repoSlug The repository slug
 	@returns {Array} An array of the fellow objects that author to the repository
 	*/
-	static authorsRepository (repoSlug) {
-		return this.list.filter(function (fellow) {
+	static authorsRepository(repoSlug) {
+		return this.list.filter(function(fellow) {
 			return fellow.ensureRepository(repoSlug).authors
 		})
 	}
-
 
 	// -----------------------------------
 	// Properties
@@ -177,7 +173,7 @@ class Fellow {
 	Get the serialisable values of this fellow
 	@type {Object}
 	*/
-	get json () {
+	get json() {
 		const json = JSON.parse(JSON.stringify(this))
 		return json
 	}
@@ -191,14 +187,16 @@ class Fellow {
 	@property {String} email
 	@param {String} value - The email to add to the emails
 	*/
-	set email (value) {
+	set email(value) {
 		const index = this.emails.indexOf(value)
-		if ( index !== -1 ) {
-			this.emails = this.emails.slice(0, index).concat(this.emails.slice(index + 1))
+		if (index !== -1) {
+			this.emails = this.emails
+				.slice(0, index)
+				.concat(this.emails.slice(index + 1))
 		}
 		this.emails.unshift(value)
 	}
-	get email () {
+	get email() {
 		return this.emails[0] || null
 	}
 
@@ -214,34 +212,36 @@ class Fellow {
 	@param {String} value
 	@returns {this}
 	*/
-	set url (value) {
-		const githubMatch = (/^.+github.com\/([^\/]+)\/?$/).exec(value)
-		if ( githubMatch ) {
+	set url(value) {
+		const githubMatch = /^.+github.com\/([^/]+)\/?$/.exec(value)
+		if (githubMatch) {
 			this.githubUsername = githubMatch[1]
 			this.githubUrl = 'https://github.com/' + this.githubUsername
-		}
-		else {
-			const facebookMatch = (/^.+facebook.com\/([^\/]+)\/?$/).exec(value)
-			if ( facebookMatch ) {
+		} else {
+			const facebookMatch = /^.+facebook.com\/([^/]+)\/?$/.exec(value)
+			if (facebookMatch) {
 				this.facebookUsername = facebookMatch[1]
 				this.facebookUrl = 'https://facebook.com/' + this.facebookUsername
-			}
-			else {
-				const twitterMatch = (/^.+twitter.com\/([^\/]+)\/?$/).exec(value)
-				if ( twitterMatch ) {
+			} else {
+				const twitterMatch = /^.+twitter.com\/([^/]+)\/?$/.exec(value)
+				if (twitterMatch) {
 					this.twitterUsername = twitterMatch[1]
-					this.twtterUrl = 'https://twitter.com/' + this.twitterUsername
-				}
-				else {
+					this.twitterUrl = 'https://twitter.com/' + this.twitterUsername
+				} else {
 					this.homepage = value.replace(/^https/, 'http')
 				}
 			}
 		}
 	}
-	get url () {
-		return this.homepage || this.githubUrl || this.facebookUrl || this.twitterUrl || null
+	get url() {
+		return (
+			this.homepage ||
+			this.githubUrl ||
+			this.facebookUrl ||
+			this.twitterUrl ||
+			null
+		)
 	}
-
 
 	// -----------------------------------
 	// Methods
@@ -250,8 +250,8 @@ class Fellow {
 	Construct our fellow instance with the value
 	@param {*} value - The value used to set the properties of the fellow, forwarded to set
 	*/
-	constructor (value) {
-		if ( !this.emails )  this.emails = []
+	constructor(value) {
+		if (!this.emails) this.emails = []
 		this.set(value)
 	}
 
@@ -260,31 +260,38 @@ class Fellow {
 	@param {String|Object} fellow - A string in the format of "Benjamin Lupton <b@lupton.cc> (https://balupton.com)" or an object with properties
 	@returns {this}
 	*/
-	set (fellow) {
+	set(fellow) {
 		// String format
 		// Benjamin Lupton <b@lupton.cc> (https://balupton.com)
-		if ( typeof fellow === 'string' ) {
-			const match = (/^([^<(]+)\s*(?:<(.+?)>)?\s*(?:\((.+?)\))?$/).exec(fellow)
-			if ( !match ) {
+		if (typeof fellow === 'string') {
+			const match = /^([^<(]+)\s*(?:<(.+?)>)?\s*(?:\((.+?)\))?$/.exec(fellow)
+			if (!match) {
 				throw new Error('Invalid fellow string')
 			}
 			const name = (match[1] || '').trim() || null
 			const email = (match[2] || '').trim() || null
 			const url = (match[3] || '').trim() || null
-			if ( name )   this.name = name
-			if ( email )  this.email = email
-			if ( url )    this.url = url
+			if (name) this.name = name
+			if (email) this.email = email
+			if (url) this.url = url
 		}
 
 		// Object Format
-		else if ( typeof fellow === 'object' ) {
-			const urlFields = ['url', 'homepage', 'web', 'githubUrl', 'twitterUrl', 'facebookUrl']
-			Object.keys(fellow).forEach((key) => {
-				if ( key[0] === '_' )  return  // skip if private
+		else if (typeof fellow === 'object') {
+			const urlFields = [
+				'url',
+				'homepage',
+				'web',
+				'githubUrl',
+				'twitterUrl',
+				'facebookUrl'
+			]
+			Object.keys(fellow).forEach(key => {
+				if (key[0] === '_') return // skip if private
 				const value = fellow[key] || null
-				if ( value ) {
+				if (value) {
 					// if not a url field, e.g. name or email
-					if ( urlFields.indexOf(key) === -1 ) {
+					if (urlFields.indexOf(key) === -1) {
 						this[key] = value
 					}
 					// if any of the url fields, redirect to url setter
@@ -293,15 +300,12 @@ class Fellow {
 					}
 				}
 			})
-		}
-
-		else {
+		} else {
 			throw new Error('Invalid fellow input')
 		}
 
 		return this
 	}
-
 
 	// -----------------------------------
 	// Repos
@@ -312,9 +316,14 @@ class Fellow {
 	@param {String} slug - Github repository slug (e.g. "bevry/projectz")
 	@returns {Object} The repository object
 	*/
-	ensureRepository (slug) {
-		if ( this._Repositories == null )  this._Repositories = {}
-		if ( this._Repositories[slug] == null )  this._Repositories[slug] = {contributes: false, maintains: false, authors: false}
+	ensureRepository(slug) {
+		if (this._Repositories == null) this._Repositories = {}
+		if (this._Repositories[slug] == null)
+			this._Repositories[slug] = {
+				contributes: false,
+				maintains: false,
+				authors: false
+			}
 		return this._Repositories[slug]
 	}
 
@@ -322,8 +331,8 @@ class Fellow {
 	Get all added github repository slugs that this fellow contributes to
 	@type {Array}
 	*/
-	get contributedRepositories () {
-		return Object.keys(this._Repositories || {}).filter((slug) => {
+	get contributedRepositories() {
+		return Object.keys(this._Repositories || {}).filter(slug => {
 			const repo = this._Repositories[slug]
 			return repo && repo.contributes
 		})
@@ -334,7 +343,7 @@ class Fellow {
 	@param {String} slug - The github repository slug that this user contributes to
 	@returns {this}
 	*/
-	contributesRepository (slug) {
+	contributesRepository(slug) {
 		this.ensureRepository(slug).contributes = true
 		return this
 	}
@@ -343,8 +352,8 @@ class Fellow {
 	Get all added github repository slugs that this fellow maintains
 	@type {Array}
 	*/
-	get maintainedRepositories () {
-		return Object.keys(this._Repositories || {}).filter((slug) => {
+	get maintainedRepositories() {
+		return Object.keys(this._Repositories || {}).filter(slug => {
 			const repo = this._Repositories[slug]
 			return repo && repo.maintains
 		})
@@ -355,7 +364,7 @@ class Fellow {
 	@param {String} slug - The github repository slug that this user maintains
 	@returns {this}
 	*/
-	maintainsRepository (slug) {
+	maintainsRepository(slug) {
 		this.ensureRepository(slug).maintains = true
 		return this
 	}
@@ -364,8 +373,8 @@ class Fellow {
 	Get all added github repository slugs that this fellow authors
 	@type {Array}
 	*/
-	get authoredRepositories () {
-		return Object.keys(this._Repositories || {}).filter((slug) => {
+	get authoredRepositories() {
+		return Object.keys(this._Repositories || {}).filter(slug => {
 			const repo = this._Repositories[slug]
 			return repo && repo.authors
 		})
@@ -376,11 +385,10 @@ class Fellow {
 	@param {String} slug - The github repository slug that this user authors
 	@returns {this}
 	*/
-	authorsRepository (slug) {
+	authorsRepository(slug) {
 		this.ensureRepository(slug).authors = true
 		return this
 	}
-
 }
 
 // Export
