@@ -3,7 +3,7 @@
 // Import
 const kava = require('kava')
 const { equal, deepEqual } = require('assert-helpers')
-const Fellow = require('../')
+const Fellow = require('./')
 
 // Tests
 kava.suite('fellow', function(suite, test) {
