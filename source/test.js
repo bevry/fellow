@@ -2,7 +2,7 @@
 
 // Import
 const kava = require('kava')
-const { equal, deepEqual } = require('assert-helpers')
+const { equal, deepEqual, nullish } = require('assert-helpers')
 const Fellow = require('./')
 
 // Tests
@@ -42,7 +42,7 @@ kava.suite('fellow', function(suite, test) {
 		equal(fellow.email, email, 'email is correct')
 		equal(fellow.url, githubUrl, 'url is correct')
 		equal(fellow.githubUrl, githubUrl, 'githubUrl is correct')
-		equal(fellow.homepage, null, 'homepage is empty as it was not set')
+		nullish(fellow.homepage, 'homepage is empty as it was not set')
 	})
 
 	test('create instance with string value and homepage', function() {
@@ -51,7 +51,7 @@ kava.suite('fellow', function(suite, test) {
 		equal(fellow.email, email, 'email is correct')
 		equal(fellow.url, homepage2, 'url is correct')
 		equal(fellow.homepage, homepage2, 'homepage is correct')
-		equal(fellow.githubUrl, null, 'githubUrl is empty as it was not set')
+		nullish(fellow.githubUrl, 'githubUrl is empty as it was not set')
 	})
 
 	test('create instance via Fellow.create with string value and homepage', function() {
@@ -65,7 +65,7 @@ kava.suite('fellow', function(suite, test) {
 		equal(fellow.email, email, 'email is correct')
 		equal(fellow.url, homepage2, 'url is correct')
 		equal(fellow.homepage, homepage2, 'homepage is correct')
-		equal(fellow.githubUrl, null, 'githubUrl is empty as it was not set')
+		nullish(fellow.githubUrl, 'githubUrl is empty as it was not set')
 	})
 
 	test('create instance with string value then be able to update it', function() {
