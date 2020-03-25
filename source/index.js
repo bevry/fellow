@@ -69,7 +69,7 @@ class Fellow {
 			'homepage',
 			'githubUsername',
 			'twitterUsername',
-			'facebookUsername'
+			'facebookUsername',
 		]
 	}
 
@@ -120,9 +120,9 @@ class Fellow {
 		if (value instanceof this) {
 			return [this.ensure(value)]
 		} else if (typeof value === 'string') {
-			return value.split(/, +/).map(fellow => this.ensure(fellow))
+			return value.split(/, +/).map((fellow) => this.ensure(fellow))
 		} else if (Array.isArray(value)) {
-			return value.map(value => this.ensure(value))
+			return value.map((value) => this.ensure(value))
 		} else if (value) {
 			return [this.ensure(value)]
 		} else {
@@ -137,7 +137,7 @@ class Fellow {
 	@returns {Array} An array of the fellow objects that contribute to the repository
 	*/
 	static contributesRepository(repoSlug) {
-		return this.list.filter(function(fellow) {
+		return this.list.filter(function (fellow) {
 			return fellow.ensureRepository(repoSlug).contributes
 		})
 	}
@@ -149,7 +149,7 @@ class Fellow {
 	@returns {Array} An array of the fellow objects that maintain to the repository
 	*/
 	static maintainsRepository(repoSlug) {
-		return this.list.filter(function(fellow) {
+		return this.list.filter(function (fellow) {
 			return fellow.ensureRepository(repoSlug).maintains
 		})
 	}
@@ -161,7 +161,7 @@ class Fellow {
 	@returns {Array} An array of the fellow objects that author to the repository
 	*/
 	static authorsRepository(repoSlug) {
-		return this.list.filter(function(fellow) {
+		return this.list.filter(function (fellow) {
 			return fellow.ensureRepository(repoSlug).authors
 		})
 	}
@@ -284,9 +284,9 @@ class Fellow {
 				'web',
 				'githubUrl',
 				'twitterUrl',
-				'facebookUrl'
+				'facebookUrl',
 			]
-			Object.keys(fellow).forEach(key => {
+			Object.keys(fellow).forEach((key) => {
 				if (key[0] === '_') return // skip if private
 				const value = fellow[key] || null
 				if (value) {
@@ -322,7 +322,7 @@ class Fellow {
 			this._Repositories[slug] = {
 				contributes: false,
 				maintains: false,
-				authors: false
+				authors: false,
 			}
 		return this._Repositories[slug]
 	}
@@ -332,7 +332,7 @@ class Fellow {
 	@type {Array}
 	*/
 	get contributedRepositories() {
-		return Object.keys(this._Repositories || {}).filter(slug => {
+		return Object.keys(this._Repositories || {}).filter((slug) => {
 			const repo = this._Repositories[slug]
 			return repo && repo.contributes
 		})
@@ -353,7 +353,7 @@ class Fellow {
 	@type {Array}
 	*/
 	get maintainedRepositories() {
-		return Object.keys(this._Repositories || {}).filter(slug => {
+		return Object.keys(this._Repositories || {}).filter((slug) => {
 			const repo = this._Repositories[slug]
 			return repo && repo.maintains
 		})
@@ -374,7 +374,7 @@ class Fellow {
 	@type {Array}
 	*/
 	get authoredRepositories() {
-		return Object.keys(this._Repositories || {}).filter(slug => {
+		return Object.keys(this._Repositories || {}).filter((slug) => {
 			const repo = this._Repositories[slug]
 			return repo && repo.authors
 		})

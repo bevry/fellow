@@ -6,14 +6,14 @@ const { equal, deepEqual, nullish } = require('assert-helpers')
 const Fellow = require('./')
 
 // Tests
-kava.suite('fellow', function(suite, test) {
+kava.suite('fellow', function (suite, test) {
 	const name = 'Benjamin Lupton',
 		email = 'b@lupton.cc',
 		homepage = 'https://balupton.com',
 		homepage2 = 'http://balupton.com',
 		githubUrl = 'https://github.com/balupton'
 
-	test('create instance with string value', function() {
+	test('create instance with string value', function () {
 		const fellow = new Fellow(`${name} <${email}>`)
 		equal(fellow.name, name, 'name is correct')
 		equal(fellow.email, email, 'email is correct')
@@ -36,7 +36,7 @@ kava.suite('fellow', function(suite, test) {
 		)
 	})
 
-	test('create instance with string value and githubUrl', function() {
+	test('create instance with string value and githubUrl', function () {
 		const fellow = new Fellow(`${name} <${email}> (${githubUrl})`)
 		equal(fellow.name, name, 'name is correct')
 		equal(fellow.email, email, 'email is correct')
@@ -45,7 +45,7 @@ kava.suite('fellow', function(suite, test) {
 		nullish(fellow.homepage, 'homepage is empty as it was not set')
 	})
 
-	test('create instance with string value and homepage', function() {
+	test('create instance with string value and homepage', function () {
 		const fellow = new Fellow(`${name} <${email}> (${homepage})`)
 		equal(fellow.name, name, 'name is correct')
 		equal(fellow.email, email, 'email is correct')
@@ -54,7 +54,7 @@ kava.suite('fellow', function(suite, test) {
 		nullish(fellow.githubUrl, 'githubUrl is empty as it was not set')
 	})
 
-	test('create instance via Fellow.create with string value and homepage', function() {
+	test('create instance via Fellow.create with string value and homepage', function () {
 		const fellow = Fellow.create(`${name} <${email}> (${homepage})`)
 		equal(
 			fellow instanceof Fellow,
@@ -68,7 +68,7 @@ kava.suite('fellow', function(suite, test) {
 		nullish(fellow.githubUrl, 'githubUrl is empty as it was not set')
 	})
 
-	test('create instance with string value then be able to update it', function() {
+	test('create instance with string value then be able to update it', function () {
 		const fellow = new Fellow(`${name} <${email}> (${githubUrl})`)
 
 		fellow.set(`${name} <${email}> (${homepage})`)
@@ -84,8 +84,8 @@ kava.suite('fellow', function(suite, test) {
 		equal(fellow.githubUrl, githubUrl, 'githubUrl stayed as the githubUrl')
 	})
 
-	suite('singleton', function(suite, test) {
-		test('ensure first instance into the singleton', function() {
+	suite('singleton', function (suite, test) {
+		test('ensure first instance into the singleton', function () {
 			const fellow = Fellow.create(`${name} <${email}> (${homepage})`)
 			let fellows = Fellow.add(fellow)
 			equal(fellows[0], fellow, 'added fellow was as expected')
@@ -156,8 +156,8 @@ kava.suite('fellow', function(suite, test) {
 		})
 	})
 
-	suite('repositories', function(suite, test) {
-		test('fellow can contribute to repos', function() {
+	suite('repositories', function (suite, test) {
+		test('fellow can contribute to repos', function () {
 			const fellow = Fellow.get({ email: 'b@lupton.cc' })
 			fellow.contributesRepository('bevry/projectz')
 			deepEqual(
@@ -179,7 +179,7 @@ kava.suite('fellow', function(suite, test) {
 			)
 		})
 
-		test('fellow can maintain repos', function() {
+		test('fellow can maintain repos', function () {
 			const fellow = Fellow.get({ email: 'b@lupton.cc' })
 			fellow.maintainsRepository('bevry/projectz')
 			deepEqual(
@@ -201,7 +201,7 @@ kava.suite('fellow', function(suite, test) {
 			)
 		})
 
-		test('fellow can author repos', function() {
+		test('fellow can author repos', function () {
 			const fellow = Fellow.get({ email: 'b@lupton.cc' })
 			fellow.authorsRepository('bevry/projectz')
 			deepEqual(
