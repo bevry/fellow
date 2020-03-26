@@ -1,3 +1,8 @@
+/** Comparator for sorting fellows in an array */
+export function comparator(a: Fellow, b: Fellow) {
+	return a.compare(b)
+}
+
 /** A fellow with similarties to other people */
 export default class Fellow {
 	// -----------------------------------
@@ -41,19 +46,50 @@ export default class Fellow {
 		'facebookUrl',
 	]
 
-	/** A singleton array attached to the class object that stores it's instances to enable convergence of data */
+	/** A singleton attached to the class that stores it's instances to enable convergence of data */
 	static readonly fellows: Array<Fellow> = []
 
 	// -----------------------------------
-	// Construction
+	// Methods
 
 	/**
-	 * Compare a fellow to another fellow, uses {@link Fellow::idFields} for the comparison
-	 * If an ensureField is an array for both ourself and the other fellow, we will check to see if only one item of that array is similar (this is useful for email comparisons)
-	 * @param other The other fellow to compare ourselves with
-	 * @returns Returns `true` if they appear to be the same person, or `false` if not
+	 * Sort a list of fellows.
+	 * Uses {@link Fellow::sort} for the comparison.
 	 */
-	compare(other: Fellow): boolean {
+	static sort(list: Array<Fellow>) {
+		return list.sort(comparator)
+	}
+
+	/** Flatten lists of fellows into one set of fellows */
+	static flatten(lists: Array<Array<Fellow> | Set<Fellow>>): Set<Fellow> {
+		const fellows = new Set<Fellow>()
+		for (const list of lists) {
+			for (const fellow of list) {
+				fellows.add(fellow)
+			}
+		}
+		return fellows
+	}
+	/** Compare to another fellow for sorting. */
+	compare(other: Fellow): -1 | 0 | 1 {
+		const A = this.name.toLowerCase()
+		const B = other.name.toLowerCase()
+		if (A === B) {
+			return 0
+		} else if (A < B) {
+			return -1
+		} else {
+			return 1
+		}
+	}
+
+	/**
+	 * Compare to another fellow for equivalancy.
+	 * Uses {@link Fellow::idFields} for the comparison.
+	 * @param other The other fellow to compare ourselves with
+	 * @returns Returns `true` if they appear to be the same person, or `false` if not.
+	 */
+	same(other: Fellow): boolean {
 		for (const field of this.idFields) {
 			const value = this[field]
 			const otherValue = other[field]
@@ -80,7 +116,8 @@ export default class Fellow {
 	}
 
 	/**
-	 * With the value, see if an existing fellow exists in our singleton list property with the value, otherwise create a new fellow instance with the value and add them to our singleton list
+	 * With the value, see if an existing fellow exists in our singleton list property with the value, otherwise create a new fellow instance with the value and add them to our singleton list.
+	 * Uses {@link Fellow::same} for the comparison.
 	 * @param value The value to create a new fellow instance or find the existing fellow instance with
 	 * @param add Whether to add the created person to the list
 	 * @returns The new or existing fellow instance
@@ -88,7 +125,7 @@ export default class Fellow {
 	static ensure(value: any, add: boolean = true): Fellow {
 		const newFellow = this.create(value)
 		for (const existingFellow of this.fellows) {
-			if (newFellow.compare(existingFellow)) {
+			if (newFellow.same(existingFellow)) {
 				return existingFellow.set(value)
 			}
 		}
@@ -283,21 +320,21 @@ export default class Fellow {
 	// Repositories
 
 	/** Get all fellows who contribute to a particular repository */
-	static contributesRepository(repoSlug: string): Fellows {
+	static contributesRepository(repoSlug: string): Array<Fellow> {
 		return this.fellows.filter(function (fellow) {
 			return fellow.contributedRepositories.has(repoSlug)
 		})
 	}
 
 	/** Get all fellows who maintain a particular repository */
-	static maintainsRepository(repoSlug: string): Fellows {
+	static maintainsRepository(repoSlug: string): Array<Fellow> {
 		return this.fellows.filter(function (fellow) {
 			return fellow.maintainedRepositories.has(repoSlug)
 		})
 	}
 
 	/** Get all fellows who author a particular repository */
-	static authorsRepository(repoSlug: string): Fellows {
+	static authorsRepository(repoSlug: string): Array<Fellow> {
 		return this.fellows.filter(function (fellow) {
 			return fellow.authoredRepositories.has(repoSlug)
 		})
@@ -338,5 +375,3 @@ export default class Fellow {
 		return parts.join(' ')
 	}
 }
-
-export type Fellows = Array<Fellow>

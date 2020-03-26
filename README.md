@@ -52,7 +52,7 @@ Fellow is a package for creating people that can be unified by their shared valu
 
 ``` html
 <script type="module">
-    import pkg from '//cdn.pika.dev/fellow/^5.0.0'
+    import pkg from '//cdn.pika.dev/fellow/^6.0.0'
 </script>
 ```
 
@@ -60,7 +60,7 @@ Fellow is a package for creating people that can be unified by their shared valu
 
 ``` html
 <script type="module">
-    import pkg from '//unpkg.com/fellow@^5.0.0'
+    import pkg from '//unpkg.com/fellow@^6.0.0'
 </script>
 ```
 
@@ -68,7 +68,7 @@ Fellow is a package for creating people that can be unified by their shared valu
 
 ``` html
 <script type="module">
-    import pkg from '//dev.jspm.io/fellow@5.0.0'
+    import pkg from '//dev.jspm.io/fellow@6.0.0'
 </script>
 ```
 

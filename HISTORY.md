@@ -1,5 +1,9 @@
 # History
 
+## v6.0.0 2020 March 27
+
+-   Added `Fellow.flatten` and `Fellow.sort`, renamed `Fellow::compare` to `Fellow:same` and introduced a new `Fellow::compare` for sorting.
+
 ## v5.0.0 2020 March 27
 
 -   Rewrote in TypeScript with breaking API changes for simplicity as new native abilities allows us to do more with less
