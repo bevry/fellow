@@ -1,5 +1,9 @@
 # History
 
+## v5.0.0 2020 March 27
+
+-   Rewrote in TypeScript with breaking API changes for simplicity as new native abilities allows us to do more with less
+
 ## v4.0.0 2020 March 26
 
 -   Updated dependencies, [base files](https://github.com/bevry/base), and [editions](https://editions.bevry.me) using [boundation](https://github.com/bevry/boundation)
