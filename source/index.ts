@@ -20,6 +20,12 @@ export default class Fellow {
 	/** Emails used */
 	readonly emails = new Set<string>()
 
+	/** Set of repository slugs with the contributions from the user */
+	readonly contributions = new Map<string, number>()
+
+	/** Set of repository slugs that the fellow administers to */
+	readonly administeredRepositories = new Set<string>()
+
 	/** Set of repository slugs that the fellow contributes to */
 	readonly contributedRepositories = new Set<string>()
 
@@ -70,6 +76,7 @@ export default class Fellow {
 		}
 		return fellows
 	}
+
 	/** Compare to another fellow for sorting. */
 	compare(other: Fellow): -1 | 0 | 1 {
 		const A = this.name.toLowerCase()
@@ -319,6 +326,12 @@ export default class Fellow {
 	// -----------------------------------
 	// Repositories
 
+	/** Get all fellows who administrate a particular repository */
+	static administersRepository(repoSlug: string): Array<Fellow> {
+		return this.fellows.filter(function (fellow) {
+			return fellow.administeredRepositories.has(repoSlug)
+		})
+	}
 	/** Get all fellows who contribute to a particular repository */
 	static contributesRepository(repoSlug: string): Array<Fellow> {
 		return this.fellows.filter(function (fellow) {

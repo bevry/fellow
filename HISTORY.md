@@ -1,5 +1,9 @@
 # History
 
+## v6.1.0 2020 March 27
+
+-   Added `Fellow::contributions`, `Fellow::administeredRepositories`, `Fellow.administersRepository`
+
 ## v6.0.0 2020 March 27
 
 -   Added `Fellow.flatten` and `Fellow.sort`, renamed `Fellow::compare` to `Fellow:same` and introduced a new `Fellow::compare` for sorting.
