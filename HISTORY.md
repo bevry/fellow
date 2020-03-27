@@ -1,5 +1,9 @@
 # History
 
+## v6.2.0 2020 March 27
+
+-   Added `Fellow::years`
+
 ## v6.1.0 2020 March 27
 
 -   Added `Fellow::contributions`, `Fellow::administeredRepositories`, `Fellow.administersRepository`

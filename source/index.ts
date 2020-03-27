@@ -14,13 +14,16 @@ export default class Fellow {
 	/** Actual name that is stored, otherwise falls back to username from the url fields */
 	private _name?: string
 
+	/** Years active for the current repository, extracted from the name */
+	private years?: string
+
 	/** URLs used */
 	readonly urls = new Set<string>()
 
 	/** Emails used */
 	readonly emails = new Set<string>()
 
-	/** Set of repository slugs with the contributions from the user */
+	/** Map of repository slugs with the contributions from the user */
 	readonly contributions = new Map<string, number>()
 
 	/** Set of repository slugs that the fellow administers to */
@@ -241,9 +244,10 @@ export default class Fellow {
 		const match = /^((?:[0-9]+[-+]?)+)?(.+)$/.exec(value)
 		if (match) {
 			// fetch the years, but for now, discard it
-			const years = String(match[1] || '').trim() || ''
+			const years = String(match[1] || '').trim()
+			if (years) this.years = years
 			// fetch the name, and apply it
-			const name = match[2].trim() || ''
+			const name = match[2].trim()
 			if (name) this._name = name
 		}
 	}
