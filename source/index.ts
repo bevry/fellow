@@ -1,3 +1,20 @@
+export interface FormatOptions {
+	/** Whether or not to display the fellow's email */
+	displayEmail?: true
+
+	/** Whether or not to display the copright icon */
+	displayCopyright?: boolean
+
+	/** Whether or not to display the copyright years */
+	displayYears?: boolean
+
+	/** Whether or not to display a link to the user's contributions, if used along with {@link .githubRepoSlug} */
+	displayContributions?: boolean
+
+	/** The repository for when using with {@link .displayContributions} */
+	githubRepoSlug?: string
+}
+
 /** Comparator for sorting fellows in an array */
 export function comparator(a: Fellow, b: Fellow) {
 	return a.compare(b)
@@ -15,7 +32,7 @@ export default class Fellow {
 	private _name?: string
 
 	/** Years active for the current repository, extracted from the name */
-	private years?: string
+	public years?: string
 
 	/** URLs used */
 	readonly urls = new Set<string>()
@@ -364,17 +381,28 @@ export default class Fellow {
 	 * Convert the fellow into the usual string format
 	 * @example `NAME <EMAIL> (URL)`
 	 */
-	toString(): string {
+	toString(format: FormatOptions = {}): string {
 		const parts = []
-		if (this.name) {
-			parts.push(this.name)
-			if (this.email) {
-				parts.push(`<${this.email}>`)
-			}
-			if (this.url) {
-				parts.push(`(${this.url})`)
-			}
+		if (!this.name) return ''
+
+		// copyright
+		if (format.displayCopyright) parts.push('Copyright &copy;')
+		if (format.displayYears && this.years) parts.push(this.years)
+
+		// name
+		parts.push(this.name)
+
+		// email
+		if (format.displayEmail && this.email) {
+			parts.push(`<${this.email}>`)
 		}
+
+		// url
+		if (this.url) {
+			parts.push(`(${this.url})`)
+		}
+
+		// return
 		return parts.join(' ')
 	}
 
@@ -382,15 +410,71 @@ export default class Fellow {
 	 * Convert the fellow into the usual markdown format
 	 * @example `[NAME](URL) <EMAIL>`
 	 */
-	toMarkdown(): string {
+	toMarkdown(format: FormatOptions = {}): string {
+		if (!this.name) return ''
 		const parts = []
-		if (this.name) {
-			if (this.url) parts.push(`[${this.name}](${this.url})`)
-			else parts.push(this.name)
-		}
-		if (this.email) {
+
+		// copyright
+		if (format.displayCopyright) parts.push('Copyright &copy;')
+		if (format.displayYears && this.years) parts.push(this.years)
+
+		// name + url
+		if (this.url) parts.push(`[${this.name}](${this.url})`)
+		else parts.push(this.name)
+
+		// email
+		if (format.displayEmail && this.email) {
 			parts.push(`<${this.email}>`)
 		}
+
+		// contributions
+		if (
+			format.displayContributions &&
+			format.githubRepoSlug &&
+			this.githubUsername
+		) {
+			const contributionsURL = `https://github.com/${format.githubRepoSlug}/commits?author=${this.githubUsername}`
+			parts.push(
+				`— [view contributions](${contributionsURL} "View the GitHub contributions of ${this.name} on repository ${format.githubRepoSlug}")`
+			)
+		}
+
+		// return
+		return parts.join(' ')
+	}
+
+	toHTML(format: FormatOptions = {}): string {
+		if (!this.name) return ''
+		const parts = []
+
+		// copyright
+		if (format.displayCopyright) parts.push('Copyright &copy;')
+		if (format.displayYears && this.years) parts.push(this.years)
+
+		// name + url
+		if (this.url) parts.push(`<a href="${this.url}">${this.name}</a>`)
+		else parts.push(this.name)
+
+		// email
+		if (format.displayEmail && this.email) {
+			parts.push(
+				`<a href="mailto:${this.email}" title="Email ${this.name}">&lt;${this.email}&gt;</a>`
+			)
+		}
+
+		// contributions
+		if (
+			format.displayContributions &&
+			format.githubRepoSlug &&
+			this.githubUsername
+		) {
+			const contributionsURL = `https://github.com/${format.githubRepoSlug}/commits?author=${this.githubUsername}`
+			parts.push(
+				`— <a href="${contributionsURL}" title="View the GitHub contributions of ${this.name} on repository ${format.githubRepoSlug}">view contributions</a>`
+			)
+		}
+
+		// return
 		return parts.join(' ')
 	}
 }

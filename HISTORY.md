@@ -1,5 +1,10 @@
 # History
 
+## v6.4.0 2020 March 30
+
+-   Added formatting options
+-   Format without email by default, add it back with the `displayEmail: true` format option
+
 ## v6.3.0 2020 March 30
 
 -   Do not fail hard on malformed text/string entries

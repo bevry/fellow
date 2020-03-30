@@ -1,7 +1,9 @@
 // Import
 import { suite } from 'kava'
 import { equal, deepEqual, nullish } from 'assert-helpers'
-import Fellow from './'
+import Fellow, { FormatOptions } from './'
+
+const showEmail: FormatOptions = { displayEmail: true }
 
 // Tests
 suite('fellow', function (suite, test) {
@@ -35,9 +37,9 @@ suite('fellow', function (suite, test) {
 		nullish(fellow.homepage, 'homepage is empty as it was not set')
 
 		// formats
-		equal(fellow.toString(), text, 'string data is correct')
+		equal(fellow.toString(showEmail), text, 'string data is correct')
 		equal(
-			fellow.toMarkdown(),
+			fellow.toMarkdown(showEmail),
 			`[${name}](${githubUrl}) <${email}>`,
 			'markdown data is correct'
 		)
@@ -51,8 +53,8 @@ suite('fellow', function (suite, test) {
 		equal(fellow.url, '', 'url is correct')
 
 		// formats
-		equal(fellow.toString(), name, 'string data is correct')
-		equal(fellow.toMarkdown(), name, 'markdown data is correct')
+		equal(fellow.toString(showEmail), name, 'string data is correct')
+		equal(fellow.toMarkdown(showEmail), name, 'markdown data is correct')
 	})
 
 	test('create instance with string value and homepage', function () {
