@@ -196,7 +196,7 @@ export default class Fellow {
 		// String format, e.g.
 		// Benjamin Lupton <b@lupton.cc> (https://balupton.com)
 		if (typeof fellow === 'string') {
-			const match = /^([^<(]+)\s*(?:<(.+?)>)?\s*(?:\((.+?)\))?$/.exec(fellow)
+			const match = /^([^<(]+)\s*(?:<(.*?)>)?\s*(?:\((.*?)\))?$/.exec(fellow)
 			if (!match) {
 				throw new Error('Invalid fellow string')
 			}
@@ -371,7 +371,9 @@ export default class Fellow {
 			if (this.email) {
 				parts.push(`<${this.email}>`)
 			}
-			parts.push(`(${this.url})`)
+			if (this.url) {
+				parts.push(`(${this.url})`)
+			}
 		}
 		return parts.join(' ')
 	}

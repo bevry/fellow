@@ -39,8 +39,20 @@ suite('fellow', function (suite, test) {
 		equal(
 			fellow.toMarkdown(),
 			`[${name}](${githubUrl}) <${email}>`,
-			'string data is correct'
+			'markdown data is correct'
 		)
+	})
+
+	test('create instance with invalid email and url', function () {
+		const text = `${name} <> ()`
+		const fellow = new Fellow(text)
+		equal(fellow.name, name, 'name is correct')
+		equal(fellow.email, '', 'email is correct')
+		equal(fellow.url, '', 'url is correct')
+
+		// formats
+		equal(fellow.toString(), name, 'string data is correct')
+		equal(fellow.toMarkdown(), name, 'markdown data is correct')
 	})
 
 	test('create instance with string value and homepage', function () {

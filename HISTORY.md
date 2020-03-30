@@ -1,5 +1,9 @@
 # History
 
+## v6.3.0 2020 March 30
+
+-   Do not fail hard on malformed text/string entries
+
 ## v6.2.0 2020 March 27
 
 -   Added `Fellow::years`
