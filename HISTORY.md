@@ -1,5 +1,11 @@
 # History
 
+## v6.6.0 2020 May 8
+
+-   Allow spread to `add` method
+-   New `urlFields` formatting option for `to*` methods
+-   Updated dependencies, [base files](https://github.com/bevry/base), and [editions](https://editions.bevry.me) using [boundation](https://github.com/bevry/boundation)
+
 ## v6.5.0 2020 May 4
 
 -   Updated dependencies, [base files](https://github.com/bevry/base), and [editions](https://editions.bevry.me) using [boundation](https://github.com/bevry/boundation)

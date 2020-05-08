@@ -1,6 +1,6 @@
 {
   "name": "fellow",
-  "version": "6.5.0",
+  "version": "6.6.0",
   "description": "Fellow is a package for creating people that can be unified by their shared values via a singleton list on the class",
   "homepage": "https://github.com/bevry/fellow",
   "license": "MIT",
@@ -10,7 +10,6 @@
     "browser",
     "contributor",
     "contributors",
-    "dom",
     "export-default",
     "fellow",
     "github user",

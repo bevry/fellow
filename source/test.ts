@@ -107,6 +107,23 @@ suite('fellow', function (suite, test) {
 		equal(fellow.url, homepage, 'url was updated to the homepage')
 		equal(fellow.homepage, homepage, 'homepage was updated to the homepage')
 		equal(fellow.githubUrl, githubUrl, 'githubUrl is still present')
+		equal(
+			fellow.toString({ displayEmail: true }),
+			`${name} <${email}> (${homepage})`,
+			'toString worked as expected'
+		)
+
+		// as we now have a distinct homepage from github url, verify get first field works correctly
+		equal(
+			fellow.getFirstField(['githubUrl', 'url']),
+			githubUrl,
+			'getFirstField worked as expected'
+		)
+		equal(
+			fellow.toString({ displayEmail: true, urlFields: ['githubUrl', 'url'] }),
+			`${name} <${email}> (${githubUrl})`,
+			'toString:urlFields worked as expected'
+		)
 
 		fellow.set(`${name} <${email}> (${githubUrl})`)
 		equal(fellow.url, homepage, 'url stayed as the the homepage')

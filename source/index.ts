@@ -13,6 +13,9 @@ export interface FormatOptions {
 
 	/** The repository for when using with {@link .displayContributions} */
 	githubRepoSlug?: string
+
+	/** An array of fields to prefer for the URL */
+	urlFields?: ['githubUrl', 'url']
 }
 
 /** Comparator for sorting fellows in an array */
@@ -175,21 +178,23 @@ export default class Fellow {
 
 	/**
 	 * Add a fellow or a series of people, denoted by the value, to the singleton list
-	 * @param value The fellow or people to add
+	 * @param values The fellow or people to add
 	 * @returns An array of the fellow objects for the passed people
 	 */
-	static add(value: any): Array<Fellow> {
-		if (value instanceof this) {
-			return [this.ensure(value)]
-		} else if (typeof value === 'string') {
-			return value.split(/, +/).map((fellow) => this.ensure(fellow))
-		} else if (Array.isArray(value)) {
-			return value.map((value) => this.ensure(value))
-		} else if (value) {
-			return [this.ensure(value)]
-		} else {
-			return []
+	static add(...values: any[]): Array<Fellow> {
+		const result: Array<Fellow> = []
+		for (const value of values) {
+			if (value instanceof this) {
+				result.push(this.ensure(value))
+			} else if (typeof value === 'string') {
+				result.push(...value.split(/, +/).map((fellow) => this.ensure(fellow)))
+			} else if (Array.isArray(value)) {
+				result.push(...value.map((value) => this.ensure(value)))
+			} else if (value) {
+				result.push(this.ensure(value))
+			}
 		}
+		return result
 	}
 
 	/** Create a new Fellow instance with the value, however if the value is already a fellow instance, then just return it */
@@ -344,6 +349,15 @@ export default class Fellow {
 		)
 	}
 
+	/** Get the field field from the list that isn't empty */
+	getFirstField(fields: string[]) {
+		for (const field of fields) {
+			const value = this[field]
+			if (value) return value
+		}
+		return null
+	}
+
 	// -----------------------------------
 	// Repositories
 
@@ -398,8 +412,11 @@ export default class Fellow {
 		}
 
 		// url
-		if (this.url) {
-			parts.push(`(${this.url})`)
+		const url = format.urlFields
+			? this.getFirstField(format.urlFields)
+			: this.url
+		if (url) {
+			parts.push(`(${url})`)
 		}
 
 		// return
@@ -419,7 +436,10 @@ export default class Fellow {
 		if (format.displayYears && this.years) parts.push(this.years)
 
 		// name + url
-		if (this.url) parts.push(`[${this.name}](${this.url})`)
+		const url = format.urlFields
+			? this.getFirstField(format.urlFields)
+			: this.url
+		if (url) parts.push(`[${this.name}](${url})`)
 		else parts.push(this.name)
 
 		// email
@@ -443,6 +463,9 @@ export default class Fellow {
 		return parts.join(' ')
 	}
 
+	/**
+	 * Convert the fellow into the usual HTML format
+	 */
 	toHTML(format: FormatOptions = {}): string {
 		if (!this.name) return ''
 		const parts = []
@@ -452,7 +475,10 @@ export default class Fellow {
 		if (format.displayYears && this.years) parts.push(this.years)
 
 		// name + url
-		if (this.url) parts.push(`<a href="${this.url}">${this.name}</a>`)
+		const url = format.urlFields
+			? this.getFirstField(format.urlFields)
+			: this.url
+		if (url) parts.push(`<a href="${url}">${this.name}</a>`)
 		else parts.push(this.name)
 
 		// email
