@@ -1,7 +1,7 @@
 // Import
 import { suite } from 'kava'
 import { equal, deepEqual, nullish } from 'assert-helpers'
-import Fellow, { FormatOptions } from './'
+import Fellow, { FormatOptions } from './index.js'
 
 const showEmail: FormatOptions = { displayEmail: true }
 
