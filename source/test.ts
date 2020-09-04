@@ -1,12 +1,12 @@
 // Import
-import { suite } from 'kava'
+import kava from 'kava'
 import { equal, deepEqual, nullish } from 'assert-helpers'
 import Fellow, { FormatOptions } from './index.js'
 
 const showEmail: FormatOptions = { displayEmail: true }
 
 // Tests
-suite('fellow', function (suite, test) {
+kava.suite('fellow', function (suite, test) {
 	const name = 'Benjamin Lupton',
 		email = 'b@lupton.cc',
 		homepage = 'https://balupton.com',
