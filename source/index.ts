@@ -455,7 +455,7 @@ export default class Fellow {
 		) {
 			const contributionsURL = `https://github.com/${format.githubRepoSlug}/commits?author=${this.githubUsername}`
 			parts.push(
-				`— [view contributions](${contributionsURL} "View the GitHub contributions of ${this.name} on repository ${format.githubRepoSlug}")`
+				`— [view contributions](${contributionsURL} "View the GitHub contributions of ${this.name} on repository ${format.githubRepoSlug}")`,
 			)
 		}
 
@@ -484,7 +484,7 @@ export default class Fellow {
 		// email
 		if (format.displayEmail && this.email) {
 			parts.push(
-				`<a href="mailto:${this.email}" title="Email ${this.name}">&lt;${this.email}&gt;</a>`
+				`<a href="mailto:${this.email}" title="Email ${this.name}">&lt;${this.email}&gt;</a>`,
 			)
 		}
 
@@ -496,7 +496,7 @@ export default class Fellow {
 		) {
 			const contributionsURL = `https://github.com/${format.githubRepoSlug}/commits?author=${this.githubUsername}`
 			parts.push(
-				`— <a href="${contributionsURL}" title="View the GitHub contributions of ${this.name} on repository ${format.githubRepoSlug}">view contributions</a>`
+				`— <a href="${contributionsURL}" title="View the GitHub contributions of ${this.name} on repository ${format.githubRepoSlug}">view contributions</a>`,
 			)
 		}
 

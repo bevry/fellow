@@ -22,7 +22,7 @@ kava.suite('fellow', function (suite, test) {
 		deepEqual(
 			Array.from(fellow.emails),
 			[email, 'bennie@lupton.cc'],
-			'additional email was added'
+			'additional email was added',
 		)
 		equal(fellow.email, email, 'first email remails primary')
 	})
@@ -41,7 +41,7 @@ kava.suite('fellow', function (suite, test) {
 		equal(
 			fellow.toMarkdown(showEmail),
 			`[${name}](${githubUrl}) <${email}>`,
-			'markdown data is correct'
+			'markdown data is correct',
 		)
 	})
 
@@ -69,18 +69,18 @@ kava.suite('fellow', function (suite, test) {
 		deepEqual(
 			Array.from(fellow.urls),
 			[homepage, homepageUnencrypted],
-			'urls are correct'
+			'urls are correct',
 		)
 		fellow.homepage = homepageUnencrypted
 		equal(
 			fellow.homepage,
 			homepageUnencrypted,
-			'homepageUnencrypted is correct'
+			'homepageUnencrypted is correct',
 		)
 		deepEqual(
 			Array.from(fellow.urls),
 			[homepage, homepageUnencrypted],
-			'urls are correct'
+			'urls are correct',
 		)
 	})
 
@@ -89,7 +89,7 @@ kava.suite('fellow', function (suite, test) {
 		equal(
 			fellow instanceof Fellow,
 			true,
-			'fellow via Fellow.create was a fellow instance'
+			'fellow via Fellow.create was a fellow instance',
 		)
 		equal(fellow.name, name, 'name is correct')
 		equal(fellow.email, email, 'email is correct')
@@ -110,19 +110,19 @@ kava.suite('fellow', function (suite, test) {
 		equal(
 			fellow.toString({ displayEmail: true }),
 			`${name} <${email}> (${homepage})`,
-			'toString worked as expected'
+			'toString worked as expected',
 		)
 
 		// as we now have a distinct homepage from github url, verify get first field works correctly
 		equal(
 			fellow.getFirstField(['githubUrl', 'url']),
 			githubUrl,
-			'getFirstField worked as expected'
+			'getFirstField worked as expected',
 		)
 		equal(
 			fellow.toString({ displayEmail: true, urlFields: ['githubUrl', 'url'] }),
 			`${name} <${email}> (${githubUrl})`,
-			'toString:urlFields worked as expected'
+			'toString:urlFields worked as expected',
 		)
 
 		fellow.set(`${name} <${email}> (${githubUrl})`)
@@ -144,14 +144,14 @@ kava.suite('fellow', function (suite, test) {
 			equal(
 				Fellow.fellows.length,
 				1,
-				'only the one fellow was added, no duplicates were added, 1.1'
+				'only the one fellow was added, no duplicates were added, 1.1',
 			)
 
 			fellows = [Fellow.ensure(fellow)]
 			equal(
 				Fellow.fellows.length,
 				1,
-				'only the one fellow was added, no duplicates were added, 1.2'
+				'only the one fellow was added, no duplicates were added, 1.2',
 			)
 			equal(fellows[0], fellow, 'fetched fellow was the previous fellow, 1.2')
 
@@ -160,7 +160,7 @@ kava.suite('fellow', function (suite, test) {
 			equal(
 				Fellow.fellows.length,
 				1,
-				'only the one fellow was added, no duplicates were added, 2'
+				'only the one fellow was added, no duplicates were added, 2',
 			)
 			equal(fellow.githubUrl, githubUrl, 'githubUrl has now been set, 2')
 			equal(fellow.homepage, homepage, 'homepage stayed as the homepage, 2')
@@ -170,7 +170,7 @@ kava.suite('fellow', function (suite, test) {
 			equal(
 				Fellow.fellows.length,
 				1,
-				'only the one fellow was added, no duplicates were added, 3'
+				'only the one fellow was added, no duplicates were added, 3',
 			)
 			equal(fellow.name, 'Ben Lupton', 'name has been updated, 3')
 
@@ -179,7 +179,7 @@ kava.suite('fellow', function (suite, test) {
 			equal(
 				Fellow.fellows.length,
 				1,
-				'only the one fellow was added, no duplicates were added, 4'
+				'only the one fellow was added, no duplicates were added, 4',
 			)
 			equal(fellow.name, 'Bennie Lupton', 'name has been updated 4')
 
@@ -196,7 +196,7 @@ kava.suite('fellow', function (suite, test) {
 			equal(
 				Fellow.fellows.length,
 				3,
-				'three fellows still exist, a new one was not added, 5'
+				'three fellows still exist, a new one was not added, 5',
 			)
 			equal(fellow.homepage, homepage, 'homepage stayed as the homepage, 5')
 			equal(fellow.githubUrl, githubUrl, 'githubUrl stayed as the homepage, 5')
@@ -206,40 +206,40 @@ kava.suite('fellow', function (suite, test) {
 	suite('repositories', function (suite, test) {
 		test('fellow can contribute to repos', function () {
 			Fellow.get({ email: 'b@lupton.cc' }).contributedRepositories.add(
-				'bevry/projectz'
+				'bevry/projectz',
 			)
 			deepEqual(
 				Fellow.contributesRepository('bevry/projectz').map(
-					(fellow) => fellow.email
+					(fellow) => fellow.email,
 				),
 				['b@lupton.cc'],
-				'returns expected users'
+				'returns expected users',
 			)
 		})
 
 		test('fellow can maintain repos', function () {
 			Fellow.get({ email: 'b@lupton.cc' }).maintainedRepositories.add(
-				'bevry/projectz'
+				'bevry/projectz',
 			)
 			deepEqual(
 				Fellow.maintainsRepository('bevry/projectz').map(
-					(fellow) => fellow.email
+					(fellow) => fellow.email,
 				),
 				['b@lupton.cc'],
-				'returns expected users'
+				'returns expected users',
 			)
 		})
 
 		test('fellow can author repos', function () {
 			Fellow.get({ email: 'b@lupton.cc' }).authoredRepositories.add(
-				'bevry/projectz'
+				'bevry/projectz',
 			)
 			deepEqual(
 				Fellow.maintainsRepository('bevry/projectz').map(
-					(fellow) => fellow.email
+					(fellow) => fellow.email,
 				),
 				['b@lupton.cc'],
-				'returns expected users'
+				'returns expected users',
 			)
 		})
 	})
