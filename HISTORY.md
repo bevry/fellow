@@ -1,5 +1,17 @@
 # History
 
+## v7.0.0 2023 December 20
+
+-   Huge improvements to enable backers support in [bevry/github](https://github.com/bevry/github)
+-   Added `prefix` format option, and corrected description and types for others
+-   Now intelligently handles usernames and urls for a number of services
+-   Now trims inputs to prevent blank values over-writing non-blank values (opencollective descriptions can be blank)
+-   Adding now supports Set type as well
+-   Properties related to backers have been renamed
+-   Added the `toText` format
+-   Make `displayEmail` default to enabled on `toString` as necessary to prevent duplicates
+-   Updated dependencies, [base files](https://github.com/bevry/base), and [editions](https://editions.bevry.me) using [boundation](https://github.com/bevry/boundation)
+
 ## v6.25.0 2023 November 1
 
 -   Updated dependencies, [base files](https://github.com/bevry/base), and [editions](https://editions.bevry.me) using [boundation](https://github.com/bevry/boundation)

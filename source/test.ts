@@ -1,6 +1,6 @@
 // Import
 import kava from 'kava'
-import { equal, deepEqual, nullish } from 'assert-helpers'
+import { equal, deepEqual } from 'assert-helpers'
 import Fellow, { FormatOptions } from './index.js'
 
 const showEmail: FormatOptions = { displayEmail: true }
@@ -9,7 +9,7 @@ const showEmail: FormatOptions = { displayEmail: true }
 kava.suite('fellow', function (suite, test) {
 	const name = 'Benjamin Lupton',
 		email = 'b@lupton.cc',
-		homepage = 'https://balupton.com',
+		homepageEncrypted = 'https://balupton.com',
 		homepageUnencrypted = 'http://balupton.com',
 		githubUrl = 'https://github.com/balupton'
 
@@ -22,7 +22,7 @@ kava.suite('fellow', function (suite, test) {
 		deepEqual(
 			Array.from(fellow.emails),
 			[email, 'bennie@lupton.cc'],
-			'additional email was added',
+			'additional email was added'
 		)
 		equal(fellow.email, email, 'first email remails primary')
 	})
@@ -34,14 +34,14 @@ kava.suite('fellow', function (suite, test) {
 		equal(fellow.email, email, 'email is correct')
 		equal(fellow.url, githubUrl, 'url is correct')
 		equal(fellow.githubUrl, githubUrl, 'githubUrl is correct')
-		nullish(fellow.homepage, 'homepage is empty as it was not set')
+		equal(fellow.homepage, '', 'homepage is empty as it was not set')
 
 		// formats
 		equal(fellow.toString(showEmail), text, 'string data is correct')
 		equal(
 			fellow.toMarkdown(showEmail),
 			`[${name}](${githubUrl}) <${email}>`,
-			'markdown data is correct',
+			'markdown data is correct'
 		)
 	})
 
@@ -58,82 +58,74 @@ kava.suite('fellow', function (suite, test) {
 	})
 
 	test('create instance with string value and homepage', function () {
-		const fellow = new Fellow(`${name} <${email}> (${homepage})`)
+		const fellow = new Fellow(`${name} <${email}> (${homepageEncrypted})`)
 		equal(fellow.name, name, 'name is correct')
 		equal(fellow.email, email, 'email is correct')
-		equal(fellow.url, homepage, 'url is correct')
-		equal(fellow.homepage, homepage, 'homepage is correct')
-		nullish(fellow.githubUrl, 'githubUrl is empty as it was not set')
+		equal(fellow.url, homepageEncrypted, 'url is correct')
+		equal(fellow.homepage, homepageEncrypted, 'homepage is correct')
+		equal(fellow.githubUrl, '', 'githubUrl is empty as it was not set')
 
 		// test homepage variation handling
-		deepEqual(
-			Array.from(fellow.urls),
-			[homepage, homepageUnencrypted],
-			'urls are correct',
-		)
+		deepEqual(Array.from(fellow.urls), [homepageEncrypted], 'urls are correct')
 		fellow.homepage = homepageUnencrypted
-		equal(
-			fellow.homepage,
-			homepageUnencrypted,
-			'homepageUnencrypted is correct',
-		)
-		deepEqual(
-			Array.from(fellow.urls),
-			[homepage, homepageUnencrypted],
-			'urls are correct',
-		)
+		equal(fellow.homepage, homepageEncrypted, 'homepageUnencrypted is correct')
+		deepEqual(Array.from(fellow.urls), [homepageEncrypted], 'urls are correct')
 	})
 
 	test('create instance via Fellow.create with string value and homepage', function () {
-		const fellow = Fellow.create(`${name} <${email}> (${homepage})`)
+		const fellow = Fellow.create(`${name} <${email}> (${homepageEncrypted})`)
 		equal(
 			fellow instanceof Fellow,
 			true,
-			'fellow via Fellow.create was a fellow instance',
+			'fellow via Fellow.create was a fellow instance'
 		)
 		equal(fellow.name, name, 'name is correct')
 		equal(fellow.email, email, 'email is correct')
-		equal(fellow.url, homepage, 'url is correct')
-		equal(fellow.homepage, homepage, 'homepage is correct')
-		nullish(fellow.githubUrl, 'githubUrl is empty as it was not set')
+		equal(fellow.url, homepageEncrypted, 'url is correct')
+		equal(fellow.homepage, homepageEncrypted, 'homepage is correct')
+		equal(fellow.githubUrl, '', 'githubUrl is empty as it was not set')
 	})
 
 	test('create instance with string value then be able to update it', function () {
 		const fellow = new Fellow(`${name} <${email}> (${githubUrl})`)
 
-		fellow.set(`${name} <${email}> (${homepage})`)
+		fellow.set(`${name} <${email}> (${homepageEncrypted})`)
 		equal(fellow.name, name, 'name is correct')
 		equal(fellow.email, email, 'email is correct')
-		equal(fellow.url, homepage, 'url was updated to the homepage')
-		equal(fellow.homepage, homepage, 'homepage was updated to the homepage')
+		equal(fellow.url, homepageEncrypted, 'url was updated to the homepage')
+		equal(
+			fellow.homepage,
+			homepageEncrypted,
+			'homepage was updated to the homepage'
+		)
 		equal(fellow.githubUrl, githubUrl, 'githubUrl is still present')
 		equal(
 			fellow.toString({ displayEmail: true }),
-			`${name} <${email}> (${homepage})`,
-			'toString worked as expected',
+			`${name} <${email}> (${homepageEncrypted})`,
+			'toString worked as expected'
 		)
 
 		// as we now have a distinct homepage from github url, verify get first field works correctly
 		equal(
 			fellow.getFirstField(['githubUrl', 'url']),
 			githubUrl,
-			'getFirstField worked as expected',
+			'getFirstField worked as expected'
 		)
 		equal(
 			fellow.toString({ displayEmail: true, urlFields: ['githubUrl', 'url'] }),
 			`${name} <${email}> (${githubUrl})`,
-			'toString:urlFields worked as expected',
+			'toString:urlFields worked as expected'
 		)
 
 		fellow.set(`${name} <${email}> (${githubUrl})`)
-		equal(fellow.url, homepage, 'url stayed as the the homepage')
-		equal(fellow.homepage, homepage, 'homepage stayed as the homepage')
+		equal(fellow.url, homepageEncrypted, 'url stayed as the the homepage')
+		equal(fellow.homepage, homepageEncrypted, 'homepage stayed as the homepage')
 		equal(fellow.githubUrl, githubUrl, 'githubUrl stayed as the githubUrl')
 	})
 
 	suite('singleton', function (suite, test) {
 		test('ensure first instance into the singleton', function () {
-			const fellow = Fellow.create(`${name} <${email}> (${homepage})`)
+			const fellow = Fellow.create(`${name} <${email}> (${homepageEncrypted})`)
 			let fellows = Fellow.add(fellow)
 			equal(fellows[0], fellow, 'added fellow was as expected')
 			equal(Fellow.fellows[0], fellow, 'added fellow was in singleton')
@@ -144,14 +136,14 @@ kava.suite('fellow', function (suite, test) {
 			equal(
 				Fellow.fellows.length,
 				1,
-				'only the one fellow was added, no duplicates were added, 1.1',
+				'only the one fellow was added, no duplicates were added, 1.1'
 			)
 
 			fellows = [Fellow.ensure(fellow)]
 			equal(
 				Fellow.fellows.length,
 				1,
-				'only the one fellow was added, no duplicates were added, 1.2',
+				'only the one fellow was added, no duplicates were added, 1.2'
 			)
 			equal(fellows[0], fellow, 'fetched fellow was the previous fellow, 1.2')
 
@@ -160,17 +152,21 @@ kava.suite('fellow', function (suite, test) {
 			equal(
 				Fellow.fellows.length,
 				1,
-				'only the one fellow was added, no duplicates were added, 2',
+				'only the one fellow was added, no duplicates were added, 2'
 			)
 			equal(fellow.githubUrl, githubUrl, 'githubUrl has now been set, 2')
-			equal(fellow.homepage, homepage, 'homepage stayed as the homepage, 2')
+			equal(
+				fellow.homepage,
+				homepageEncrypted,
+				'homepage stayed as the homepage, 2'
+			)
 
 			fellows = Fellow.add({ name: 'Ben Lupton', email: 'b@lupton.cc' })
 			equal(fellows[0], fellow, 'added fellow was the previous fellow, 3')
 			equal(
 				Fellow.fellows.length,
 				1,
-				'only the one fellow was added, no duplicates were added, 3',
+				'only the one fellow was added, no duplicates were added, 3'
 			)
 			equal(fellow.name, 'Ben Lupton', 'name has been updated, 3')
 
@@ -179,7 +175,7 @@ kava.suite('fellow', function (suite, test) {
 			equal(
 				Fellow.fellows.length,
 				1,
-				'only the one fellow was added, no duplicates were added, 4',
+				'only the one fellow was added, no duplicates were added, 4'
 			)
 			equal(fellow.name, 'Bennie Lupton', 'name has been updated 4')
 
@@ -191,55 +187,59 @@ kava.suite('fellow', function (suite, test) {
 			equal(Fellow.fellows[1].name, 'Bob')
 			equal(Fellow.fellows[2].name, 'Joe')
 
-			fellows = Fellow.add(`${name} <${email}> (${homepage})`)
+			fellows = Fellow.add(`${name} <${email}> (${homepageEncrypted})`)
 			equal(fellows[0], fellow, 'added fellow was the previous fellow, 5')
 			equal(
 				Fellow.fellows.length,
 				3,
-				'three fellows still exist, a new one was not added, 5',
+				'three fellows still exist, a new one was not added, 5'
 			)
-			equal(fellow.homepage, homepage, 'homepage stayed as the homepage, 5')
+			equal(
+				fellow.homepage,
+				homepageEncrypted,
+				'homepage stayed as the homepage, 5'
+			)
 			equal(fellow.githubUrl, githubUrl, 'githubUrl stayed as the homepage, 5')
 		})
 	})
 
 	suite('repositories', function (suite, test) {
 		test('fellow can contribute to repos', function () {
-			Fellow.get({ email: 'b@lupton.cc' }).contributedRepositories.add(
-				'bevry/projectz',
+			Fellow.get({ email: 'b@lupton.cc' }).contributorOfRepositories.add(
+				'bevry/projectz'
 			)
 			deepEqual(
-				Fellow.contributesRepository('bevry/projectz').map(
-					(fellow) => fellow.email,
+				Fellow.contributorsOfRepository('bevry/projectz').map(
+					(fellow) => fellow.email
 				),
 				['b@lupton.cc'],
-				'returns expected users',
+				'returns expected users'
 			)
 		})
 
 		test('fellow can maintain repos', function () {
-			Fellow.get({ email: 'b@lupton.cc' }).maintainedRepositories.add(
-				'bevry/projectz',
+			Fellow.get({ email: 'b@lupton.cc' }).maintainerOfRepositories.add(
+				'bevry/projectz'
 			)
 			deepEqual(
-				Fellow.maintainsRepository('bevry/projectz').map(
-					(fellow) => fellow.email,
+				Fellow.maintainersOfRepository('bevry/projectz').map(
+					(fellow) => fellow.email
 				),
 				['b@lupton.cc'],
-				'returns expected users',
+				'returns expected users'
 			)
 		})
 
 		test('fellow can author repos', function () {
-			Fellow.get({ email: 'b@lupton.cc' }).authoredRepositories.add(
-				'bevry/projectz',
+			Fellow.get({ email: 'b@lupton.cc' }).authorOfRepositories.add(
+				'bevry/projectz'
 			)
 			deepEqual(
-				Fellow.maintainsRepository('bevry/projectz').map(
-					(fellow) => fellow.email,
+				Fellow.authorsOfRepository('bevry/projectz').map(
+					(fellow) => fellow.email
 				),
 				['b@lupton.cc'],
-				'returns expected users',
+				'returns expected users'
 			)
 		})
 	})
