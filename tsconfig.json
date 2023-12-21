@@ -1,7 +1,6 @@
 {
   "compilerOptions": {
     "allowJs": true,
-    "downlevelIteration": true,
     "esModuleInterop": true,
     "isolatedModules": true,
     "maxNodeModuleJsDepth": 5,

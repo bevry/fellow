@@ -22,7 +22,7 @@ kava.suite('fellow', function (suite, test) {
 		deepEqual(
 			Array.from(fellow.emails),
 			[email, 'bennie@lupton.cc'],
-			'additional email was added'
+			'additional email was added',
 		)
 		equal(fellow.email, email, 'first email remails primary')
 	})
@@ -41,7 +41,7 @@ kava.suite('fellow', function (suite, test) {
 		equal(
 			fellow.toMarkdown(showEmail),
 			`[${name}](${githubUrl}) <${email}>`,
-			'markdown data is correct'
+			'markdown data is correct',
 		)
 	})
 
@@ -77,13 +77,58 @@ kava.suite('fellow', function (suite, test) {
 		equal(
 			fellow instanceof Fellow,
 			true,
-			'fellow via Fellow.create was a fellow instance'
+			'fellow via Fellow.create was a fellow instance',
 		)
 		equal(fellow.name, name, 'name is correct')
 		equal(fellow.email, email, 'email is correct')
 		equal(fellow.url, homepageEncrypted, 'url is correct')
 		equal(fellow.homepage, homepageEncrypted, 'homepage is correct')
 		equal(fellow.githubUrl, '', 'githubUrl is empty as it was not set')
+	})
+
+	test('multiple years, urls, and description', function () {
+		const fellow = new Fellow(
+			'2011-2012,2015+ Bob <bob@bob.com> (https://bob.com) (https://github.com/bob): this is my description',
+		)
+		deepEqual(
+			fellow.urls,
+			['https://bob.com', 'https://github.com/bob'],
+			'urls were parsed correctly',
+		)
+		equal(
+			fellow.githubUsername,
+			'bob',
+			'githubUsername was extracted from the additional url correctly',
+		)
+		equal(
+			fellow.description,
+			'this is my description',
+			'description was extracted correctly',
+		)
+		// additional description methods
+		equal(
+			new Fellow(
+				'2011-2012,2015+ Bob <bob@bob.com> (https://bob.com): this is my description',
+			).description,
+			'this is my description',
+			'description was extracted correctly',
+		)
+		equal(
+			new Fellow('2011-2012,2015+ Bob <bob@bob.com>: this is my description')
+				.description,
+			'this is my description',
+			'description was extracted correctly',
+		)
+		equal(
+			new Fellow('2011-2012,2015+ Bob: this is my description').description,
+			'this is my description',
+			'description was extracted correctly',
+		)
+		equal(
+			new Fellow('2011-2012,2015+ Bob:this is my description').description,
+			'this is my description',
+			'description was extracted correctly',
+		)
 	})
 
 	test('create instance with string value then be able to update it', function () {
@@ -96,25 +141,25 @@ kava.suite('fellow', function (suite, test) {
 		equal(
 			fellow.homepage,
 			homepageEncrypted,
-			'homepage was updated to the homepage'
+			'homepage was updated to the homepage',
 		)
 		equal(fellow.githubUrl, githubUrl, 'githubUrl is still present')
 		equal(
 			fellow.toString({ displayEmail: true }),
-			`${name} <${email}> (${homepageEncrypted})`,
-			'toString worked as expected'
+			`${name} <${email}> (${homepageEncrypted}) (${githubUrl})`,
+			'toString worked as expected',
 		)
 
 		// as we now have a distinct homepage from github url, verify get first field works correctly
 		equal(
 			fellow.getFirstField(['githubUrl', 'url']),
 			githubUrl,
-			'getFirstField worked as expected'
+			'getFirstField worked as expected',
 		)
 		equal(
 			fellow.toString({ displayEmail: true, urlFields: ['githubUrl', 'url'] }),
-			`${name} <${email}> (${githubUrl})`,
-			'toString:urlFields worked as expected'
+			`${name} <${email}> (${githubUrl}) (${homepageEncrypted})`,
+			'toString:urlFields worked as expected',
 		)
 
 		fellow.set(`${name} <${email}> (${githubUrl})`)
@@ -136,14 +181,14 @@ kava.suite('fellow', function (suite, test) {
 			equal(
 				Fellow.fellows.length,
 				1,
-				'only the one fellow was added, no duplicates were added, 1.1'
+				'only the one fellow was added, no duplicates were added, 1.1',
 			)
 
 			fellows = [Fellow.ensure(fellow)]
 			equal(
 				Fellow.fellows.length,
 				1,
-				'only the one fellow was added, no duplicates were added, 1.2'
+				'only the one fellow was added, no duplicates were added, 1.2',
 			)
 			equal(fellows[0], fellow, 'fetched fellow was the previous fellow, 1.2')
 
@@ -152,13 +197,13 @@ kava.suite('fellow', function (suite, test) {
 			equal(
 				Fellow.fellows.length,
 				1,
-				'only the one fellow was added, no duplicates were added, 2'
+				'only the one fellow was added, no duplicates were added, 2',
 			)
 			equal(fellow.githubUrl, githubUrl, 'githubUrl has now been set, 2')
 			equal(
 				fellow.homepage,
 				homepageEncrypted,
-				'homepage stayed as the homepage, 2'
+				'homepage stayed as the homepage, 2',
 			)
 
 			fellows = Fellow.add({ name: 'Ben Lupton', email: 'b@lupton.cc' })
@@ -166,7 +211,7 @@ kava.suite('fellow', function (suite, test) {
 			equal(
 				Fellow.fellows.length,
 				1,
-				'only the one fellow was added, no duplicates were added, 3'
+				'only the one fellow was added, no duplicates were added, 3',
 			)
 			equal(fellow.name, 'Ben Lupton', 'name has been updated, 3')
 
@@ -175,7 +220,7 @@ kava.suite('fellow', function (suite, test) {
 			equal(
 				Fellow.fellows.length,
 				1,
-				'only the one fellow was added, no duplicates were added, 4'
+				'only the one fellow was added, no duplicates were added, 4',
 			)
 			equal(fellow.name, 'Bennie Lupton', 'name has been updated 4')
 
@@ -192,54 +237,69 @@ kava.suite('fellow', function (suite, test) {
 			equal(
 				Fellow.fellows.length,
 				3,
-				'three fellows still exist, a new one was not added, 5'
+				'three fellows still exist, a new one was not added, 5',
 			)
 			equal(
 				fellow.homepage,
 				homepageEncrypted,
-				'homepage stayed as the homepage, 5'
+				'homepage stayed as the homepage, 5',
 			)
 			equal(fellow.githubUrl, githubUrl, 'githubUrl stayed as the homepage, 5')
 		})
 	})
 
+	// use bob to note interfere with the earlier singleton tests
+	test('merge authors with years', function () {
+		const result = Fellow.add(
+			'2011-2012 Bob <bob@bob.com> (https://bob.com), 2013-2015 Bob Pty Ltd <us@bob.me> (http://bob.me), 2015+ Bob <bob@bob.com> (https://bob.com)',
+		)
+		equal(result.length, 2, 'only two fellows were returned')
+		equal(result[0].years, '2011-2012,2015+', 'years were merged')
+		const fellow = new Fellow(result[0].toString({ displayYears: true }))
+		equal(
+			fellow.years,
+			'2011-2012,2015+',
+			'merged years were kept after recreation',
+		)
+	})
+
 	suite('repositories', function (suite, test) {
 		test('fellow can contribute to repos', function () {
 			Fellow.get({ email: 'b@lupton.cc' }).contributorOfRepositories.add(
-				'bevry/projectz'
+				'bevry/projectz',
 			)
 			deepEqual(
 				Fellow.contributorsOfRepository('bevry/projectz').map(
-					(fellow) => fellow.email
+					(fellow) => fellow.email,
 				),
 				['b@lupton.cc'],
-				'returns expected users'
+				'returns expected users',
 			)
 		})
 
 		test('fellow can maintain repos', function () {
 			Fellow.get({ email: 'b@lupton.cc' }).maintainerOfRepositories.add(
-				'bevry/projectz'
+				'bevry/projectz',
 			)
 			deepEqual(
 				Fellow.maintainersOfRepository('bevry/projectz').map(
-					(fellow) => fellow.email
+					(fellow) => fellow.email,
 				),
 				['b@lupton.cc'],
-				'returns expected users'
+				'returns expected users',
 			)
 		})
 
 		test('fellow can author repos', function () {
 			Fellow.get({ email: 'b@lupton.cc' }).authorOfRepositories.add(
-				'bevry/projectz'
+				'bevry/projectz',
 			)
 			deepEqual(
 				Fellow.authorsOfRepository('bevry/projectz').map(
-					(fellow) => fellow.email
+					(fellow) => fellow.email,
 				),
 				['b@lupton.cc'],
-				'returns expected users'
+				'returns expected users',
 			)
 		})
 	})

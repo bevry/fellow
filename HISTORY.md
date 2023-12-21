@@ -1,5 +1,16 @@
 # History
 
+## v7.0.1 2023 December 21
+
+-   Prevent fellows that use their company url as their homepage from being merged together, now `idFields` prefers `emails` and uses `usernames` instead of `urls` as intended
+-   Remove `prefix` option, such parental rendering extensions are best handled outside the scope of the children
+-   Prevent githubUsername being a reserved username
+-   Support parsing `github.io` URLs
+-   ThanksDev URLs will only be enabled if explicitly set
+-   String format now supports parsing and rendering with multiple URLs (now outputting all `urlFields`) and a description (`: description`), to expand de-duplication accuracy and offline tooling
+-   Renamed `getUsernameFromGistUrl` to `getUsernameFromGitHubGistUrl`
+-   Years are now combined, supporting when a particular author has paused authorship then resumed later
+
 ## v7.0.0 2023 December 20
 
 -   Huge improvements to enable backers support in [bevry/github](https://github.com/bevry/github)
