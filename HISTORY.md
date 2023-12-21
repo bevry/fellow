@@ -1,5 +1,11 @@
 # History
 
+## v7.0.2 2023 December 21
+
+-   Renamed `toHTML` to `toHtml` to be consistent with other naming
+-   `toText` now respects `FormatOptions.urlFields`
+-   `toMarkdown` and `toHtml` now respect `FormatOptions.displayDescription`
+
 ## v7.0.1 2023 December 21
 
 -   Prevent fellows that use their company url as their homepage from being merged together, now `idFields` prefers `emails` and uses `usernames` instead of `urls` as intended

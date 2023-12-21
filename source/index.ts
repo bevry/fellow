@@ -891,9 +891,13 @@ export default class Fellow {
 		}
 
 		// url
-		if (format.displayUrl !== false && this.url) {
-			parts.push(`🔗 ${this.url}`)
-		}
+		const url =
+			format.displayUrl === false
+				? ''
+				: format.urlFields?.length
+					? this.getFirstField(format.urlFields)
+					: this.url
+		if (url) parts.push(`🔗 ${this.url}`)
 
 		// return
 		return parts.join(' ')
@@ -912,9 +916,12 @@ export default class Fellow {
 		if (format.displayYears && this.years) parts.push(this.years)
 
 		// name + url
-		const url = format.urlFields?.length
-			? this.getFirstField(format.urlFields)
-			: this.url
+		const url =
+			format.displayUrl === false
+				? ''
+				: format.urlFields?.length
+					? this.getFirstField(format.urlFields)
+					: this.url
 		if (url) parts.push(`[${this.name}](${url})`)
 		else parts.push(this.name)
 
@@ -935,14 +942,17 @@ export default class Fellow {
 			)
 		}
 
+		// description
+		if (format.displayDescription && this.description) {
+			parts.push(`— ${this.description}`)
+		}
+
 		// return
 		return parts.join(' ')
 	}
 
-	/**
-	 * Convert the fellow into the usual HTML format
-	 */
-	toHTML(format: FormatOptions = {}): string {
+	/** Convert the fellow into the usual HTML format */
+	toHtml(format: FormatOptions = {}): string {
 		if (!this.name) return ''
 		const parts = []
 
@@ -951,9 +961,12 @@ export default class Fellow {
 		if (format.displayYears && this.years) parts.push(this.years)
 
 		// name + url
-		const url = format.urlFields?.length
-			? this.getFirstField(format.urlFields)
-			: this.url
+		const url =
+			format.displayUrl === false
+				? ''
+				: format.urlFields?.length
+					? this.getFirstField(format.urlFields)
+					: this.url
 		if (url) parts.push(`<a href="${url}">${this.name}</a>`)
 		else parts.push(this.name)
 
@@ -974,6 +987,11 @@ export default class Fellow {
 			parts.push(
 				`— <a href="${contributionsUrl}" title="View the GitHub contributions of ${this.name} on repository ${format.githubRepoSlug}">view contributions</a>`,
 			)
+		}
+
+		// description
+		if (format.displayDescription && this.description) {
+			parts.push(`— ${this.description}`)
 		}
 
 		// return
