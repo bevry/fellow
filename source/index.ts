@@ -1,9 +1,45 @@
+// external
+import { a, ma } from '@bevry/render'
+
+/** Verify an email */
+function verifyEmail(email: string): boolean {
+	if (!email) return false
+	return /.+?@.+/.test(email)
+}
+
+/** Verify a URL */
+async function fetchOk(url: string): Promise<boolean> {
+	const resp = await fetch(url, { method: 'HEAD' })
+	return resp.ok
+}
+
+/** Verify the failure of a URL */
+async function fetchNotOk(url: string): Promise<boolean> {
+	const ok = await fetchOk(url)
+	return !ok
+}
+
+/** A rendering style for {@link Fellow} */
+export enum Format {
+	/** Use {@link Fellow.toString} */
+	string = 'string',
+	/** Use {@link Fellow.toText} */
+	text = 'text',
+	/** Use {@link Fellow.toMarkdown} */
+	markdown = 'markdown',
+	/** Use {@link Fellow.toHtml} */
+	html = 'html',
+}
+
 /**
  * Options for formatting the rendered outputs.
  * Defaults differ for each output.
  * Not all options are relevant on all outputs.
  */
 export interface FormatOptions {
+	/** When used with {@link Fellow.toFormat} this determines the format that is used. */
+	format?: Format | null
+
 	/** Whether or not to display {@link Fellow.url} */
 	displayUrl?: boolean
 
@@ -19,11 +55,11 @@ export interface FormatOptions {
 	/** Whether or not to display {@link Fellow.years} */
 	displayYears?: boolean
 
-	/** Whether or not to display a link to the user's contributions. Requires {@link FormatOptions.githubRepoSlug} */
+	/** Whether or not to display a link to the user's contributions. Requires {@link FormatOptions.githubSlug} */
 	displayContributions?: boolean
 
-	/** The repository for when using with {@link FormatOptions.displayContributions} */
-	githubRepoSlug?: string
+	/** The repository for using with {@link FormatOptions.displayContributions} */
+	githubSlug?: string
 
 	/** An array of fields to prefer for the URL. {@link Fellow.toString} will output each one. */
 	urlFields?: Array<string>
@@ -245,7 +281,7 @@ export default class Fellow {
 		}
 	}
 
-	/** Get {@link Follow.nomen} if resolved, otherwise {@link Fellow.username} */
+	/** Get {@link Fellow.nomen} if resolved, otherwise {@link Fellow.username} */
 	get name(): string {
 		return this.nomen || this.username || ''
 	}
@@ -444,6 +480,40 @@ export default class Fellow {
 		'facebookUrl',
 	]
 
+	/** Remove invalid username urls */
+	async verifyUrls(): Promise<void> {
+		for (const field of this.urlFields) {
+			const url = this[field]
+			if (!url) continue
+			switch (field) {
+				case 'githubUrl':
+					if (await fetchNotOk(url)) this.githubUsername = ''
+					break
+				case 'gitlabUrl':
+					if (await fetchNotOk(url)) this.gitlabUsername = ''
+					break
+				case 'thanksdevUrl':
+					if (await fetchNotOk(url)) this._thanksdevUrlEnabled = false
+					break
+				case 'opencollectiveUrl':
+					if (await fetchNotOk(url)) this.opencollectiveUsername = ''
+					break
+				case 'patreonUrl':
+					if (await fetchNotOk(url)) this.patreonUsername = ''
+					break
+				case 'twitterUrl':
+					if (await fetchNotOk(url)) this.twitterUsername = ''
+					break
+				case 'facebookUrl':
+					if (await fetchNotOk(url)) this.facebookUsername = ''
+					break
+				default:
+					// unknown, ignore
+					continue
+			}
+		}
+	}
+
 	/** Get all unique resolved URLs */
 	get urls() {
 		return this.getFields(this.urlFields)
@@ -457,8 +527,9 @@ export default class Fellow {
 	set url(input: string) {
 		input = trim(input)
 		if (input) {
-			// convert to https
-			input = input.replace(/^http:\/\//, 'https://')
+			// convert to https and trim www. as it is 2023
+			input = input.replace(/^http:\/\//, 'https://').replace(/^www\./, '')
+			if (input.startsWith('https://') === false) input = `https://${input}`
 			// slice 1 to skip websiteUrl
 			for (const field of this.urlFields) {
 				// skip websiteUrl in any order, as that is our fallback
@@ -495,7 +566,7 @@ export default class Fellow {
 	/** Add the email to the set instead of replacing it */
 	set email(input) {
 		input = trim(input)
-		if (!input) return
+		if (!verifyEmail(input)) return
 		this.emails.add(input)
 	}
 
@@ -836,44 +907,43 @@ export default class Fellow {
 	 * Convert the fellow into the usual string format
 	 * @example `NAME <EMAIL> (URL)`
 	 */
-	toString(format: FormatOptions = {}): string {
-		const parts = []
+	toString(opts: FormatOptions = {}): string {
 		if (!this.name) return ''
+		const parts = []
 
 		// copyright
-		if (format.displayCopyright) parts.push('Copyright &copy;')
-		if (format.displayYears && this.years) parts.push(this.years)
+		if (opts.displayCopyright) parts.push('Copyright &copy;')
+		if (opts.displayYears && this.years) parts.push(this.years)
 
 		// name
 		parts.push(this.name)
 
 		// email
-		if (format.displayEmail !== false && this.email) {
+		if (opts.displayEmail !== false && this.email) {
 			parts.push(`<${this.email}>`)
 		}
 
 		// urls
-		const urls = format.urlFields?.length
-			? this.getFields(format.urlFields)
+		const urls = opts.urlFields?.length
+			? this.getFields(opts.urlFields)
 			: this.urls
 		for (const url of urls) {
 			parts.push(`(${url})`)
 		}
 
-		// description
-		if (format.displayDescription && this.description) {
-			parts.push(`: ${this.description}`)
+		// add description without space before :, and return
+		let result = parts.join(' ')
+		if (opts.displayDescription && this.description) {
+			result += `: ${this.description}`
 		}
-
-		// return
-		return parts.join(' ')
+		return result
 	}
 
 	/**
 	 * Convert the fellow into the usual text format
 	 * @example `NAME 📝 DESCRIPTION 🔗 URL`
 	 */
-	toText(format: FormatOptions = {}): string {
+	toText(opts: FormatOptions = {}): string {
 		if (!this.name) return ''
 		const parts = []
 
@@ -881,21 +951,21 @@ export default class Fellow {
 		parts.push(`${this.name}`)
 
 		// email
-		if (format.displayEmail && this.email) {
+		if (opts.displayEmail && this.email) {
 			parts.push(`✉️ ${this.email}`)
 		}
 
 		// description
-		if (format.displayDescription !== false && this.description) {
+		if (opts.displayDescription !== false && this.description) {
 			parts.push(`📝 ${this.description}`)
 		}
 
 		// url
 		const url =
-			format.displayUrl === false
+			opts.displayUrl === false
 				? ''
-				: format.urlFields?.length
-					? this.getFirstField(format.urlFields)
+				: opts.urlFields?.length
+					? this.getFirstField(opts.urlFields)
 					: this.url
 		if (url) parts.push(`🔗 ${this.url}`)
 
@@ -907,43 +977,44 @@ export default class Fellow {
 	 * Convert the fellow into the usual markdown format
 	 * @example `[NAME](URL) <EMAIL>`
 	 */
-	toMarkdown(format: FormatOptions = {}): string {
+	toMarkdown(opts: FormatOptions = {}): string {
 		if (!this.name) return ''
 		const parts = []
 
 		// copyright
-		if (format.displayCopyright) parts.push('Copyright &copy;')
-		if (format.displayYears && this.years) parts.push(this.years)
+		if (opts.displayCopyright) parts.push('Copyright &copy;')
+		if (opts.displayYears && this.years) parts.push(this.years)
 
 		// name + url
 		const url =
-			format.displayUrl === false
+			opts.displayUrl === false
 				? ''
-				: format.urlFields?.length
-					? this.getFirstField(format.urlFields)
+				: opts.urlFields?.length
+					? this.getFirstField(opts.urlFields)
 					: this.url
-		if (url) parts.push(`[${this.name}](${url})`)
+		if (url) parts.push(ma({ url, inner: this.name }))
 		else parts.push(this.name)
 
 		// email
-		if (format.displayEmail && this.email) {
+		if (opts.displayEmail && this.email) {
 			parts.push(`<${this.email}>`)
 		}
 
 		// contributions
-		if (
-			format.displayContributions &&
-			format.githubRepoSlug &&
-			this.githubUsername
-		) {
-			const contributionsUrl = `https://github.com/${format.githubRepoSlug}/commits?author=${this.githubUsername}`
+		if (opts.displayContributions && opts.githubSlug && this.githubUsername) {
+			const contributionsUrl = `https://github.com/${opts.githubSlug}/commits?author=${this.githubUsername}`
 			parts.push(
-				`— [view contributions](${contributionsUrl} "View the GitHub contributions of ${this.name} on repository ${format.githubRepoSlug}")`,
+				'— ' +
+					ma({
+						url: contributionsUrl,
+						inner: 'view contributions',
+						title: `View the GitHub contributions of ${this.name} on repository ${opts.githubSlug}`,
+					}),
 			)
 		}
 
 		// description
-		if (format.displayDescription && this.description) {
+		if (opts.displayDescription && this.description) {
 			parts.push(`— ${this.description}`)
 		}
 
@@ -952,49 +1023,70 @@ export default class Fellow {
 	}
 
 	/** Convert the fellow into the usual HTML format */
-	toHtml(format: FormatOptions = {}): string {
+	toHtml(opts: FormatOptions = {}): string {
 		if (!this.name) return ''
 		const parts = []
 
 		// copyright
-		if (format.displayCopyright) parts.push('Copyright &copy;')
-		if (format.displayYears && this.years) parts.push(this.years)
+		if (opts.displayCopyright) parts.push('Copyright &copy;')
+		if (opts.displayYears && this.years) parts.push(this.years)
 
 		// name + url
 		const url =
-			format.displayUrl === false
+			opts.displayUrl === false
 				? ''
-				: format.urlFields?.length
-					? this.getFirstField(format.urlFields)
+				: opts.urlFields?.length
+					? this.getFirstField(opts.urlFields)
 					: this.url
-		if (url) parts.push(`<a href="${url}">${this.name}</a>`)
+		if (url) parts.push(a({ url, inner: this.name }))
 		else parts.push(this.name)
 
 		// email
-		if (format.displayEmail && this.email) {
+		if (opts.displayEmail && this.email) {
 			parts.push(
-				`<a href="mailto:${this.email}" title="Email ${this.name}">&lt;${this.email}&gt;</a>`,
+				a({
+					url: `mailto:${this.email}`,
+					inner: `&lt;${this.email}&gt;`,
+					title: `Email ${this.name}`,
+				}),
 			)
 		}
 
 		// contributions
-		if (
-			format.displayContributions &&
-			format.githubRepoSlug &&
-			this.githubUsername
-		) {
-			const contributionsUrl = `https://github.com/${format.githubRepoSlug}/commits?author=${this.githubUsername}`
+		if (opts.displayContributions && opts.githubSlug && this.githubUsername) {
+			const contributionsUrl = `https://github.com/${opts.githubSlug}/commits?author=${this.githubUsername}`
 			parts.push(
-				`— <a href="${contributionsUrl}" title="View the GitHub contributions of ${this.name} on repository ${format.githubRepoSlug}">view contributions</a>`,
+				'— ' +
+					a({
+						url: contributionsUrl,
+						inner: 'view contributions',
+						title: `View the GitHub contributions of ${this.name} on repository ${opts.githubSlug}`,
+					}),
 			)
 		}
 
 		// description
-		if (format.displayDescription && this.description) {
+		if (opts.displayDescription && this.description) {
 			parts.push(`— ${this.description}`)
 		}
 
 		// return
 		return parts.join(' ')
+	}
+
+	/** Convert the fellow into the specified format */
+	toFormat(opts: FormatOptions & { format: Format }): string {
+		switch (opts.format) {
+			case Format.string:
+				return this.toString(opts)
+			case Format.text:
+				return this.toText(opts)
+			case Format.markdown:
+				return this.toMarkdown(opts)
+			case Format.html:
+				return this.toHtml(opts)
+			default:
+				throw new Error(`Invalid format: ${opts.format}`)
+		}
 	}
 }

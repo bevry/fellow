@@ -1,5 +1,16 @@
 # History
 
+## v7.0.3 2023 December 27
+
+-   Renamed `githubRepoSlug` to `githubSlug`
+-   Emails are now verified before being applied
+-   Add `verifyUrls` method
+-   Use [`bevry/render`](https://github.com/bevry/render) for rendering
+-   Add `toFormat` method
+-   URLs are without schema are now corrected to `https://` and `www.` removed
+-   Fixed description outputs containing `:` instead of `: `
+-   Thank you to the sponsors: [Andrew Nesbitt](https://nesbitt.io), [Balsa](https://balsa.com), [Codecov](https://codecov.io/), [Poonacha Medappa](https://poonachamedappa.com), [Rob Morris](https://github.com/Rob-Morris), [Sentry](https://sentry.io), [Syntax](https://syntax.fm)
+
 ## v7.0.2 2023 December 21
 
 -   Renamed `toHTML` to `toHtml` to be consistent with other naming

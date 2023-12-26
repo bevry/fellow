@@ -51,14 +51,14 @@ Fellow is a package for creating people that can be unified by their shared valu
 <a href="https://deno.land" title="Deno is a secure runtime for JavaScript and TypeScript, it is an alternative for Node.js"><h3>Deno</h3></a>
 
 ``` typescript
-import pkg from 'https://unpkg.com/fellow@^7.0.2/edition-deno/index.ts'
+import pkg from 'https://unpkg.com/fellow@^7.0.3/edition-deno/index.ts'
 ```
 
 <a href="https://www.skypack.dev" title="Skypack is a JavaScript Delivery Network for modern web apps"><h3>Skypack</h3></a>
 
 ``` html
 <script type="module">
-    import pkg from '//cdn.skypack.dev/fellow@^7.0.2'
+    import pkg from '//cdn.skypack.dev/fellow@^7.0.3'
 </script>
 ```
 
@@ -66,7 +66,7 @@ import pkg from 'https://unpkg.com/fellow@^7.0.2/edition-deno/index.ts'
 
 ``` html
 <script type="module">
-    import pkg from '//unpkg.com/fellow@^7.0.2'
+    import pkg from '//unpkg.com/fellow@^7.0.3'
 </script>
 ```
 
@@ -74,7 +74,7 @@ import pkg from 'https://unpkg.com/fellow@^7.0.2/edition-deno/index.ts'
 
 ``` html
 <script type="module">
-    import pkg from '//dev.jspm.io/fellow@7.0.2'
+    import pkg from '//dev.jspm.io/fellow@7.0.3'
 </script>
 ```
 
