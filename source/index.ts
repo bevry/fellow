@@ -2,19 +2,23 @@
 import { a, ma } from '@bevry/render'
 
 /** Verify an email */
-function verifyEmail(email: string): boolean {
+export function verifyEmail(email: string): boolean {
 	if (!email) return false
 	return /.+?@.+/.test(email)
 }
 
 /** Verify a URL */
-async function fetchOk(url: string): Promise<boolean> {
-	const resp = await fetch(url, { method: 'HEAD' })
-	return resp.ok
+export async function fetchOk(url: string): Promise<boolean> {
+	try {
+		const resp = await fetch(url, { method: 'HEAD' })
+		return resp.ok
+	} catch (error) {
+		return false
+	}
 }
 
 /** Verify the failure of a URL */
-async function fetchNotOk(url: string): Promise<boolean> {
+export async function fetchNotOk(url: string): Promise<boolean> {
 	const ok = await fetchOk(url)
 	return !ok
 }
