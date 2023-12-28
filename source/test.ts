@@ -58,7 +58,7 @@ kava.suite('fellow', function (suite, test) {
 	})
 
 	test('create instance with string value and homepage', function () {
-		const fellow = new Fellow(`${name} <${email}> (${homepageEncrypted})`)
+		const fellow = new Fellow(`${name} <${email}> (${homepageEncrypted}/)`)
 		equal(fellow.name, name, 'name is correct')
 		equal(fellow.email, email, 'email is correct')
 		equal(fellow.url, homepageEncrypted, 'url is correct')

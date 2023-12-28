@@ -1,6 +1,6 @@
 {
   "name": "fellow",
-  "version": "7.1.0",
+  "version": "7.1.1",
   "license": "Artistic-2.0",
   "description": "Fellow is a package for creating people that can be unified by their shared values via a singleton list on the class",
   "homepage": "https://github.com/bevry/fellow",
@@ -103,7 +103,7 @@
     "Codecov <hello-codecov@sentry.io> (https://codecov.io/) (https://github.com/codecov)",
     "entroniq (https://gitlab.com/entroniq) (https://thanks.dev/d/gl/entroniq)",
     "Jean-Luc Geering (https://github.com/jlgeering) (https://opencollective.com/jlgeering) (https://twitter.com/jlgeering)",
-    "Michael Duane Mooring (https://mdm.cc) (https://github.com/mikeumus) (https://opencollective.com/mikeumus) (https://twitter.com/mikeumus)",
+    "Michael Duane Mooring (https://bevry.me) (https://github.com/mikeumus) (https://opencollective.com/mikeumus) (https://twitter.com/mikeumus)",
     "Mohammed Shah <shah@idk.uno> (https://github.com/smashah) (https://thanks.dev/d/gh/smashah) (https://twitter.com/smashah)",
     "Poonacha Medappa (https://poonachamedappa.com) (https://github.com/km-Poonacha)",
     "Rob Morris <rob@prismatik.com.au> (https://github.com/Rob-Morris)",
@@ -245,12 +245,12 @@
     "eslint-plugin-babel": "^5.3.1",
     "eslint-plugin-prettier": "^5.1.2",
     "kava": "^7.6.0",
-    "make-deno-edition": "^2.1.0",
+    "make-deno-edition": "^2.2.0",
     "prettier": "^3.1.1",
-    "projectz": "^4.0.0",
+    "projectz": "^4.1.0",
     "typedoc": "^0.25.4",
     "typescript": "5.3.3",
-    "valid-directory": "^4.7.0",
+    "valid-directory": "^4.8.0",
     "valid-module": "^2.6.0"
   },
   "scripts": {

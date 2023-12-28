@@ -23,6 +23,23 @@ export async function fetchNotOk(url: string): Promise<boolean> {
 	return !ok
 }
 
+/** Trim a value if it is a string */
+function trim(input: any): typeof input {
+	if (typeof input !== 'string') return input
+	return input.trim()
+}
+
+/** Cleanup a URL for successful de-duplication */
+function cleanUrl(input: any): string {
+	if (typeof input !== 'string') return ''
+	// convert to https, trim www., www1.
+	input = input.replace(/^http:\/\//, 'https://').replace(/^www\d*\./, '')
+	if (input.startsWith('https://') === false) input = `https://${input}`
+	// trim trailing slashes, e.g. .eu/ => .eu
+	input = input.replace(/\/+$/, '')
+	return input
+}
+
 /** A rendering style for {@link Fellow} */
 export enum Format {
 	/** Use {@link Fellow.toString} */
@@ -164,14 +181,6 @@ function getUsernameFromPatreonUrl(url: string): string {
 function getUsernameFromOpenCollectiveUrl(url: string): string {
 	const match = /^https?:\/\/opencollective\.com\/([^/]+)\/?$/.exec(url)
 	return (match && match[1]) || ''
-}
-
-/** Trim a value if it is a string */
-function trim(value: any): typeof value {
-	if (typeof value === 'string') {
-		return value.trim()
-	}
-	return value
 }
 
 /** Comparator for sorting fellows in an array */
@@ -529,11 +538,8 @@ export default class Fellow {
 	}
 	/** Set the appropriate {@link Fellow.urlFields} from the input */
 	set url(input: string) {
-		input = trim(input)
+		input = cleanUrl(input)
 		if (input) {
-			// convert to https and trim www. as it is 2023
-			input = input.replace(/^http:\/\//, 'https://').replace(/^www\./, '')
-			if (input.startsWith('https://') === false) input = `https://${input}`
 			// slice 1 to skip websiteUrl
 			for (const field of this.urlFields) {
 				// skip websiteUrl in any order, as that is our fallback
