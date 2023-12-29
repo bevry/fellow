@@ -48,27 +48,27 @@ Fellow is a package for creating people that can be unified by their shared valu
 ### [Deno](https://deno.land "Deno is a secure runtime for JavaScript and TypeScript, it is an alternative for Node.js")
 
 ``` typescript
-import pkg from 'https://unpkg.com/fellow@^7.1.1/edition-deno/index.ts'
+import pkg from 'https://unpkg.com/fellow@^7.1.2/edition-deno/index.ts'
 ```
 ### [Skypack](https://www.skypack.dev "Skypack is a JavaScript Delivery Network for modern web apps")
 
 ``` html
 <script type="module">
-    import pkg from '//cdn.skypack.dev/fellow@^7.1.1'
+    import pkg from '//cdn.skypack.dev/fellow@^7.1.2'
 </script>
 ```
 ### [unpkg](https://unpkg.com "unpkg is a fast, global content delivery network for everything on npm")
 
 ``` html
 <script type="module">
-    import pkg from '//unpkg.com/fellow@^7.1.1'
+    import pkg from '//unpkg.com/fellow@^7.1.2'
 </script>
 ```
 ### [jspm](https://jspm.io "Native ES Modules CDN")
 
 ``` html
 <script type="module">
-    import pkg from '//dev.jspm.io/fellow@7.1.1'
+    import pkg from '//dev.jspm.io/fellow@7.1.2'
 </script>
 ```
 ### [Editions](https://editions.bevry.me "Editions are the best way to produce and consume packages you care about.")
@@ -107,7 +107,7 @@ This package is published with the following editions:
 
 #### Maintainers
 
--   [Benjamin Lupton](https://github.com/balupton) — Accelerating collaborative wisdom.
+-   [Benjamin Lupton](https://balupton.com) — Accelerating collaborative wisdom.
 
 #### Contributors
 
@@ -128,7 +128,7 @@ This package is published with the following editions:
 
 -   [Andrew Nesbitt](https://nesbitt.io) — Software engineer and researcher
 -   [Balsa](https://balsa.com) — We're Balsa, and we're building tools for builders.
--   [Codecov](https://codecov.io/) — Empower developers with tools to improve code quality and testing.
+-   [Codecov](https://codecov.io) — Empower developers with tools to improve code quality and testing.
 -   [Poonacha Medappa](https://poonachamedappa.com)
 -   [Rob Morris](https://github.com/Rob-Morris)
 -   [Sentry](https://sentry.io) — Real-time crash reporting for your web apps, mobile apps, and games.
@@ -139,7 +139,7 @@ This package is published with the following editions:
 -   [Andrew Nesbitt](https://nesbitt.io)
 -   [Balsa](https://balsa.com)
 -   [Chad](https://opencollective.com/chad8)
--   [Codecov](https://codecov.io/)
+-   [Codecov](https://codecov.io)
 -   [entroniq](https://gitlab.com/entroniq)
 -   [Jean-Luc Geering](https://github.com/jlgeering)
 -   [Michael Duane Mooring](https://bevry.me)

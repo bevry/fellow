@@ -32,12 +32,14 @@ function trim(input: any): typeof input {
 /** Cleanup a URL for successful de-duplication */
 function cleanUrl(input: any): string {
 	if (typeof input !== 'string') return ''
-	// convert to https, trim www., www1.
-	input = input.replace(/^http:\/\//, 'https://').replace(/^www\d*\./, '')
-	if (input.startsWith('https://') === false) input = `https://${input}`
-	// trim trailing slashes, e.g. .eu/ => .eu
-	input = input.replace(/\/+$/, '')
-	return input
+	// strip schema to ensure https, strip www, strip trailing slashes
+	return (
+		`https://` +
+		input
+			.replace(/^.+?:[/][/]/, '')
+			.replace(/^www\d*\./, '')
+			.replace(/[/]+$/, '')
+	)
 }
 
 /** A rendering style for {@link Fellow} */

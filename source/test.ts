@@ -88,7 +88,7 @@ kava.suite('fellow', function (suite, test) {
 
 	test('multiple years, urls, and description', function () {
 		const fellow = new Fellow(
-			'2011-2012,2015+ Bob <bob@bob.com> (https://bob.com) (https://github.com/bob): this is my description',
+			'2011-2012,2015+ Bob <bob@bob.com> (https://www.bob.com) (https://github.com/bob): this is my description',
 		)
 		deepEqual(
 			fellow.urls,
@@ -108,7 +108,7 @@ kava.suite('fellow', function (suite, test) {
 		// additional description methods
 		equal(
 			new Fellow(
-				'2011-2012,2015+ Bob <bob@bob.com> (https://bob.com): this is my description',
+				'2011-2012,2015+ Bob <bob@bob.com> (www1.bob.com): this is my description',
 			).description,
 			'this is my description',
 			'description was extracted correctly',

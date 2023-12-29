@@ -1,5 +1,10 @@
 # History
 
+## v7.1.2 2023 December 28
+
+-   Improved cleaning of URLs, especially `schema://www.` patterns, such as `https://www.pleo.io/` becoming `https://pleo.io`
+-   Thank you to the sponsors: [Andrew Nesbitt](https://nesbitt.io), [Balsa](https://balsa.com), [Codecov](https://codecov.io/), [Poonacha Medappa](https://poonachamedappa.com), [Rob Morris](https://github.com/Rob-Morris), [Sentry](https://sentry.io), [Syntax](https://syntax.fm)
+
 ## v7.1.1 2023 December 28
 
 -   Trim trailing slashes to prevent duplicates on [bevry/cson](https://github.com/bevry/cson/commit/e30f735e4bc3b0b1159c1c20891507b82d596b39#diff-7ae45ad102eab3b6d7e7896acd08c427a9b25b346470d7bc6507b6481575d519R72-R73)
