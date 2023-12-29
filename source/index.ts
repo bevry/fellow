@@ -705,18 +705,35 @@ export default class Fellow {
 
 	/**
 	 * Compare to another fellow for equivalency.
-	 * Uses {@link Fellow.ids} for the comparison.
+	 * First checks if any of the ids match, using {@link Fellow.ids}, otherwise checks if their {@link Fellow.toString} result is the same, otherwise checks if one is only a name that matches the other.
+	 * Note that `Adrian <adrian@gmail.com>, Adrian` will not be de-duplicated, as no way to tell they are the same.
 	 * @param other The other fellow to compare ourselves with
 	 * @returns Returns `true` if they appear to be the same person, or `false` if not.
 	 */
 	same(other: Fellow): boolean {
-		const ids = new Set(this.ids)
-		const otherIds = new Set(other.ids)
+		// compare id fields (emails, usernames)
+		const ids = this.ids
+		const otherIds = other.ids
 		for (const id of ids) {
-			if (otherIds.has(id)) {
+			if (otherIds.includes(id)) {
 				return true
 			}
 		}
+		// compare overall entity (name, email, urls including homepage)
+		const str = this.toString()
+		const otherStr = other.toString()
+		if (str === otherStr) return true
+		// if one of them is only the name, do the names match?
+		const name = this.name
+		const otherName = other.name
+		if (
+			/* names are the same */
+			name === otherName &&
+			/* this is only a name, or other is only a name */
+			(name === str || otherName === otherStr)
+		)
+			return true
+		// no match
 		return false
 	}
 

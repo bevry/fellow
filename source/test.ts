@@ -246,6 +246,32 @@ kava.suite('fellow', function (suite, test) {
 			)
 			equal(fellow.githubUrl, githubUrl, 'githubUrl stayed as the homepage, 5')
 		})
+		test('overall de-duplication', function () {
+			equal(
+				Fellow.add([
+					// same toString, merge
+					'Alice (alice.com)',
+					'Alice (www.alice.com)',
+					'Alice (www1.alice.com)',
+					'Alice (http://www1.alice.com)',
+					// same toString, merge
+					'Andrew',
+					'Andrew',
+					// one is only a matching name, so it is merged with the other
+					'Adrian <adrian@gmail.com>',
+					'Adrian',
+					// don't merge, need an id match to know these are the same
+					'Alex <alex@gmail.com>',
+					'Alex <alex@hotmail.com>',
+					'Alex (alex.com)',
+					'Alex (alex.net)',
+				])
+					.map((fellow) => fellow.toString())
+					.join(', '),
+				'Alice (https://alice.com), Andrew, Adrian <adrian@gmail.com>, Alex <alex@gmail.com>, Alex <alex@hotmail.com>, Alex (https://alex.com), Alex (https://alex.net)',
+				'duplicates were removed',
+			)
+		})
 	})
 
 	// use bob to note interfere with the earlier singleton tests
