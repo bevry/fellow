@@ -1,5 +1,10 @@
 # History
 
+## v7.2.0 2023 December 29
+
+-   Updated dependencies, [base files](https://github.com/bevry/base), and [editions](https://editions.bevry.me) using [boundation](https://github.com/bevry/boundation)
+-   Thank you to the sponsors: [Andrew Nesbitt](https://nesbitt.io), [Balsa](https://balsa.com), [Codecov](https://codecov.io), [Poonacha Medappa](https://poonachamedappa.com), [Rob Morris](https://github.com/Rob-Morris), [Sentry](https://sentry.io), [Syntax](https://syntax.fm)
+
 ## v7.1.2 2023 December 28
 
 -   Improved cleaning of URLs, especially `schema://www.` patterns, such as `https://www.pleo.io/` becoming `https://pleo.io`
