@@ -173,9 +173,18 @@ function getUsernameFromTwitterUrl(url: string): string {
 	return (match && match[1]) || ''
 }
 
-/** Patreon URL */
+/** Patreon Username from Patreon URL */
 function getUsernameFromPatreonUrl(url: string): string {
 	const match = /^https?:\/\/patreon\.com\/([^/]+)\/?$/.exec(url)
+	return (match && match[1]) || ''
+}
+
+/** Patreon ID from Patreon URL */
+function getIdFromPatreonUrl(url: string): string {
+	const match =
+		/^https?:\/\/patreon\.com\/user(?:\/?(?:creators)?)\?u=([^/]+)\/?$/.exec(
+			url,
+		)
 	return (match && match[1]) || ''
 }
 
@@ -222,6 +231,9 @@ export default class Fellow {
 	/** Patreon Username */
 	patreonUsername: string = ''
 
+	/** Patreon ID */
+	patreonId: string = ''
+
 	/** Fields used to resolve {@link Fellow.username} */
 	protected readonly usernameFields = [
 		'githubUsername',
@@ -230,6 +242,7 @@ export default class Fellow {
 		'facebookUsername',
 		'opencollectiveUsername',
 		'patreonUsername',
+		'patreonId',
 	]
 
 	/** Get all unique resolved social usernames */
@@ -422,19 +435,26 @@ export default class Fellow {
 		}
 	}
 
-	/** Get the Patreon URL from the {@link Fellow.patreonUsername} */
+	/** Get the Patreon URL from the {@link Fellow.patreonUsername} or {@link Fellow.patreonId} */
 	get patreonUrl() {
 		return this.patreonUsername
 			? `https://patreon.com/${this.patreonUsername}`
-			: ''
+			: this.patreonId
+				? `https://patreon.com/user?u=${this.patreonId}`
+				: ''
 	}
-	/** Set the Patreon URL and username from an input */
+	/** Set the Patreon URL and username/id from an input */
 	set patreonUrl(input: string) {
 		const username = getUsernameFromPatreonUrl(input)
 		if (username) {
 			this.patreonUsername = username
 		} else {
-			throw new Error(`Invalid Patreon URL: ${input}`)
+			const id = getIdFromPatreonUrl(input)
+			if (id) {
+				this.patreonId = id
+			} else {
+				throw new Error(`Invalid Patreon URL: ${input}`)
+			}
 		}
 	}
 
@@ -514,7 +534,10 @@ export default class Fellow {
 					if (await fetchNotOk(url)) this.opencollectiveUsername = ''
 					break
 				case 'patreonUrl':
-					if (await fetchNotOk(url)) this.patreonUsername = ''
+					if (await fetchNotOk(url)) {
+						this.patreonUsername = ''
+						this.patreonId = ''
+					}
 					break
 				case 'twitterUrl':
 					if (await fetchNotOk(url)) this.twitterUsername = ''
