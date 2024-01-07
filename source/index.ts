@@ -1,6 +1,26 @@
 // external
 import { a, ma } from '@bevry/render'
 
+/** Compare/comparator/comparison result */
+export type Comparison = -1 | 0 | 1
+
+// https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Intl/Collator/Collator
+const { compare: intlCompare } = new Intl.Collator('en', {
+	numeric: true,
+	// sensitivity: 'base',
+	ignorePunctuation: true,
+})
+
+/** Comparator for sorting alphanumeric strings, with support for accents */
+export function compare(a: string, b: string): Comparison {
+	return intlCompare(a, b) as any
+}
+
+/** Comparator for sorting fellows */
+export function comparator(a: Fellow, b: Fellow): Comparison {
+	return a.compare(b)
+}
+
 /** Verify an email */
 export function verifyEmail(email: string): boolean {
 	if (!email) return false
@@ -192,11 +212,6 @@ function getIdFromPatreonUrl(url: string): string {
 function getUsernameFromOpenCollectiveUrl(url: string): string {
 	const match = /^https?:\/\/opencollective\.com\/([^/]+)\/?$/.exec(url)
 	return (match && match[1]) || ''
-}
-
-/** Comparator for sorting fellows in an array */
-export function comparator(a: Fellow, b: Fellow) {
-	return a.compare(b)
 }
 
 /** A fellow with similarties to other people */
@@ -714,16 +729,8 @@ export default class Fellow {
 	}
 
 	/** Compare to another fellow for sorting. */
-	compare(other: Fellow): -1 | 0 | 1 {
-		const a = this.name.toLowerCase()
-		const b = other.name.toLowerCase()
-		if (a === b) {
-			return 0
-		} else if (a < b) {
-			return -1
-		} else {
-			return 1
-		}
+	compare(other: Fellow): Comparison {
+		return compare(this.name, other.name)
 	}
 
 	/**
@@ -821,7 +828,7 @@ export default class Fellow {
 	/**
 	 * Add a fellow or a series of people, denoted by the value, to the singleton list
 	 * @param inputs The fellow or people to add
-	 * @returns A de-duplicated array of fellow objects for the passed people
+	 * @returns A de-duplicated sorted array of fellow objects for the passed people
 	 */
 	static add(...inputs: any[]): Array<Fellow> {
 		const list = new Set<Fellow>()
@@ -843,7 +850,7 @@ export default class Fellow {
 				list.add(this.ensure(input))
 			}
 		}
-		return Array.from(list.values())
+		return this.sort(Array.from(list.values()))
 	}
 
 	/** Create a new Fellow instance with the value, however if the value is already a fellow instance, then just return it */

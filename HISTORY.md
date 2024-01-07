@@ -1,5 +1,12 @@
 # History
 
+## v7.4.0 2024 January 8
+
+-   Sorting of accented names of Fellows now works as expected
+-   `.add` results are now sorted
+-   Updated dependencies, [base files](https://github.com/bevry/base), and [editions](https://editions.bevry.me) using [boundation](https://github.com/bevry/boundation)
+-   Thank you to the sponsors: [Andrew Nesbitt](https://nesbitt.io), [Balsa](https://balsa.com), [Codecov](https://codecov.io), [Frontend Masters](https://FrontendMasters.com), [Mr. Henry](https://mrhenry.be), [Poonacha Medappa](https://poonachamedappa.com), [Rob Morris](https://github.com/Rob-Morris), [Sentry](https://sentry.io), [Syntax](https://syntax.fm)
+
 ## v7.3.0 2024 January 8
 
 -   Support Patreon ID URLs

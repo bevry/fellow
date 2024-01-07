@@ -1,6 +1,6 @@
 {
   "name": "fellow",
-  "version": "7.3.0",
+  "version": "7.4.0",
   "license": "Artistic-2.0",
   "description": "Fellow is a package for creating people that can be unified by their shared values via a singleton list on the class",
   "homepage": "https://github.com/bevry/fellow",

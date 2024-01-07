@@ -265,10 +265,11 @@ kava.suite('fellow', function (suite, test) {
 					'Alex <alex@hotmail.com>',
 					'Alex (alex.com)',
 					'Alex (alex.net)',
+					'Áa', // testing sort
 				])
 					.map((fellow) => fellow.toString())
 					.join(', '),
-				'Alice (https://alice.com), Andrew, Adrian <adrian@gmail.com>, Alex <alex@gmail.com>, Alex <alex@hotmail.com>, Alex (https://alex.com), Alex (https://alex.net)',
+				'Áa, Adrian <adrian@gmail.com>, Alex <alex@gmail.com>, Alex <alex@hotmail.com>, Alex (https://alex.com), Alex (https://alex.net), Alice (https://alice.com), Andrew',
 				'duplicates were removed',
 			)
 		})
